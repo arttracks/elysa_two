@@ -20,6 +20,8 @@ import TimelineVisualization from "./components/TimelineVisualization.vue";
 import PageHeader from "./components/PageHeader.vue";
 import PageFooter from "./components/PageFooter.vue";
 
+import BulmaCustomization from "./assets/BulmaCustomization.scss"
+
 export default {
   name: 'app',
   props: ["entity"],
