@@ -7,5 +7,5 @@ new Vue({
   components: { App },
   data: { entity: window.data },
   el: "#app",
-  template: `<app id="app" :entity="entity" v-cloak />`
+  template: `<app id="app" v-cloak />`
 });

@@ -49,3 +49,4 @@ src/public/sitemap*.xml
 ##       Ignore the .env Environment file         ##
 ##------------------------------------------------##
 .env
+src/public/js/build.js
