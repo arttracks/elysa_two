@@ -1,10 +1,18 @@
 <!-- ###################   HTML   ################### -->
 <template>
-  <div>
-    I am PageFooter
-    and my data is
-    <pre>{{}}</pre>
-  </div>
+  <footer class="footer ">
+    <div class="container">
+        <div class="content has-text-centered">
+          <p>
+            <strong>Art Tracks</strong> is a project of the 
+            <a href="http://www.cmoa.org">Carnegie Museum of Art</a>.
+          </p>
+          <p> 
+            Copyright © 2014-2018 CMOA. All rights reserved.
+          </p>
+        </div>
+      </div>
+  </footer>
 </template>
 
 <!-- ################### JAVACRIPT ################### -->

@@ -1,0 +1,7 @@
+  @import "~bulma/sass/utilities/functions";
+  $bg: #294866;
+  
+  @mixin darkSection {
+    background-color: $bg;
+    color: findColorInvert($bg);
+  }

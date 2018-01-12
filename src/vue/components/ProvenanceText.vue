@@ -1,6 +1,6 @@
 <!-- ###################   HTML   ################### -->
 <template>
-  <div>
+  <div class="provenance-text">
     I am Provenance Text
     and my data is
     <pre>{{}}</pre>
@@ -19,5 +19,8 @@ export default {
 
 
 <!-- ###################    CSS    ################### -->
-<style lang="scss">
+<style scoped lang="scss">
+  .provenance-text {
+    margin-top: 1rem;
+  }
 </style>

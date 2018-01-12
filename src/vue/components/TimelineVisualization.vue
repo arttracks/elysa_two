@@ -1,10 +1,12 @@
 <!-- ###################   HTML   ################### -->
 <template>
-  <div>
-    I am TimelineVisualization
-    and my data is
-    <pre>{{}}</pre>
-  </div>
+  <section class="section">
+    <div class="container is-widescreen">
+      I am TimelineVisualization
+      and my data is
+      <pre>{{}}</pre>
+    </div>
+  </section>
 </template>
 
 <!-- ################### JAVACRIPT ################### -->
@@ -19,5 +21,10 @@ export default {
 
 
 <!-- ###################    CSS    ################### -->
-<style lang="scss">
+<style scoped lang="scss">
+  @import "../assets/_DarkSection.scss";
+  
+  section {
+    @include darkSection;
+  }
 </style>
