@@ -1,23 +1,28 @@
-function classified_as(resourceArray, requestedClassification) {
-  if (!Array.isArray(resourceArray) || !resourceArray.length) {
-    return null;
-  }
+function classified_as(submittedResource, requestedClassification) {
   let results = [];
-  for (const resource of resourceArray) {
-    if (
-      !resource.classified_as ||
-      !Array.isArray(resource.classified_as) ||
-      !resource.classified_as.length
-    ) {
-      continue;
-    }
-    for (const classification of resource.classified_as) {
-      if (!classification.id) {
+  let resourceArray = submittedResource;
+
+  if (Object.prototype.toString.call(submittedResource) == "[object Object]") {
+    resourceArray = [submittedResource];
+  }
+
+  if (resourceArray  && resourceArray.length) {
+    for (const resource of resourceArray) {
+      if (
+        !resource.classified_as ||
+        !Array.isArray(resource.classified_as) ||
+        !resource.classified_as.length
+      ) {
         continue;
       }
-      if (classification.id === requestedClassification) {
-        results.push(resource)
-      } 
+      for (const classification of resource.classified_as) {
+        if (!classification.id) {
+          continue;
+        }
+        if (classification.id === requestedClassification) {
+          results.push(resource)
+        } 
+      }
     }
   }
   return results;

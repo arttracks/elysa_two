@@ -24,6 +24,6 @@ export default {
 <!-- ###################    CSS    ################### -->
 <style scoped lang="scss">
   img {
-    width: 200px;
+    width: 100%;
   }
 </style>

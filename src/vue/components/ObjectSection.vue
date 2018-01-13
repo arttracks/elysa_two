@@ -5,7 +5,7 @@
   <section class="section">
       <div class="container is-widescreen">
         <div class="columns">
-          <div class="column is-narrow">
+          <div class="column is-one-quarter">
             <LinkedArtImage :representation="mmo.representation" />
           </div>
           <div class="column">
@@ -35,5 +35,6 @@ export default {
 
 
 <!-- ###################    CSS    ################### -->
-<style lang="scss">
+<style scoped lang="scss">
+
 </style>
