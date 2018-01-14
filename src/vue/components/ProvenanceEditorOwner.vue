@@ -50,28 +50,9 @@
     <EntityLookup 
       label="Relation to Prev. Owner"
       placeholder="Previous owner's name"
+      :lookupList="relationships"
       help="Familial relationship between the previous and new owner."
     />
-
-    <div class="field is-horizontal">
-      <div class="field-label is-small">
-        <label class="label">Relationship</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <div class="control">
-            <span class="select is-small">
-              <select>
-                <option v-for="relationship in relationships">
-                    {{ relationship }}
-                </option>
-              </select>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-
 
   </div>
 </template>

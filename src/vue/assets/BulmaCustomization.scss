@@ -4,6 +4,9 @@
 
 $primary: #2d2d2d;
 
+@import "~bulma/sass/utilities/derived-variables";
+
+$panel-block-active-border-left-color: $warning;
 
 // 6. Import the rest of Bulma
 @import "~bulma/bulma";

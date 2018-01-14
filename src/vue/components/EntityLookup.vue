@@ -5,11 +5,23 @@
         <label class="label">{{label}}</label>
       </div>
       <div class="field-body">
-        <div class="field entity-input">
+        <div class="field entity-input" :class="{ 'has-addons': lookupList.length}">
+
+          <div v-if="lookupList.length" class="control">
+            <span class="select is-small">
+              <select>
+                <option v-for="lookup in lookupList">
+                    {{ lookup }}
+                </option>
+              </select>
+            </span>
+          </div>
+
           <div class="control">
-            <input class="input is-small " type="text" :placeholder="placeholder">
+            <input class="input is-small" type="text" :placeholder="placeholder">
             <p v-if="help" class="help">{{help}}</p>
           </div>
+
         </div>
         <div class="field has-addons lod-input">
           <div class="control has-icons-right is-expanded">
@@ -17,7 +29,7 @@
             <span class="icon is-right">
               <font-awesome-icon :icon="internetIcon" />
             </span>
-            <p class="help">URL for {{label}}.</p>
+            <p class="help">URL for {{lowercaseLabel}}.</p>
           </div>
           <div class="control">
             <a class="button is-small is-info" disabled>
@@ -51,6 +63,10 @@ export default {
     },
     "help": {
       type: String
+    },
+    "lookupList": {
+      type: Array,
+      default: function() {return [];}
     }
   },
   computed: {
@@ -59,6 +75,9 @@ export default {
     },
     previewIcon () {
       return faEyeSlash;
+    },
+    lowercaseLabel () {
+      return this.label.toLowerCase();
     }
   },
   components: {
@@ -70,9 +89,13 @@ export default {
 
 <!-- ###################    CSS    ################### -->
 <style scoped lang="scss">
-    .entity-input {
+    .entity-input:not(.has-addons) {
       flex-basis: 50%;
-    } 
+    }
+ 
+    .entity-input.has-addons {
+    }
+ 
     .lod-input {
       flex-basis: 25%
     }

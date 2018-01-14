@@ -9,7 +9,7 @@
         <label class="label">Aquisition Method</label>
       </div>
       <div class="field-body">
-        <div class="field is-narrow">
+        <div class="field is-shorter">
           <div class="control">
             <div class="select is-small">
               <select >
@@ -19,7 +19,7 @@
             </div>
           </div>
         </div>
-        <div class="field is-narrow">
+        <div class="field is-narrow is-narrow">
           <div class="control">
             <label class="checkbox is-small">
               <input type="checkbox">
@@ -31,7 +31,7 @@
           <div class="control">
             <label class="checkbox is-small">
               <input type="checkbox">
-              Period Certain?
+              Period Uncertain?
             </label>
           </div>
         </div>
@@ -53,9 +53,9 @@
     </div>
 
     <EntityLookup 
-      label="Sale Location"
-      placeholder="Location of the sale"
-      help="The physical location where the sale took place."
+      label="Transfer Location"
+      placeholder="Location of the transfer"
+      help="The physical location where the transfer took place."
     />
   </div>
 </template>

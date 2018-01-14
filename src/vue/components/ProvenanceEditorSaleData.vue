@@ -49,7 +49,7 @@
           </div>
           <p class="help">The amount of the sale in a standard currency.</p>
         </div>
-        <div class="field">
+        <div class="field is-narrow">
           <p class='is-intermediate'>or</p>
         </div>
         <div class="field ">
@@ -84,8 +84,4 @@ export default {
 
 <!-- ###################    CSS    ################### -->
 <style scoped lang="scss">
-  .field-body .is-shorter {
-    flex-basis: 61.5%;
-    flex-grow: 0;
-  } 
 </style>
