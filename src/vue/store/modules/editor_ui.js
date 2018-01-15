@@ -2,7 +2,7 @@ import * as types from '../mutation-types.js'
 
 
 const state = {
-  helpShown: true
+  helpShown: false
 }
 
 

@@ -50,3 +50,4 @@ src/public/sitemap*.xml
 ##------------------------------------------------##
 .env
 src/public/js/build.js
+src/public/js/build.js.map
