@@ -32,33 +32,31 @@
 
 <!-- ################### JAVACRIPT ################### -->
 <script>
-
 export default {
   props: [],
-  components: {
-  }
-}
+  components: {}
+};
 </script>
 
 
 <!-- ###################    CSS    ################### -->
 <style scoped lang="scss">
-  .provenance-periods {
-    background-color: white;
-    margin-top: -12px
-  }
-  .panel-block.is-active {
-    font-weight: bold;
-  }
-  a.panel-block.unknown {
-    font-size: .75rem;
-    background-color: whitesmoke;
-    justify-content: center;
-    font-style: italic;
-    padding: 0em 0.75em;
-    margin-top: -1.5px;
-  }
-  a.panel-block[disabled]:hover {
-    cursor: inherit;
-  }
+.provenance-periods {
+  background-color: white;
+  margin-top: -12px;
+}
+.panel-block.is-active {
+  font-weight: bold;
+}
+a.panel-block.unknown {
+  font-size: 0.75rem;
+  background-color: whitesmoke;
+  justify-content: center;
+  font-style: italic;
+  padding: 0em 0.75em;
+  margin-top: -1.5px;
+}
+a.panel-block[disabled]:hover {
+  cursor: inherit;
+}
 </style>

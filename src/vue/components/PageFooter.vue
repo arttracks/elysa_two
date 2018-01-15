@@ -16,15 +16,14 @@
 
 <!-- ################### JAVACRIPT ################### -->
 <script>
-
 export default {
   props: [],
-  components: {
-  }
-}
+  components: {}
+};
 </script>
 
 
 <!-- ###################    CSS    ################### -->
 <style lang="scss">
+
 </style>

@@ -11,20 +11,18 @@
 
 <!-- ################### JAVACRIPT ################### -->
 <script>
-
 export default {
   props: [],
-  components: {
-  }
-}
+  components: {}
+};
 </script>
 
 
 <!-- ###################    CSS    ################### -->
 <style scoped lang="scss">
-  @import "../assets/_DarkSection.scss";
-  
-  section {
-    @include darkSection;
-  }
+@import "../assets/_DarkSection.scss";
+
+section {
+  @include darkSection;
+}
 </style>

@@ -22,29 +22,28 @@
 
 <!-- ################### JAVACRIPT ################### -->
 <script>
-
-import { mapMutations, mapState } from 'vuex'
-import * as types from '../store/mutation-types.js'
+import { mapMutations, mapState } from "vuex";
+import * as types from "../store/mutation-types.js";
 
 export default {
   props: [],
-  components: {
-  },
+  components: {},
   computed: {
     helpButtonText: function() {
-      return this.helpShown ? "Help On" : "Help Off"
+      return this.helpShown ? "Help On" : "Help Off";
     },
     ...mapState({
       helpShown: state => state.editor_ui.helpShown
     })
   },
   methods: {
-    ...mapMutations({toggleHelp: types.TOGGLE_HELP})
+    ...mapMutations({ toggleHelp: types.TOGGLE_HELP })
   }
-}
+};
 </script>
 
 
 <!-- ###################    CSS    ################### -->
 <style lang="scss">
+
 </style>

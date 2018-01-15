@@ -65,23 +65,23 @@
 
 <!-- ################### JAVACRIPT ################### -->
 <script>
-
 import EntityLookup from "./EntityLookup.vue";
 
 export default {
   props: [],
   data: function() {
     return {
-      currencies: ["$","ƒ","£","€","¢","¥","₱"]
-    }
+      currencies: ["$", "ƒ", "£", "€", "¢", "¥", "₱"]
+    };
   },
   components: {
     EntityLookup
   }
-}
+};
 </script>
 
 
 <!-- ###################    CSS    ################### -->
 <style scoped lang="scss">
+
 </style>

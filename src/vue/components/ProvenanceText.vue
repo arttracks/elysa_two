@@ -22,18 +22,16 @@
 
 <!-- ################### JAVACRIPT ################### -->
 <script>
-
 export default {
   props: [],
-  components: {
-  }
-}
+  components: {}
+};
 </script>
 
 
 <!-- ###################    CSS    ################### -->
 <style scoped lang="scss">
-  .provenance-text {
-    margin-top: 1rem;
-  }
+.provenance-text {
+  margin-top: 1rem;
+}
 </style>

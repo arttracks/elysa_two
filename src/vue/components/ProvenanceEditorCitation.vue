@@ -10,12 +10,10 @@
 
 <!-- ################### JAVACRIPT ################### -->
 <script>
-
 export default {
   props: [],
-  components: {
-  }
-}
+  components: {}
+};
 </script>
 
 

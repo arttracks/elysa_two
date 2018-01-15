@@ -1,4 +1,2 @@
-
-
 // UI State
-export const TOGGLE_HELP = 'TOGGLE_HELP'
+export const TOGGLE_HELP = "TOGGLE_HELP";

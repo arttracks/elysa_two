@@ -69,112 +69,114 @@
 
 <!-- ################### JAVACRIPT ################### -->
 <script>
-
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
-import faLink from '@fortawesome/fontawesome-free-solid/faLink'
-import faUnlink from '@fortawesome/fontawesome-free-solid/faUnlink'
-import faEye from '@fortawesome/fontawesome-free-solid/faEye'
-import faEyeSlash from '@fortawesome/fontawesome-free-solid/faEyeSlash'
-import faQuestion from '@fortawesome/fontawesome-free-solid/faQuestion'
+import FontAwesomeIcon from "@fortawesome/vue-fontawesome";
+import faLink from "@fortawesome/fontawesome-free-solid/faLink";
+import faUnlink from "@fortawesome/fontawesome-free-solid/faUnlink";
+import faEye from "@fortawesome/fontawesome-free-solid/faEye";
+import faEyeSlash from "@fortawesome/fontawesome-free-solid/faEyeSlash";
+import faQuestion from "@fortawesome/fontawesome-free-solid/faQuestion";
 
 export default {
   data: function() {
     return {
       isCertain: true,
       entityText: this.value
-    }
+    };
   },
 
   props: {
-    "value": {
+    value: {
       type: String,
       default: ""
     },
-    "placeholder": {
+    placeholder: {
       default: "Enter a search term",
       type: String
     },
-    "label": {
+    label: {
       default: "",
       type: String
     },
-    "help": {
+    help: {
       type: String
     },
-    "lookupList": {
+    lookupList: {
       type: Array,
-      default: function() {return [];}
+      default: function() {
+        return [];
+      }
     },
-    "certaintyEnabled": {
+    certaintyEnabled: {
       type: Boolean,
       default: true
     }
   },
 
   watch: {
-    entityText: function (newText, _) {
-      this.isCertain = !newText.endsWith("?")
+    entityText: function(newText, _) {
+      this.isCertain = !newText.endsWith("?");
     },
-    isCertain: function (newState, oldState) {
-      if(newState === oldState) {return;}
-      if( newState && this.entityText.endsWith("?")) {
-        this.entityText = this.entityText.substr(0, this.entityText.length -1)
+    isCertain: function(newState, oldState) {
+      if (newState === oldState) {
+        return;
       }
-      else if (!newState && !this.entityText.endsWith("?")) {
-        this.entityText = this.entityText + "?"
+      if (newState && this.entityText.endsWith("?")) {
+        this.entityText = this.entityText.substr(0, this.entityText.length - 1);
+      } else if (!newState && !this.entityText.endsWith("?")) {
+        this.entityText = this.entityText + "?";
       }
     }
   },
 
   computed: {
-    internetIcon () {
+    internetIcon() {
       return faUnlink;
     },
-    previewIcon () {
+    previewIcon() {
       return faEyeSlash;
     },
-    certainIcon () {
+    certainIcon() {
       return faQuestion;
     },
-    lowercaseLabel () {
+    lowercaseLabel() {
       return this.label.toLowerCase();
     },
-    hasAddons () {
-      return this.lookupList.length || this.certaintyEnabled
+    hasAddons() {
+      return this.lookupList.length || this.certaintyEnabled;
     }
   },
 
   methods: {
     toggleCertainty: function() {
-      if(this.entityText.length == 0) {return;}
-      this.isCertain = !this.isCertain
+      if (this.entityText.length == 0) {
+        return;
+      }
+      this.isCertain = !this.isCertain;
     }
   },
 
   components: {
     FontAwesomeIcon
   }
-}
+};
 </script>
 
 
 <!-- ###################    CSS    ################### -->
 <style scoped lang="scss">
-    .entity-input {
-      flex-basis: 50%;
-    }
-   
-   .lod-input {
-      flex-basis: 25%
-    }
+.entity-input {
+  flex-basis: 50%;
+}
 
-    .certainty-button.inactive .button {
-      color: #d9d9d9;
-    }
-    .certainty-button .button {
-      padding-left: .5em;
-      padding-right: .5em;
-    }
+.lod-input {
+  flex-basis: 25%;
+}
 
-  
+.certainty-button.inactive .button {
+  color: #d9d9d9;
+}
+.certainty-button .button {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
 </style>
