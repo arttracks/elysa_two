@@ -1,16 +1,14 @@
 <!-- ###################   HTML   ################### -->
 <template>
-  <section class="section">
+  <section class="section" :class="{'is-helpful': helpShown}">
     <div class="container is-widescreen">
       <div class="columns">
         <div class="column is-one-quarter">
           <ProvenancePeriods />
         </div>
         <div class="column editing-area">
-          <div class="form-section">
-            <h3>Current Line</h3>
-            <textarea class="textarea is-small" placeholder="Provenance entry" rows="2"></textarea>
-          </div>
+          <ProvenanceEditorHeader />
+          <ProvenanceEditorLineDisplay />
           <ProvenanceEditorTransfer />
           <ProvenanceEditorOwner />
           <ProvenanceEditorSaleData />
@@ -27,16 +25,28 @@
 
 import ProvenancePeriods from "./ProvenancePeriods.vue"
 
+import ProvenanceEditorHeader from "./ProvenanceEditorHeader.vue"
+import ProvenanceEditorLineDisplay from "./ProvenanceEditorLineDisplay.vue"
 import ProvenanceEditorTransfer from "./ProvenanceEditorTransfer.vue"
 import ProvenanceEditorOwner    from "./ProvenanceEditorOwner.vue"
 import ProvenanceEditorSaleData from "./ProvenanceEditorSaleData.vue"
 import ProvenanceEditorFootnote from "./ProvenanceEditorFootnote.vue"
 import ProvenanceEditorCitation from "./ProvenanceEditorCitation.vue"
 
+import { mapMutations, mapState } from 'vuex'
+import * as types from '../store/mutation-types.js'
+
 export default {
   props: [],
+  computed: {
+     ...mapState({
+      helpShown: state => state.editor_ui.helpShown
+    })
+  },
   components: {
     ProvenancePeriods,
+    ProvenanceEditorHeader,
+    ProvenanceEditorLineDisplay,
     ProvenanceEditorTransfer,
     ProvenanceEditorOwner,
     ProvenanceEditorSaleData,
@@ -60,6 +70,7 @@ export default {
     color: black
   }
 
+
   /deep/ .form-section {
     margin-bottom: 1.5rem;
     h3 {
@@ -71,9 +82,6 @@ export default {
       line-height: 200%
     }
 
-    .help {
-      display: none;
-    }
     .columns {
       margin-bottom: 0;
     }
@@ -86,10 +94,7 @@ export default {
         flex-wrap: wrap;
     }
 
-    .help {
-      opacity: 0.8;
-      color: #294866
-    }
+
 
     .checkbox.is-small {
       font-size: .75rem;
@@ -111,5 +116,21 @@ export default {
       font-weight: normal;
     }
   }
+</style>
 
+<style lang="scss">
+  .help {
+    max-height: 0px;
+    overflow-y: hidden;
+    opacity: 0;
+    color: #294866;
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+  }
+  .is-helpful .help {
+    opacity: 0.8;
+    max-height: 2rem;
+  }
 </style>

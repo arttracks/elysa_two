@@ -23,7 +23,11 @@ export default {
 
 <!-- ###################    CSS    ################### -->
 <style scoped lang="scss">
-  img {
-    width: 100%;
+  figure {
+    max-height: 250px;
+    img {
+      width: auto;
+      height: 100%
+    }
   }
 </style>
