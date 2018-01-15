@@ -29,7 +29,7 @@ const state = {
         eotb: "1892-08-uu"
       },
       footnote: "Recorded in stock book in August 1892 ",
-      direct_transfer: true
+      direct_transfer: false
     },
     {
       period_certainty: true,
@@ -68,3 +68,19 @@ const state = {
   ]
 };
 
+export const getters = {
+  periodsList(state) {
+    return state.periods.map(p => {
+      return { value: p.owner.name.string, direct: p.direct_transfer };
+    });
+  }
+};
+export const actions = {};
+export const mutations = {};
+
+export default {
+  state,
+  getters,
+  actions,
+  mutations
+};

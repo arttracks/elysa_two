@@ -6,21 +6,13 @@
   <p class="panel-heading">
     Provenance Periods
   </p>
-  <a class="panel-block ">
-    Mary Cassatt
-  </a>
-  <a class="panel-block unknown" disabled>
-    (missing data)
-  </a>
-  <a class="panel-block is-active">
-    Galaries Durand-Ruel
-  </a>
-  <a class="panel-block">
-    Durand-Ruel Galleries
-  </a>
-  <a class="panel-block">
-    Carnegie Museum of Art
-  </a>
+
+  <template v-for="(period,i) in periodsList" >
+    <a class="panel-block period" :class="{'is-active': activePeriod == i}">
+      {{period.value}}
+    </a>
+    <div v-if="!period.direct && i!=(periodsList.length-1)" class="missing-block">(missing data)</div>
+  </template>
 
   <div class="panel-block">
     <button class="button is-info is-fullwidth">
@@ -32,15 +24,27 @@
 
 <!-- ################### JAVACRIPT ################### -->
 <script>
+import { mapGetters, mapState } from "vuex";
+
 export default {
   props: [],
-  components: {}
+  components: {},
+  computed: {
+    ...mapState({
+      activePeriod: state => state.editor_ui.activePeriod
+    }),
+    ...mapGetters(["periodsList"])
+  }
 };
 </script>
 
 
 <!-- ###################    CSS    ################### -->
 <style scoped lang="scss">
+.period {
+  flex-wrap: wrap;
+}
+
 .provenance-periods {
   background-color: white;
   margin-top: -12px;
@@ -48,13 +52,16 @@ export default {
 .panel-block.is-active {
   font-weight: bold;
 }
-a.panel-block.unknown {
+.missing-block {
+  width: 100%;
   font-size: 0.75rem;
   background-color: whitesmoke;
-  justify-content: center;
+  text-align: center;
   font-style: italic;
   padding: 0em 0.75em;
   margin-top: -1.5px;
+  cursor: inherit;
+  color: black;
 }
 a.panel-block[disabled]:hover {
   cursor: inherit;

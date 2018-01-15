@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import * as actions from "./actions";
 import mmo from "./modules/mmo";
 import editor_ui from "./modules/editor_ui";
+import provenance from "./modules/provenance";
 
 Vue.use(Vuex);
 
@@ -12,7 +13,8 @@ export default new Vuex.Store({
   actions,
   modules: {
     mmo,
-    editor_ui
+    editor_ui,
+    provenance
   },
   strict: debug
 });

@@ -1,7 +1,8 @@
 import * as types from "../mutation-types.js";
 
 const state = {
-  helpShown: false
+  helpShown: false,
+  activePeriod: 0
 };
 
 // getters
