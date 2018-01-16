@@ -7,17 +7,21 @@
     Provenance Periods
   </p>
 
-  <template v-for="(period,i) in periodsList" >
-    <label 
-      class="panel-block period" 
-      :class="{'is-active': activePeriod == i}" 
-      @click.prevent="selectPeriod(i)">
-      {{period.value}}
-      <a class="tag is-delete is-small" @click.stop="deletePeriod(i)"></a>
-    </label>
-    <div v-if="!period.direct && i!=(periodsList.length-1)" class="missing-block">(missing data)</div>
-  </template>
-
+  <draggable v-model='draggablePeriodsList'>
+    <div v-for="period in draggablePeriodsList" >
+      <label 
+        class="panel-block period" 
+        :class="{'is-active': activePeriod == period.index}" 
+        @click.prevent="selectPeriod(period.index)">
+        {{period.value}}
+        <a class="tag is-delete is-small" @click.stop="deletePeriod(period.index)"></a>
+      </label>
+      <div 
+        v-if="!period.direct && period.index!=(periodsList.length-1)" class="missing-block">
+        (missing data)
+      </div>
+    </div>
+  </draggable>
   <div class="panel-block">
     <button class="button is-info is-fullwidth" @click.prevent="addPeriod">
       Add new period
@@ -28,23 +32,42 @@
 
 <!-- ################### JAVACRIPT ################### -->
 <script>
+import draggable from "vuedraggable";
 import { mapGetters, mapState, mapMutations } from "vuex";
 import * as types from "../store/mutation-types.js";
 
 export default {
   props: [],
-  components: {},
+  components: { draggable },
   computed: {
     ...mapState({
       activePeriod: state => state.editor_ui.activePeriod
     }),
-    ...mapGetters(["periodsList"])
+    ...mapGetters(["periodsList"]),
+    draggablePeriodsList: {
+      get() {
+        return this.periodsList;
+      },
+      set(value) {
+        let selectedPeriod = 0;
+        const newOrder = value.map((v, i) => {
+          if (v.index == this.activePeriod) {
+            selectedPeriod = i;
+          }
+          return v.index;
+        });
+
+        this.reorderPeriods(newOrder);
+        this.selectPeriod(selectedPeriod);
+      }
+    }
   },
   methods: {
     ...mapMutations({
       selectPeriod: types.SET_ACTIVE_PERIOD,
       addPeriod: types.ADD_NEW_PERIOD,
-      deletePeriod: types.DELETE_PERIOD
+      deletePeriod: types.DELETE_PERIOD,
+      reorderPeriods: types.REORDER_PERIODS
     })
   }
 };

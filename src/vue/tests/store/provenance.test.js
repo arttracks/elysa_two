@@ -31,6 +31,14 @@ describe("Deleting a period", () => {
   });
 });
 
+describe("Reordering periods", () => {
+  it("Periods can be reordered", () => {
+    const state = { periods: ["first", "second", "third"] };
+    mutations[types.REORDER_PERIODS](state, [0, 2, 1]);
+    expect(state.periods).toEqual(["first", "third", "second"]);
+  });
+});
+
 describe("Provenance Getters", () => {
   it("can get a list of periods", () => {
     const state = {
@@ -63,7 +71,9 @@ describe("Provenance Getters", () => {
     expect(result).toHaveLength(2);
     expect(result[0].value).toBe("Mary Cassatt");
     expect(result[0].direct).toBe(false);
+    expect(result[0].index).toBe(0);
     expect(result[1].value).toBe("Galeries Durand-Ruel");
     expect(result[1].direct).toBe(true);
+    expect(result[1].index).toBe(1);
   });
 });

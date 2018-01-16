@@ -83,8 +83,12 @@ const state = {
 
 export const getters = {
   periodsList(state) {
-    return state.periods.map(p => {
-      return { value: p.owner.name.string, direct: p.direct_transfer };
+    return state.periods.map((p, i) => {
+      return {
+        value: p.owner.name.string,
+        direct: p.direct_transfer,
+        index: i
+      };
     });
   }
 };
@@ -98,6 +102,14 @@ export const mutations = {
       throw "Cannot delete a nonexistent period!";
     }
     state.periods.splice(index, 1);
+  },
+
+  [types.REORDER_PERIODS](state, newOrder) {
+    let newPeriods = [];
+    for (const index of newOrder) {
+      newPeriods.push(state.periods[index]);
+    }
+    state.periods = newPeriods;
   }
 };
 
