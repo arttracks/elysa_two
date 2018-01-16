@@ -23,6 +23,9 @@ const actions = {
 export const mutations = {
   [types.TOGGLE_HELP](state) {
     state.helpShown = !state.helpShown;
+  },
+  [types.SET_ACTIVE_PERIOD](state, selectedIndex) {
+    state.activePeriod = selectedIndex;
   }
 };
 

@@ -1,3 +1,16 @@
+import * as types from "../mutation-types.js";
+
+export const blankPeriod = {
+  period_certainty: true,
+  owner: {
+    name: {
+      string: "unknown person",
+      certainty: false
+    }
+  },
+  direct_transfer: false
+};
+
 const state = {
   periods: [
     {
@@ -76,7 +89,17 @@ export const getters = {
   }
 };
 export const actions = {};
-export const mutations = {};
+export const mutations = {
+  [types.ADD_NEW_PERIOD](state) {
+    state.periods.push(blankPeriod);
+  },
+  [types.DELETE_PERIOD](state, index) {
+    if (index >= state.periods.length || index < 0) {
+      throw "Cannot delete a nonexistent period!";
+    }
+    state.periods.splice(index, 1);
+  }
+};
 
 export default {
   state,
