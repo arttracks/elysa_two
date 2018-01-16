@@ -38,7 +38,8 @@ export default {
   props: [],
   computed: {
     ...mapState({
-      helpShown: state => state.editor_ui.helpShown
+      helpShown: state => state.editor_ui.helpShown,
+      allProvenance: state => state.provenance
     })
   },
   components: {

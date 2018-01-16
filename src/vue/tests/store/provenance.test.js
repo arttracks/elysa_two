@@ -39,6 +39,14 @@ describe("Reordering periods", () => {
   });
 });
 
+describe("Replacing provenance", () => {
+  it("all provenance can be replaced", () => {
+    const state = { periods: "old data" };
+    mutations[types.REPLACE_PROVENANCE](state, { periods: "new data" });
+    expect(state.periods).toEqual("new data");
+  });
+});
+
 describe("Provenance Getters", () => {
   it("can get a list of periods", () => {
     const state = {
