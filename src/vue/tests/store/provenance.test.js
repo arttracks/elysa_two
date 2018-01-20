@@ -79,10 +79,17 @@ describe("Provenance Getters", () => {
       ]
     };
   });
+
   describe("footnotes", () => {
     beforeEach(() => {
       state.periods[0].footnote = "I'm note 1";
       state.periods[1].footnote = "I'm note 2";
+    });
+    it("returns an empty array if there are no notes", () => {
+      delete state.periods[0].footnote;
+      delete state.periods[1].footnote;
+      const result = getters.footnotes(state);
+      expect(result).toHaveLength(0);
     });
     it("can get a list of footnotes", () => {
       const result = getters.footnotes(state);
@@ -103,6 +110,12 @@ describe("Provenance Getters", () => {
     beforeEach(() => {
       state.periods[0].citations = ["I'm citation 1", "I'm citation 2"];
       state.periods[1].citations = ["I'm citation 3"];
+    });
+    it("returns an empty array if there are no notes", () => {
+      delete state.periods[0].citations;
+      delete state.periods[1].citations;
+      const result = getters.citations(state);
+      expect(result).toHaveLength(0);
     });
     it("can get a list of citations", () => {
       const result = getters.citations(state);

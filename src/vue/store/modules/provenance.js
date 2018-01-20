@@ -164,9 +164,7 @@ const state = {
       },
       citations: ["Book of Books"],
       footnote: "Note a note.",
-      direct_transfer: false,
-      text:
-        'Possibly purchased by Bob Buyer? [1910-1980], Pittsburgh, PA for Bob Buyer\'s son, Owen Owner [1920-1990?], Boise, ID, from "Sale of Sales", Gallery G, New York, NY?, in Miami, FL, sometime between Jan 5, 1982 and February 1982 until between 1999? and the 21st Century (lot no. 1, for $100,000)[a][1].'
+      direct_transfer: false
     }
   ]
 };
