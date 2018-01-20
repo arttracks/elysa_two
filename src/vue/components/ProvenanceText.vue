@@ -28,6 +28,30 @@
         </ol> 
       </p>
     </template>
+
+    <!-- Authority block -->
+    <template  v-if="authorities.length">
+      <p>Authorities:</p>
+      <p>
+        <table>
+          <tr
+            v-for="(authority) in authorities" 
+            class="footnote"
+            @click="selectPeriod(authority.periodIndex)"
+            :class="{active: (activePeriod ===authority.periodIndex)}"
+          >
+            <td>
+              {{authority.text}}:
+            </td>
+            <td>
+              <a v-if="authority.uri" :href="authority.uri">{{authority.uri}}</a>
+              <span v-else class="has-text-weight-light">no records found.</span>
+            </td>
+          </tr>
+        </table>
+      </p>
+    </template>
+
     <!-- Citation block -->
     <template  v-if="citations.length">
       <p>Citations:</p>
@@ -71,7 +95,7 @@ export default {
   props: [],
   components: {},
   computed: {
-    ...mapGetters(["periodsAsText", "footnotes", "citations"]),
+    ...mapGetters(["periodsAsText", "footnotes", "citations", "authorities"]),
     ...mapState({
       periods: state => state.provenance.periods,
       activePeriod: state => state.editor_ui.activePeriod
@@ -105,5 +129,8 @@ export default {
 }
 .footnote {
   list-style: none;
+}
+td {
+  padding-right: 1em;
 }
 </style>

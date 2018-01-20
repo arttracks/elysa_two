@@ -80,6 +80,39 @@ describe("Provenance Getters", () => {
     };
   });
 
+  describe("authorities", () => {
+    it("has an authority section", () => {
+      expect(getters.authorities(state)).toBeDefined();
+    });
+    it("authority section is empty for blank provenances", () => {
+      state.periods = [{ owner: {} }];
+      const result = getters.authorities(state);
+      expect(result).toHaveLength(0);
+    });
+    it("has an authority section", () => {
+      const result = getters.authorities(state);
+      expect(result).toHaveLength(3);
+      expect(result).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            text: "Mary Cassatt",
+            uri: undefined,
+            periodIndex: 0
+          }),
+          expect.objectContaining({
+            text: "Galeries Durand-Ruel",
+            uri: undefined,
+            periodIndex: 1
+          }),
+          expect.objectContaining({
+            text: "Paris, France",
+            uri: undefined,
+            periodIndex: 1
+          })
+        ])
+      );
+    });
+  });
   describe("footnotes", () => {
     beforeEach(() => {
       state.periods[0].footnote = "I'm note 1";

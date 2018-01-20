@@ -53,6 +53,40 @@ function buildPerson(data) {
   return str.join(" ");
 }
 
+function extractAuthorityFrom(data) {
+  let found = [];
+  if (data) {
+    if (data.relationship) {
+      let r = extractAuthorityFrom(data.relationship);
+      for (const auth of r) {
+        found.push(auth);
+      }
+    }
+    if (data.name) {
+      found.push({ text: data.name.string, uri: data.name.uri });
+    }
+    if (data.place) {
+      found.push({ text: data.place.string, uri: data.place.uri });
+    }
+    if (data.string) {
+      found.push({ text: data.string, uri: data.uri });
+    }
+  }
+  return found;
+}
+
+function collectAuthorities(data) {
+  let authorities = [];
+  authorities.push(extractAuthorityFrom(data.owner));
+  authorities.push(extractAuthorityFrom(data.purchasing_agent));
+  authorities.push(extractAuthorityFrom(data.sellers_agent));
+  authorities.push(extractAuthorityFrom(data.transfer_location));
+  authorities.push(extractAuthorityFrom(data.event));
+
+  const allAuth = authorities.reduce((acc, cur) => acc.concat(cur), []);
+  return allAuth.length > 0 ? allAuth : null;
+}
+
 export default function(data) {
   let str = [];
 
@@ -85,5 +119,10 @@ export default function(data) {
   // Closing punctuation
   str += data.direct_transfer ? ";" : ".";
 
-  return { text: str, footnote: data.footnote, citations: data.citations };
+  return {
+    text: str,
+    footnote: data.footnote,
+    authorities: collectAuthorities(data),
+    citations: data.citations
+  };
 }

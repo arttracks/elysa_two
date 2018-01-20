@@ -206,6 +206,23 @@ export const getters = {
     return results;
   },
 
+  authorities(state) {
+    let results = [];
+    state.periods.forEach((period, i) => {
+      const prov = ProvenanceToString(period);
+      if (prov.authorities) {
+        for (const authority of prov.authorities) {
+          results.push({
+            text: authority.text,
+            uri: authority.uri,
+            periodIndex: i
+          });
+        }
+      }
+    });
+    return results;
+  },
+
   periodsAsText(state) {
     let results = [];
     let footnotes = 0;

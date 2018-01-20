@@ -13,6 +13,97 @@ describe("ProvenanceToString", () => {
     };
   });
 
+  describe("Authorities", () => {
+    var testEntity;
+    beforeEach(() => {
+      testEntity = {
+        string: "Testy Test",
+        certainty: "true"
+      };
+    });
+    it("has a authorities section", () => {
+      const result = ProvenanceToString(data);
+      expect(result.authorities).toBeDefined();
+    });
+    it("creates authorities for strings without URLS", () => {
+      const result = ProvenanceToString(data);
+      expect(result.authorities).toHaveLength(1);
+      expect(result.authorities[0].text).toBe("Mary Cassatt");
+      expect(result.authorities[0].url).not.toBeDefined();
+    });
+    it("creates authorities for strings with URLS", () => {
+      data.owner.name.uri = "http://example.com";
+      const result = ProvenanceToString(data);
+      expect(result.authorities).toHaveLength(1);
+      expect(result.authorities[0].text).toBe("Mary Cassatt");
+      expect(result.authorities[0].uri).toBe("http://example.com");
+    });
+    it("creates authorities for places related to people", () => {
+      data.owner.place = { string: "Null Island" };
+      const result = ProvenanceToString(data);
+      expect(result.authorities).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ text: "Null Island" })
+        ])
+      );
+    });
+    it("creates authorities for places related to people", () => {
+      data.transfer_location = { place: { string: "Null Island" } };
+      const result = ProvenanceToString(data);
+      expect(result.authorities).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ text: "Null Island" })
+        ])
+      );
+    });
+    it("creates authorities for people related to people", () => {
+      data.owner.relationship = { name: { string: "Friendy mcFriend" } };
+      const result = ProvenanceToString(data);
+      expect(result.authorities).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ text: "Friendy mcFriend" })
+        ])
+      );
+    });
+    it("detects nested places for relationships", () => {
+      data.owner.relationship = {
+        place: { string: "Friend's House" },
+        name: { string: "Friendy mcFriend" }
+      };
+      const result = ProvenanceToString(data);
+      expect(result.authorities).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ text: "Friend's House" })
+        ])
+      );
+    });
+    it("creates authorities for events", () => {
+      data.event = { string: "Fun Event" };
+      const result = ProvenanceToString(data);
+      expect(result.authorities).toEqual(
+        expect.arrayContaining([expect.objectContaining({ text: "Fun Event" })])
+      );
+    });
+    it("creates authorities for purchasing_agents", () => {
+      data.purchasing_agent = { name: testEntity };
+      const result = ProvenanceToString(data);
+      expect(result.authorities).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ text: "Testy Test" })
+        ])
+      );
+    });
+    it("creates authorities for purchasing_agents", () => {
+      data.sellers_agent = { name: testEntity };
+      const result = ProvenanceToString(data);
+      expect(result.authorities).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ text: "Testy Test" })
+        ])
+      );
+    });
+  });
+
   describe("Purchasing Agents", () => {
     it("handles Purchasing Agents", () => {
       data.purchasing_agent = {
