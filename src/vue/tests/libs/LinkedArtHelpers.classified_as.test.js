@@ -1,4 +1,4 @@
-import { classified_as } from "../libs/LinkedArtHelpers.js";
+import { classified_as } from "../../libs/LinkedArtHelpers.js";
 describe("classified_as", () => {
   const sampleData = {
     identified_by: [
@@ -8,6 +8,13 @@ describe("classified_as", () => {
         classified_as: [
           { id: "aat:300404670", label: "preferred terms", type: "Type" }
         ]
+      }
+    ],
+    without_classified_id: [
+      {
+        type: "Name",
+        value: "Young Woman Picking Fruit",
+        classified_as: [{ label: "preferred terms", type: "Type" }]
       }
     ],
     no_array_identified_by: {
@@ -156,9 +163,16 @@ describe("classified_as", () => {
     const results = classified_as(sampleData.identified_by, "aat:not_an_id");
     expect(results).toHaveLength(0);
   });
-
+  test("It returns an empty array with classifications without ids", () => {
+    const results = classified_as(sampleData.identified_by, "aat:not_an_id");
+    expect(results).toHaveLength(0);
+  });
+  test("It returns an empty array for missing data", () => {
+    const results = classified_as(null, "aat:300404670");
+    expect(results).toHaveLength(0);
+  });
   test("It returns an empty array for missing classifications", () => {
-    const results = classified_as(sampleData.identified_by, null);
+    const results = classified_as(sampleData.without_classified_id, null);
     expect(results).toHaveLength(0);
   });
 });

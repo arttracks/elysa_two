@@ -117,9 +117,6 @@ export default {
       this.isCertain = !newText.endsWith("?");
     },
     isCertain: function(newState, oldState) {
-      if (newState === oldState) {
-        return;
-      }
       if (newState && this.entityText.endsWith("?")) {
         this.entityText = this.entityText.substr(0, this.entityText.length - 1);
       } else if (!newState && !this.entityText.endsWith("?")) {

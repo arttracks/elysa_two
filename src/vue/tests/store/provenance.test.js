@@ -136,6 +136,11 @@ describe("Provenance Getters", () => {
   });
 
   describe("periodsAsText", () => {
+    it("returns an empty array if there are no periods", () => {
+      delete state.periods;
+      const result = getters.periodsAsText(state);
+      expect(result).toHaveLength(0);
+    });
     it("can get the periods as text", () => {
       const result = getters.periodsAsText(state);
       expect(result).toHaveLength(2);
@@ -154,6 +159,11 @@ describe("Provenance Getters", () => {
     });
     it("enforces the last period's ends in '.' ", () => {
       state.periods[1].direct_transfer = true;
+      const result = getters.periodsAsText(state);
+      expect(result[1].endsWith(".")).toBeTruthy();
+    });
+    it("doesn't change indirect last period puctuation", () => {
+      state.periods[1].direct_transfer = false;
       const result = getters.periodsAsText(state);
       expect(result[1].endsWith(".")).toBeTruthy();
     });

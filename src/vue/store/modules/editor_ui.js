@@ -29,6 +29,7 @@ export const mutations = {
     state.activePeriod = selectedIndex;
   },
   [types.UPDATE_REFRESHED_TIME](state) {
+    /* istanbul ignore next */
     state.lastRefreshed = Date.now();
   }
 };

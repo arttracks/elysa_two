@@ -191,6 +191,7 @@ export const getters = {
     });
     return results;
   },
+
   citations(state) {
     let results = [];
     state.periods.forEach((period, i) => {
@@ -205,11 +206,14 @@ export const getters = {
     return results;
   },
 
-  periodsAsText(state, getters) {
+  periodsAsText(state) {
     let results = [];
-    let footnotes = [];
-    let citations = [];
+    let footnotes = 0;
+    let citations = 0;
     let prevEnding = null;
+    if (!state.periods) {
+      return results;
+    }
     for (const period of state.periods) {
       let prov = ProvenanceToString(period);
 
@@ -224,13 +228,13 @@ export const getters = {
       // Handle writing endnotes
       let endnotes = [];
       if (prov.footnote) {
-        footnotes.push(prov.footnote);
-        endnotes.push(`[${footnotes.length}]`);
+        footnotes++;
+        endnotes.push(`[${footnotes}]`);
       }
       if (prov.citations) {
         for (const citation of prov.citations) {
-          citations.push(citation);
-          endnotes.push(`[${String.fromCharCode(96 + citations.length)}]`);
+          citations++;
+          endnotes.push(`[${String.fromCharCode(96 + citations)}]`);
         }
       }
       if (endnotes.length) {
