@@ -10,22 +10,42 @@
         {{period}}
       </span> 
     </p>
-    <p>Notes:</p>
-    <p>
-      <ol>
-        <li 
-          v-for="(note) in footnotes" 
-          class="footnote"
-          @click="selectPeriod(note.periodIndex)"
-        >
-          <span
-            :class="{active: (activePeriod ===note.periodIndex)}"
+
+    <!-- Footnote block -->
+    <template  v-if="footnotes.length">
+      <p>Notes:</p>
+      <p>
+        <ol>
+          <li 
+            v-for="(note) in footnotes" 
+            class="footnote"
+            @click="selectPeriod(note.periodIndex)"
           >
-            {{note.text}}
-        </span>
-        </li>
-      </ol> 
-    </p>
+            <span :class="{active: (activePeriod ===note.periodIndex)}">
+              {{note.text}}
+          </span>
+          </li>
+        </ol> 
+      </p>
+    </template>
+    <!-- Citation block -->
+    <template  v-if="citations.length">
+      <p>Citations:</p>
+      <p>
+        <ol>
+          <li 
+            v-for="(note) in citations" 
+            class="footnote"
+            @click="selectPeriod(note.periodIndex)"
+          >
+            <span :class="{active: (activePeriod ===note.periodIndex)}">
+              {{note.text}}
+          </span>
+          </li>
+        </ol> 
+      </p>
+    </template>
+   
     <div class='navbar'> 
       <div class="navbar-menu is-active">
         <div class="navbar-end">
@@ -51,7 +71,7 @@ export default {
   props: [],
   components: {},
   computed: {
-    ...mapGetters(["periodsAsText", "footnotes"]),
+    ...mapGetters(["periodsAsText", "footnotes", "citations"]),
     ...mapState({
       periods: state => state.provenance.periods,
       activePeriod: state => state.editor_ui.activePeriod
@@ -68,8 +88,12 @@ export default {
 
 <!-- ###################    CSS    ################### -->
 <style scoped lang="scss">
-.provenance-text p {
+.provenance-text {
   margin-top: 0.75rem;
+  border-top: 1px solid #eee;
+  p {
+    margin-top: 0.75rem;
+  }
 }
 .active {
   color: black;

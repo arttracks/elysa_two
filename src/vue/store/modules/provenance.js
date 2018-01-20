@@ -193,6 +193,19 @@ export const getters = {
     });
     return results;
   },
+  citations(state) {
+    let results = [];
+    state.periods.forEach((period, i) => {
+      const prov = ProvenanceToString(period);
+      if (prov.citations) {
+        for (const citation of prov.citations) {
+          const num = String.fromCharCode(96 + results.length + 1);
+          results.push({ text: `[${num}]. ${citation}`, periodIndex: i });
+        }
+      }
+    });
+    return results;
+  },
 
   periodsAsText(state, getters) {
     let results = [];

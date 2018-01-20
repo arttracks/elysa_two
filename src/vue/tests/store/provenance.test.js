@@ -99,6 +99,29 @@ describe("Provenance Getters", () => {
     });
   });
 
+  describe("citations", () => {
+    beforeEach(() => {
+      state.periods[0].citations = ["I'm citation 1", "I'm citation 2"];
+      state.periods[1].citations = ["I'm citation 3"];
+    });
+    it("can get a list of citations", () => {
+      const result = getters.citations(state);
+      expect(result).toHaveLength(3);
+      expect(result[0].text).toContain("I'm citation 1");
+      expect(result[1].text).toContain("I'm citation 2");
+      expect(result[2].text).toContain("I'm citation 3");
+      expect(result[0].periodIndex).toBe(0);
+      expect(result[1].periodIndex).toBe(0);
+      expect(result[2].periodIndex).toBe(1);
+    });
+    it("prepends the citations note to the text", () => {
+      const result = getters.citations(state);
+      expect(result[0].text).toMatch(/^\[a\]\. /);
+      expect(result[1].text).toMatch(/^\[b\]\. /);
+      expect(result[2].text).toMatch(/^\[c\]\. /);
+    });
+  });
+
   describe("periodsAsText", () => {
     it("can get the periods as text", () => {
       const result = getters.periodsAsText(state);
