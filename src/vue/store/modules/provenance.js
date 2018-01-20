@@ -1,4 +1,5 @@
 import * as types from "../mutation-types.js";
+import ProvenanceToString from "../../libs/ProvenanceToString";
 
 export const blankPeriod = {
   period_certainty: true,
@@ -179,6 +180,65 @@ export const getters = {
         index: i
       };
     });
+  },
+
+  footnotes(state) {
+    let results = [];
+    state.periods.forEach((period, i) => {
+      const prov = ProvenanceToString(period);
+      if (prov.footnote) {
+        const num = results.length + 1;
+        results.push({ text: `[${num}]. ${prov.footnote}`, periodIndex: i });
+      }
+    });
+    return results;
+  },
+
+  periodsAsText(state, getters) {
+    let results = [];
+    let footnotes = [];
+    let citations = [];
+    let prevEnding = null;
+    for (const period of state.periods) {
+      let prov = ProvenanceToString(period);
+
+      // handle uppercasing lines preceded by a period.
+      if (prevEnding == ".") {
+        let firstLetter = prov.text.slice(0, 1);
+        let rest = prov.text.slice(1);
+        prov.text = firstLetter.toUpperCase() + rest;
+      }
+      prevEnding = prov.text.slice(-1);
+
+      // Handle writing endnotes
+      let endnotes = [];
+      if (prov.footnote) {
+        footnotes.push(prov.footnote);
+        endnotes.push(`[${footnotes.length}]`);
+      }
+      if (prov.citations) {
+        for (const citation of prov.citations) {
+          citations.push(citation);
+          endnotes.push(`[${String.fromCharCode(96 + citations.length)}]`);
+        }
+      }
+      if (endnotes.length) {
+        let lastLetter = prov.text.slice(-1);
+        let rest = prov.text.slice(0, -1);
+        prov.text = rest + " " + endnotes.join("") + lastLetter;
+      }
+
+      results.push(prov.text);
+    }
+
+    // Make sure it ends in a period.
+    if (prevEnding == ";") {
+      let text = results[results.length - 1];
+      let rest = text.slice(0, -1);
+      text = rest + ".";
+      results[results.length - 1] = text;
+    }
+    return results;
   }
 };
 export const actions = {};
