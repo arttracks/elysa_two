@@ -1,5 +1,6 @@
 import * as types from "../mutation-types.js";
 import ProvenanceToString from "../../libs/ProvenanceToString";
+import Vue from "vue";
 
 export const blankPeriod = {
   period_certainty: true,
@@ -297,9 +298,11 @@ export const mutations = {
     state.periods.splice(index, 1);
   },
   [types.SET_PERIOD_FOOTNOTE](state, payload) {
-    state.periods[payload.period].footnote = payload.value;
+    Vue.set(state.periods[payload.period], "footnote", payload.value);
   },
-
+  [types.SET_PERIOD_PROPERTY](state, payload) {
+    Vue.set(state.periods[payload.period], payload.property, payload.value);
+  },
   [types.REORDER_PERIODS](state, newOrder) {
     let newPeriods = [];
     for (const index of newOrder) {

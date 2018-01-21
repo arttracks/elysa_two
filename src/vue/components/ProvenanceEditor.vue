@@ -8,7 +8,9 @@
         </div>
         <div class="column editing-area">
           <ProvenanceEditorHeader />
-          <ProvenanceEditorLineDisplay />
+          <ProvenanceEditorLineDisplay 
+            :value="periodsAsText[period]"
+          />
           <ProvenanceEditorTransfer />
           <ProvenanceEditorOwner />
           <ProvenanceEditorSaleData />
@@ -16,7 +18,10 @@
             :setter="setFootnote" 
             :value="datum(period,'footnote')"
           />
-          <ProvenanceEditorCitation />
+          <ProvenanceEditorCitation
+            :setter="setCitations" 
+            :values="datum(period,'citations')"
+          />
         </div>
       </div>
     </div>
@@ -40,7 +45,7 @@ import * as types from "../store/mutation-types.js";
 export default {
   props: [],
   computed: {
-    ...mapGetters(["datum"]),
+    ...mapGetters(["datum", "periodsAsText"]),
     ...mapState({
       period: state => state.editor_ui.activePeriod,
       helpShown: state => state.editor_ui.helpShown,
@@ -51,7 +56,17 @@ export default {
     setFootnote(e) {
       this.commitFootnote({ period: this.period, value: e.target.value });
     },
-    ...mapMutations({ commitFootnote: types.SET_PERIOD_FOOTNOTE })
+    setCitations(values) {
+      this.commitProperty({
+        period: this.period,
+        property: "citations",
+        value: values
+      });
+    },
+    ...mapMutations({
+      commitFootnote: types.SET_PERIOD_FOOTNOTE,
+      commitProperty: types.SET_PERIOD_PROPERTY
+    })
   },
   components: {
     ProvenancePeriods,

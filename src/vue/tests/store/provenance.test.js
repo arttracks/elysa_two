@@ -21,6 +21,13 @@ describe("Modifying provenance", () => {
       mutations[types.DELETE_PERIOD](state, 1);
       expect(state.periods).toEqual(["first", "third"]);
     });
+
+    it("handles deleting the current delete a period", () => {
+      const state = { periods: ["first", "second", "third"] };
+      mutations[types.DELETE_PERIOD](state, 1);
+      expect(state.periods).toEqual(["first", "third"]);
+    });
+
     it("throws on non-existent periods", () => {
       const state = { periods: ["first", "second", "third"] };
       expect(() => {

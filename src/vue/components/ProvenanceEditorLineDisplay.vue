@@ -4,20 +4,23 @@
 <template>
   <div class="form-section">
     <h3>Current Line</h3>
-    <textarea class="textarea is-small" placeholder="Provenance entry" rows="2"></textarea>
+    <p>{{value}}</p>
   </div>
 </template>
 
 <!-- ################### JAVACRIPT ################### -->
 <script>
 export default {
-  props: [],
-  components: {}
+  props: ["value"]
 };
 </script>
 
 
 <!-- ###################    CSS    ################### -->
-<style lang="scss">
-
+<style scoped lang="scss">
+p {
+  color: #555;
+  font-size: 90%;
+  padding: 0.5em 2em;
+}
 </style>
