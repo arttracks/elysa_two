@@ -75,8 +75,9 @@ describe("modifying a provenance period", () => {
   });
   describe("footnotes", () => {
     it("can update a footnote", () => {
-      mutations[types.SET_PERIOD_FOOTNOTE](state, {
+      mutations[types.SET_PERIOD_PROPERTY](state, {
         period: 0,
+        property: "footnote",
         value: "I am a note"
       });
       expect(state.periods[0].footnote).toBe("I am a note");
@@ -254,7 +255,11 @@ describe("Provenance Getters", () => {
       const result = getters.periodsAsText(state);
       expect(result[1].endsWith(".")).toBeTruthy();
     });
-
+    it("uppercases the first line direct transfers", () => {
+      state.periods[0].owner.name.string = "lowercase";
+      const result = getters.periodsAsText(state);
+      expect(result[0].startsWith("L")).toBeTruthy();
+    });
     it("uppercases lines following direct transfers", () => {
       state.periods[1].owner.name.string = "lowercase";
       const result = getters.periodsAsText(state);

@@ -244,7 +244,7 @@ export const getters = {
       let prov = ProvenanceToString(period);
 
       // handle uppercasing lines preceded by a period.
-      if (prevEnding == ".") {
+      if (prevEnding == "." || prevEnding == null) {
         let firstLetter = prov.text.slice(0, 1);
         let rest = prov.text.slice(1);
         prov.text = firstLetter.toUpperCase() + rest;
@@ -296,9 +296,6 @@ export const mutations = {
       throw "Cannot delete a nonexistent period!";
     }
     state.periods.splice(index, 1);
-  },
-  [types.SET_PERIOD_FOOTNOTE](state, payload) {
-    Vue.set(state.periods[payload.period], "footnote", payload.value);
   },
   [types.SET_PERIOD_PROPERTY](state, payload) {
     Vue.set(state.periods[payload.period], payload.property, payload.value);

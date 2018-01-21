@@ -11,7 +11,12 @@
           <ProvenanceEditorLineDisplay 
             :value="periodsAsText[period]"
           />
-          <ProvenanceEditorTransfer />
+          <ProvenanceEditorTransfer 
+            :transferSetter="setDirectTransfer"
+            :transferValue="datum(period,'direct_transfer')"
+            :certaintySetter="setPeriodCertainty"
+            :certaintyValue="!datum(period,'period_certainty')"
+          />
           <ProvenanceEditorOwner />
           <ProvenanceEditorSaleData />
           <ProvenanceEditorFootnote 
@@ -53,8 +58,26 @@ export default {
     })
   },
   methods: {
+    setPeriodCertainty(e) {
+      this.commitProperty({
+        period: this.period,
+        property: "period_certainty",
+        value: !e.target.checked
+      });
+    },
+    setDirectTransfer(e) {
+      this.commitProperty({
+        period: this.period,
+        property: "direct_transfer",
+        value: e.target.checked
+      });
+    },
     setFootnote(e) {
-      this.commitFootnote({ period: this.period, value: e.target.value });
+      this.commitProperty({
+        period: this.period,
+        property: "footnote",
+        value: e.target.value
+      });
     },
     setCitations(values) {
       this.commitProperty({
@@ -64,7 +87,6 @@ export default {
       });
     },
     ...mapMutations({
-      commitFootnote: types.SET_PERIOD_FOOTNOTE,
       commitProperty: types.SET_PERIOD_PROPERTY
     })
   },

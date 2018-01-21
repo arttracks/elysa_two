@@ -22,7 +22,11 @@
         <div class="field is-narrow is-narrow">
           <div class="control">
             <label class="checkbox is-small">
-              <input type="checkbox">
+              <input 
+                type="checkbox" 
+                :checked="transferValue" 
+                @change="transferSetter"
+              >
              Direct Transfer?
             </label>
           </div>
@@ -30,7 +34,10 @@
         <div class="field is-narrow">
           <div class="control">
             <label class="checkbox is-small">
-              <input type="checkbox">
+              <input type="checkbox"
+              :checked="certaintyValue" 
+              @change="certaintySetter"
+              >
               Period Uncertain?
             </label>
           </div>
@@ -65,7 +72,12 @@
 import EntityLookup from "./EntityLookup.vue";
 
 export default {
-  props: [],
+  props: [
+    "transferSetter",
+    "transferValue",
+    "certaintySetter",
+    "certaintyValue"
+  ],
   components: {
     EntityLookup
   }
