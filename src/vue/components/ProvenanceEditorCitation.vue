@@ -22,12 +22,16 @@
 export default {
   data: function() {
     return {
-      lastUpdatedText: null
+      lastUpdatedText: null,
+      justUpdated: false
     };
   },
   props: ["values", "setter"],
   components: {},
   updated: function() {
+    if (!this.justUpdated) {
+      return;
+    }
     const inputs = document.body.querySelectorAll("#citations input");
     if (inputs.length == 1) {
       inputs[0].focus();
@@ -38,6 +42,7 @@ export default {
         }
       }
     }
+    this.justUpdated = false;
   },
   methods: {
     updateCitations: function(e) {
@@ -51,6 +56,7 @@ export default {
       this.setter(values);
       document.getElementById("blank-citation-field").value = "";
       this.lastUpdatedText = e.data;
+      this.justUpdated = true;
     }
   }
 };
