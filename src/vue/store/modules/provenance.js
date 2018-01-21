@@ -170,6 +170,14 @@ const state = {
 };
 
 export const getters = {
+  datum: state => (id, property) => {
+    if (state.periods.length <= id) {
+      throw `Requested a property for a period out of bounds! You requested ${id}, but I only know about ${
+        state.periods.length
+      } periods`;
+    }
+    return state.periods[id][property];
+  },
   periodsList(state) {
     return state.periods.map((p, i) => {
       return {
@@ -287,6 +295,9 @@ export const mutations = {
       throw "Cannot delete a nonexistent period!";
     }
     state.periods.splice(index, 1);
+  },
+  [types.SET_PERIOD_FOOTNOTE](state, payload) {
+    state.periods[payload.period].footnote = payload.value;
   },
 
   [types.REORDER_PERIODS](state, newOrder) {

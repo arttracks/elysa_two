@@ -49,6 +49,34 @@ describe("Modifying provenance", () => {
   });
 });
 
+describe("modifying a provenance period", () => {
+  let state = null;
+  beforeEach(() => {
+    state = {
+      periods: [
+        {
+          owner: {
+            name: {
+              string: "Mary Cassatt",
+              certainty: true
+            }
+          },
+          direct_transfer: false
+        }
+      ]
+    };
+  });
+  describe("footnotes", () => {
+    it("can update a footnote", () => {
+      mutations[types.SET_PERIOD_FOOTNOTE](state, {
+        period: 0,
+        value: "I am a note"
+      });
+      expect(state.periods[0].footnote).toBe("I am a note");
+    });
+  });
+});
+
 describe("Provenance Getters", () => {
   let state = null;
   beforeEach(() => {
@@ -80,6 +108,25 @@ describe("Provenance Getters", () => {
     };
   });
 
+  describe("generic property retreival", () => {
+    it("can get a generic property", () => {
+      const owner = getters.datum(state)(0, "owner");
+      expect(owner).toEqual({
+        name: expect.objectContaining({
+          string: "Mary Cassatt"
+        })
+      });
+    });
+    it("gets undefined for missing properties", () => {
+      const badProp = getters.datum(state)(0, "not_a_thing");
+      expect(badProp).not.toBeDefined();
+    });
+    it("throws an error for unavailable indexes", () => {
+      expect(() => {
+        getters.datum(state)(99999, "owner");
+      }).toThrow();
+    });
+  });
   describe("authorities", () => {
     it("has an authority section", () => {
       expect(getters.authorities(state)).toBeDefined();

@@ -12,7 +12,10 @@
           <ProvenanceEditorTransfer />
           <ProvenanceEditorOwner />
           <ProvenanceEditorSaleData />
-          <ProvenanceEditorFootnote />
+          <ProvenanceEditorFootnote 
+            :setter="setFootnote" 
+            :value="datum(period,'footnote')"
+          />
           <ProvenanceEditorCitation />
         </div>
       </div>
@@ -31,16 +34,24 @@ import ProvenanceEditorSaleData from "./ProvenanceEditorSaleData.vue";
 import ProvenanceEditorFootnote from "./ProvenanceEditorFootnote.vue";
 import ProvenanceEditorCitation from "./ProvenanceEditorCitation.vue";
 
-import { mapMutations, mapState } from "vuex";
+import { mapMutations, mapState, mapGetters } from "vuex";
 import * as types from "../store/mutation-types.js";
 
 export default {
   props: [],
   computed: {
+    ...mapGetters(["datum"]),
     ...mapState({
+      period: state => state.editor_ui.activePeriod,
       helpShown: state => state.editor_ui.helpShown,
       allProvenance: state => state.provenance
     })
+  },
+  methods: {
+    setFootnote(e) {
+      this.commitFootnote({ period: this.period, value: e.target.value });
+    },
+    ...mapMutations({ commitFootnote: types.SET_PERIOD_FOOTNOTE })
   },
   components: {
     ProvenancePeriods,
