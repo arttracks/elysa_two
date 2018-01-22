@@ -2,10 +2,7 @@
 
 <!-- ###################   HTML   ################### -->
 <template>
-  <div class="form-section">
-    <h3>Current Line</h3>
-    <p>{{value}}</p>
-  </div>
+  <p>{{value}}</p>
 </template>
 
 <!-- ################### JAVACRIPT ################### -->

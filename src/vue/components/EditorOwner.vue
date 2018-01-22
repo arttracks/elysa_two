@@ -2,8 +2,7 @@
 
 <!-- ###################   HTML   ################### -->
 <template>
-  <div class="form-section">
-    <h3>The New Owner</h3>
+  <div >
     <EntityLookup 
       label="Owner"
       placeholder="Owner's name"
@@ -59,7 +58,6 @@
 
 <!-- ################### JAVACRIPT ################### -->
 <script>
-
 import EntityLookup from "./EntityLookup.vue";
 
 export default {
@@ -67,41 +65,41 @@ export default {
   data: function() {
     return {
       relationships: [
-        "brother", 
-        "sister", 
-        "sibling", 
-        "mother", 
-        "father", 
-        "parent", 
-        "son", 
-        "daughter", 
-        "child", 
-        "grandchild", 
-        "grandparent", 
-        "nephew", 
-        "niece", 
-        "uncle", 
-        "aunt", 
-        "husband", 
-        "wife", 
-        "spouse", 
-        "relative" 
+        "brother",
+        "sister",
+        "sibling",
+        "mother",
+        "father",
+        "parent",
+        "son",
+        "daughter",
+        "child",
+        "grandchild",
+        "grandparent",
+        "nephew",
+        "niece",
+        "uncle",
+        "aunt",
+        "husband",
+        "wife",
+        "spouse",
+        "relative"
       ]
-    }
+    };
   },
   components: {
     EntityLookup
   }
-}
+};
 </script>
 
 
 <!-- ###################    CSS    ################### -->
 <style scoped lang="scss">
-  .form-section .columns {
-    margin-left: 8%
-  }
-  .is-year {
-    flex-basis: 6rem
-  }
+.form-section .columns {
+  margin-left: 8%;
+}
+.is-year {
+  flex-basis: 6rem;
+}
 </style>

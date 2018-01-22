@@ -2,8 +2,7 @@
 
 <!-- ###################   HTML   ################### -->
 <template>
-  <div class="form-section">
-    <h3>The Transfer</h3>
+  <div>
     <div class="field is-horizontal">
       <div class="field-label is-small">
         <label class="label">Aquisition Method</label>

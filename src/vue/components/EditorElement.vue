@@ -3,26 +3,26 @@
 <!-- ###################   HTML   ################### -->
 <template>
   <div class="form-section">
-    <h3>Footnote</h3>
-    <textarea 
-      :value="value"
-      @input="setter"
-      class="textarea is-small" 
-      placeholder="Additional information about this period" 
-      rows="4"
-    ></textarea>
+    <h3>{{title}}</h3>
+    <slot></slot>
   </div>
 </template>
 
 <!-- ################### JAVACRIPT ################### -->
 <script>
 export default {
-  props: ["setter", "value"]
+  props: ["title"]
 };
 </script>
 
 
 <!-- ###################    CSS    ################### -->
-<style lang="scss">
-
+<style scoped lang="scss">
+.form-section {
+  margin-bottom: 1.5rem;
+}
+h3 {
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #eee;
+}
 </style>

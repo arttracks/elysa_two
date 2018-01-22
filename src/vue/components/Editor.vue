@@ -7,26 +7,44 @@
           <ProvenancePeriods />
         </div>
         <div class="column editing-area">
-          <ProvenanceEditorHeader />
-          <ProvenanceEditorLineDisplay 
-            :value="periodsAsText[period]"
-          />
-          <ProvenanceEditorTransfer 
-            :transferSetter="setDirectTransfer"
-            :transferValue="datum(period,'direct_transfer')"
-            :certaintySetter="setPeriodCertainty"
-            :certaintyValue="!datum(period,'period_certainty')"
-          />
-          <ProvenanceEditorOwner />
-          <ProvenanceEditorSaleData />
-          <ProvenanceEditorFootnote 
-            :setter="setFootnote" 
-            :value="datum(period,'footnote')"
-          />
-          <ProvenanceEditorCitation
-            :setter="setCitations" 
-            :values="datum(period,'citations')"
-          />
+          <EditorHeader />
+
+          <EditorElement title="Current Line">
+            <EditorLineDisplay :value="periodsAsText[period]" />
+          </EditorElement>
+
+
+          <EditorElement title="The Transfer">
+            <EditorTransfer 
+              :transferSetter="setDirectTransfer"
+              :transferValue="datum(period,'direct_transfer')"
+              :certaintySetter="setPeriodCertainty"
+              :certaintyValue="!datum(period,'period_certainty')"
+            />
+          </EditorElement>
+
+          <EditorElement title="New Owner">
+            <EditorOwner />
+          </EditorElement>
+  
+          <EditorElement title="Sale or Auction information">
+            <EditorSaleData />
+          </EditorElement>
+
+          <EditorElement title="Footnotes">
+            <EditorFootnote 
+              :setter="setFootnote" 
+              :value="datum(period,'footnote')"
+            />
+          </EditorElement>
+          
+          <EditorElement title="Citations">
+            <EditorCitation
+              :setter="setCitations" 
+              :values="datum(period,'citations')"
+            />
+          </EditorElement>
+          
         </div>
       </div>
     </div>
@@ -36,13 +54,14 @@
 <!-- ################### JAVACRIPT ################### -->
 <script>
 import ProvenancePeriods from "./ProvenancePeriods.vue";
-import ProvenanceEditorHeader from "./ProvenanceEditorHeader.vue";
-import ProvenanceEditorLineDisplay from "./ProvenanceEditorLineDisplay.vue";
-import ProvenanceEditorTransfer from "./ProvenanceEditorTransfer.vue";
-import ProvenanceEditorOwner from "./ProvenanceEditorOwner.vue";
-import ProvenanceEditorSaleData from "./ProvenanceEditorSaleData.vue";
-import ProvenanceEditorFootnote from "./ProvenanceEditorFootnote.vue";
-import ProvenanceEditorCitation from "./ProvenanceEditorCitation.vue";
+import EditorHeader from "./EditorHeader.vue";
+import EditorLineDisplay from "./EditorLineDisplay.vue";
+import EditorTransfer from "./EditorTransfer.vue";
+import EditorOwner from "./EditorOwner.vue";
+import EditorSaleData from "./EditorSaleData.vue";
+import EditorFootnote from "./EditorFootnote.vue";
+import EditorCitation from "./EditorCitation.vue";
+import EditorElement from "./EditorElement";
 
 import { mapMutations, mapState, mapGetters } from "vuex";
 import * as types from "../store/mutation-types.js";
@@ -92,13 +111,14 @@ export default {
   },
   components: {
     ProvenancePeriods,
-    ProvenanceEditorHeader,
-    ProvenanceEditorLineDisplay,
-    ProvenanceEditorTransfer,
-    ProvenanceEditorOwner,
-    ProvenanceEditorSaleData,
-    ProvenanceEditorFootnote,
-    ProvenanceEditorCitation
+    EditorHeader,
+    EditorLineDisplay,
+    EditorTransfer,
+    EditorOwner,
+    EditorSaleData,
+    EditorFootnote,
+    EditorCitation,
+    EditorElement
   }
 };
 </script>
@@ -118,18 +138,9 @@ section {
 }
 
 /deep/ .form-section {
-  margin-bottom: 1.5rem;
-  h3 {
-    margin-bottom: 0.75rem;
-    border-bottom: 1px solid #eee;
-  }
   .is-intermediate {
     font-size: 75%;
     line-height: 200%;
-  }
-
-  .columns {
-    margin-bottom: 0;
   }
 
   .field .help {

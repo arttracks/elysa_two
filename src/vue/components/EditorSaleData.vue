@@ -1,8 +1,6 @@
 <!-- ###################   HTML   ################### -->
 <template>
-  <div class="form-section">
-    <h3>Auction or Sale Information</h3>
-    
+  <div>    
     <EntityLookup 
       label="Sale Name"
       placeholder="The name of the sale"

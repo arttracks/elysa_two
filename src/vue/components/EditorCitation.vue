@@ -2,16 +2,15 @@
 
 <!-- ###################   HTML   ################### -->
 <template>
-  <div class="form-section" id="citations">
-    <h3>Citations</h3>
+  <div>
     <template v-for="(citation) in values">
       <input 
-        class="input is-small" 
+        class="input is-small citation" 
         @input="updateCitations"
         :value="citation" >
     </template>
     <input 
-      class="input is-small" id="blank-citation-field" 
+      class="input is-small citation" id="blank-citation-field" 
       @input="updateCitations"
       placeholder="Citation or source" >
   </div>
@@ -32,7 +31,7 @@ export default {
     if (!this.justUpdated) {
       return;
     }
-    const inputs = document.body.querySelectorAll("#citations input");
+    const inputs = document.body.querySelectorAll("input.citation");
     if (inputs.length == 1) {
       inputs[0].focus();
     } else {
@@ -46,7 +45,7 @@ export default {
   },
   methods: {
     updateCitations: function(e) {
-      const matches = document.body.querySelectorAll("#citations input");
+      const matches = document.body.querySelectorAll("input.citation");
       let values = [];
       for (const m of matches) {
         if (m.value.length) {

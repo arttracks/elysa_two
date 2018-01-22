@@ -3,7 +3,7 @@
   <div>
     <PageHeader />
     <ObjectSection />
-    <ProvenanceEditor />
+    <Editor />
     <TimelineVisualization />
     <PageFooter />
   </div>
@@ -12,7 +12,7 @@
 <!-- ################### JAVACRIPT ################### -->
 <script>
 import ObjectSection from "./components/ObjectSection.vue";
-import ProvenanceEditor from "./components/ProvenanceEditor.vue";
+import Editor from "./components/Editor.vue";
 import TimelineVisualization from "./components/TimelineVisualization.vue";
 import PageHeader from "./components/PageHeader.vue";
 import PageFooter from "./components/PageFooter.vue";
@@ -22,7 +22,7 @@ export default {
   name: "app",
   components: {
     PageHeader,
-    ProvenanceEditor,
+    Editor,
     TimelineVisualization,
     PageFooter,
     ObjectSection
