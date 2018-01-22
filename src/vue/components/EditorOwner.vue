@@ -6,6 +6,8 @@
     <EntityLookup 
       label="Owner"
       placeholder="Owner's name"
+      :value="owner.name"
+      :setter="updateEntity('owner.name')"
       help="The verbatim name of the person who is taking ownership of the work."
     />
 
@@ -37,15 +39,12 @@
     <EntityLookup 
       label="Assocated Location"
       placeholder="Owner's location"
+      :value="owner.place"
+      :setter="updateEntity('owner.place')"
       help="A location used to disambiguate this person from other people with similar names."
     />
     
-   <EntityLookup 
-      label="Buyer's Agent"
-      placeholder="Buyer's agent"
-      help="The person or organization aquiring the work on the behalf of the new owner."    
-    />
-    
+
     <EntityLookup 
       label="Relation to Prev. Owner"
       placeholder="Previous owner's name"
@@ -61,7 +60,7 @@
 import EntityLookup from "./EntityLookup.vue";
 
 export default {
-  props: [],
+  props: ["owner", "updateEntity"],
   data: function() {
     return {
       relationships: [

@@ -29,7 +29,13 @@
           <!-- String entry input -->
           <div 
             class="control is-expanded" >
-            <input class="input is-small" type="text" :placeholder="placeholder" v-model="entityText">
+            <input 
+              class="input is-small entity-text" 
+              type="text" 
+              :placeholder="placeholder" 
+              v-model="entityText"
+              @input="updateEntity"
+            >
             <p v-if="help" class="help">{{help}}</p>
           </div>
 
@@ -50,7 +56,12 @@
         <!-- URL entry field -->
         <div class="field has-addons lod-input">
           <div class="control has-icons-right is-expanded">
-            <input class="input is-small" type="text" placeholder="http(s)://" />
+            <input 
+              class="input is-small" 
+              type="text" 
+              placeholder="http(s)://" 
+              :value="entityUri"
+              />
             <span class="icon is-right">
               <font-awesome-icon :icon="internetIcon" />
             </span>
@@ -79,15 +90,25 @@ import faQuestion from "@fortawesome/fontawesome-free-solid/faQuestion";
 export default {
   data: function() {
     return {
-      isCertain: true,
-      entityText: this.value
+      isCertain: this.value.certainty,
+      entityText: this.value.string,
+      entityUri: this.value.uri
     };
   },
 
   props: {
     value: {
-      type: String,
-      default: ""
+      type: Object,
+      default: function() {
+        return {
+          certainty: true,
+          string: "",
+          uri: ""
+        };
+      }
+    },
+    setter: {
+      type: Function
     },
     placeholder: {
       default: "Enter a search term",
@@ -113,15 +134,10 @@ export default {
   },
 
   watch: {
-    entityText: function(newText, _) {
-      this.isCertain = !newText.endsWith("?");
-    },
-    isCertain: function(newState, oldState) {
-      if (newState && this.entityText.endsWith("?")) {
-        this.entityText = this.entityText.substr(0, this.entityText.length - 1);
-      } else if (!newState && !this.entityText.endsWith("?")) {
-        this.entityText = this.entityText + "?";
-      }
+    value: function(newValue, _) {
+      this.entityText = `${newValue.string}${newValue.certainty ? "" : "?"}`;
+      this.isCertain = newValue.certainty;
+      this.entityUri = newValue.uri;
     }
   },
 
@@ -148,7 +164,31 @@ export default {
       if (this.entityText.length == 0) {
         return;
       }
-      this.isCertain = !this.isCertain;
+      if (this.entityText.endsWith("?")) {
+        this.entityText = this.entityText.substr(0, this.entityText.length - 1);
+      } else {
+        this.entityText = this.entityText + "?";
+      }
+      this.updateEntity();
+    },
+    updateEntity: function() {
+      let text = this.entityText;
+      if (text.endsWith("??")) {
+        text = text.replace(/\?+/, "");
+      }
+      if (text.endsWith("?")) {
+        text = text.substr(0, text.length - 1);
+        this.isCertain = false;
+      } else {
+        this.isCertain = true;
+      }
+      text = text.replace(/\?+/, "");
+      const data = {
+        string: text,
+        certainty: this.isCertain,
+        uri: this.uri
+      };
+      this.setter(data);
     }
   },
 

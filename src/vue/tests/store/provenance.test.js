@@ -82,6 +82,22 @@ describe("modifying a provenance period", () => {
       });
       expect(state.periods[0].footnote).toBe("I am a note");
     });
+    it("can update nested properties", () => {
+      mutations[types.SET_PERIOD_PROPERTY](state, {
+        period: 0,
+        property: "owner.name.string",
+        value: "new name"
+      });
+      expect(state.periods[0].owner.name.string).toBe("new name");
+    });
+    it("can update nested properties with objects", () => {
+      mutations[types.SET_PERIOD_PROPERTY](state, {
+        period: 0,
+        property: "owner.name",
+        value: { string: "new name" }
+      });
+      expect(state.periods[0].owner.name.string).toBe("new name");
+    });
   });
 });
 

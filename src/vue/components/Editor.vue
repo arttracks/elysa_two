@@ -24,7 +24,10 @@
           </EditorElement>
 
           <EditorElement title="New Owner">
-            <EditorOwner />
+            <EditorOwner 
+              :owner="datum(period,'owner')"
+              :updateEntity="updateEntity"
+            />
           </EditorElement>
   
           <EditorElement title="Sale or Auction information">
@@ -77,6 +80,15 @@ export default {
     })
   },
   methods: {
+    updateEntity(propName) {
+      return value => {
+        this.commitProperty({
+          period: this.period,
+          property: propName,
+          value: value
+        });
+      };
+    },
     setPeriodCertainty(e) {
       this.commitProperty({
         period: this.period,

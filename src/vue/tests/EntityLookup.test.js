@@ -16,71 +16,89 @@ describe("EntityLookup.vue", () => {
   });
 
   describe("Certainty controls", () => {
+    let wrapper = null;
+    beforeEach(() => {
+      wrapper = mount(EntityLookup);
+      wrapper.setProps({
+        setter: val => {
+          // console.log(val);
+          wrapper.setProps({ value: val });
+        }
+      });
+    });
+
     it("defaults to enabling certainy controls ", () => {
-      const wrapper = mount(EntityLookup);
       expect(wrapper.props().certaintyEnabled).toBeTruthy();
       expect(wrapper.contains(".certainty-button")).toBe(true);
     });
 
     it("can be set uncertain ", () => {
-      const opts = { propsData: { certaintyEnabled: false } };
-      const wrapper = mount(EntityLookup, opts);
+      wrapper.setProps({ certaintyEnabled: false });
       expect(wrapper.props().certaintyEnabled).toBeFalsy();
       expect(wrapper.contains(".certainty-button")).toBe(false);
     });
 
     it("has a certainty property", () => {
-      const wrapper = mount(EntityLookup);
-      wrapper.setData({ isCertain: true });
+      wrapper.setProps({ certain: true });
       expect(wrapper.vm.isCertain).toBe(true);
     });
 
     it("certainty inactivates the button", () => {
-      const wrapper = mount(EntityLookup);
       let button = wrapper.find(".certainty-button");
       wrapper.setData({ isCertain: true });
       expect(button.classes()).toContain("inactive");
     });
 
     it("uncertainty activates the button", () => {
-      const wrapper = mount(EntityLookup);
       let button = wrapper.find(".certainty-button");
-      wrapper.setData({ isCertain: false });
+      wrapper.setProps({ value: { string: "", uri: "", certainty: false } });
       expect(button.classes()).not.toContain("inactive");
     });
 
     it("ending the input text with w/a ? sets uncertainty", () => {
-      const wrapper = mount(EntityLookup);
-      wrapper.setData({ isCertain: true });
-      wrapper.setData({ entityText: "uncertain text?" });
+      wrapper.setProps({ value: { string: "", uri: "", certainty: true } });
+      let el = wrapper.find(".entity-text");
+      el.element.value = "I am uncertain?";
+      el.trigger("input");
       expect(wrapper.vm.isCertain).toBe(false);
     });
 
+    it("adding a second question mark toggles", () => {
+      wrapper.setProps({
+        value: { string: "I am uncertain?", uri: "", certainty: false }
+      });
+      let el = wrapper.find(".entity-text");
+      el.element.value = "I am uncertain??";
+      el.trigger("input");
+      expect(wrapper.vm.isCertain).toBe(true);
+      expect(wrapper.vm.entityText).toBe("I am uncertain");
+    });
+
     it("ending the input text with w/o a ? sets certainty", () => {
-      const wrapper = mount(EntityLookup);
       wrapper.setData({ isCertain: false });
       wrapper.setData({ entityText: "certain text" });
       expect(wrapper.vm.isCertain).toBe(true);
     });
 
     it("clicking the certainty button changes certainty", () => {
-      const wrapper = mount(EntityLookup);
-      wrapper.setData({ entityText: "text" });
+      wrapper.setProps({ value: { string: "text", uri: "", certainty: true } });
+      expect(wrapper.vm.entityText).toBe("text");
       wrapper.find(".certainty-button .button").trigger("click");
       expect(wrapper.vm.entityText).toBe("text?");
       expect(wrapper.vm.isCertain).toBe(false);
     });
 
     it("clicking the certainty button changes certainty", () => {
-      const wrapper = mount(EntityLookup);
-      wrapper.setData({ entityText: "text?", isCertain: false });
+      wrapper.setProps({
+        value: { string: "text", uri: "", certainty: false }
+      });
+      expect(wrapper.vm.entityText).toBe("text?");
       wrapper.find(".certainty-button .button").trigger("click");
       expect(wrapper.vm.entityText).toBe("text");
       expect(wrapper.vm.isCertain).toBe(true);
     });
 
     it("clicking the certainty button without text does nothing", () => {
-      const wrapper = mount(EntityLookup);
       wrapper.setData({ entityText: "", isCertain: true });
       wrapper.find(".certainty-button .button").trigger("click");
       expect(wrapper.vm.entityText).toBe("");

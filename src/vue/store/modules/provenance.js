@@ -298,7 +298,12 @@ export const mutations = {
     state.periods.splice(index, 1);
   },
   [types.SET_PERIOD_PROPERTY](state, payload) {
-    Vue.set(state.periods[payload.period], payload.property, payload.value);
+    let obj = state.periods[payload.period];
+    let arr = payload.property.split(".");
+    while (arr.length > 1) {
+      obj = obj[arr.shift()];
+    }
+    Vue.set(obj, arr[0], payload.value);
   },
   [types.REORDER_PERIODS](state, newOrder) {
     let newPeriods = [];
