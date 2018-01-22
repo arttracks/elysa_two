@@ -4,18 +4,24 @@
     <EntityLookup 
       label="Sale Name"
       placeholder="The name of the sale"
+      :value="saleEvent"
+      :setter="updateEntity('event')"
       help="The verbatim name of the sale or auction."
     />
    
    <EntityLookup 
       label="Buyer's Agent"
       placeholder="Buyer's agent"
+      :value="purchasingAgent ? purchasingAgent.name : undefined"
+      :setter="updateEntity('purchasing_agent.name')"
       help="The person or organization aquiring the work on the behalf of the new owner."    
     />
     
     <EntityLookup 
               label="Seller's Agent"
               placeholder="The Seller's agent"
+              :value="sellersAgent ? sellersAgent.name : undefined"
+              :setter="updateEntity('sellers_agent.name')"
               help="The intermediary or auction house working on behalf of the seller."
             />
 
@@ -63,7 +69,7 @@ import EntityLookup from "./EntityLookup.vue";
 import EditorElementLine from "./EditorElementLine.vue";
 
 export default {
-  props: [],
+  props: ["purchasingAgent", "updateEntity", "sellersAgent", "saleEvent"],
   data: function() {
     return {
       currencies: ["$", "ƒ", "£", "€", "¢", "¥", "₱"]

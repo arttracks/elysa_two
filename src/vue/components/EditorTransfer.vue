@@ -60,6 +60,8 @@
 
     <EntityLookup 
       label="Transfer Location"
+      :value="transferLocation ? transferLocation.place : undefined"
+      :setter="updateEntity('transfer_location.place')"
       placeholder="Location of the transfer"
       help="The physical location where the transfer took place."
     />
@@ -75,7 +77,9 @@ export default {
     "transferSetter",
     "transferValue",
     "certaintySetter",
-    "certaintyValue"
+    "certaintyValue",
+    "transferLocation",
+    "updateEntity"
   ],
   components: {
     EntityLookup

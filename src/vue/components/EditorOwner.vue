@@ -49,6 +49,10 @@
       label="Relation to Prev. Owner"
       placeholder="Previous owner's name"
       :lookupList="relationships"
+      :lookupValue="owner.relationship ? owner.relationship.type : undefined"
+      :lookupSetter="updateEntity('owner.relationship.type')"
+      :value="owner.relationship ? owner.relationship.name : undefined"
+      :setter="updateEntity('owner.relationship.name')"
       help="Familial relationship between the previous and new owner."
     />
 

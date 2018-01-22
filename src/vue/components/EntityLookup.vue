@@ -19,6 +19,7 @@
           <div v-if="lookupList.length" class="control">
             <span class="select is-small">
               <select>
+                <option hidden selected value disabled>relation type</option>
                 <option v-for="lookup in lookupList">
                     {{ lookup }}
                 </option>
@@ -106,6 +107,13 @@ export default {
           uri: ""
         };
       }
+    },
+    lookupSetter: {
+      type: Function
+    },
+    lookupValue: {
+      type: String,
+      default: ""
     },
     setter: {
       type: Function

@@ -20,6 +20,8 @@
               :transferValue="datum(period,'direct_transfer')"
               :certaintySetter="setPeriodCertainty"
               :certaintyValue="!datum(period,'period_certainty')"
+              :transferLocation="datum(period,'transfer_location')"
+              :updateEntity="updateEntity"
             />
           </EditorElement>
 
@@ -31,7 +33,12 @@
           </EditorElement>
   
           <EditorElement title="Sale or Auction information">
-            <EditorSaleData />
+            <EditorSaleData 
+              :sellersAgent="datum(period,'sellers_agent')"
+              :saleEvent="datum(period,'event')"
+              :purchasingAgent="datum(period,'purchasing_agent')"
+              :updateEntity="updateEntity"
+            />
           </EditorElement>
 
           <EditorElement title="Footnotes">
