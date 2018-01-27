@@ -44,7 +44,11 @@
       <div class="field has-addons is-shorter">
         <div class="control">
           <span class="select is-small">
-            <select>
+            <select 
+              name="purchasePriceCurrency"
+              :value="purchasePrice ? purchasePrice.currency_symbol : undefined"
+              @input="setPurchasePrice"
+            >
               <option v-for="currency in currencies">
                   {{ currency }}
               </option>
@@ -52,7 +56,14 @@
           </span>
         </div>
         <div class="control is-expanded">
-          <input class="input is-small" type="text" placeholder="Purchase price">
+          <input 
+            class="input is-small" 
+            type="text" 
+            placeholder="Purchase price" 
+            name="purchasePrice"
+            :value="purchasePrice ? purchasePrice.value: undefined"
+            @input="setPurchasePrice"
+          >
         </div>
         <p class="help">The amount of the sale in a standard currency.</p>
       </div>
@@ -61,7 +72,14 @@
       </div>
       <div class="field ">
         <div class="control">
-          <input class="input is-small" type="text" placeholder="Purchase price description">
+          <input 
+            class="input is-small" 
+            type="text"
+            name="purchasePriceDesc"
+            placeholder="Purchase price description"
+            :value="purchasePrice ? purchasePrice.string :undefined"
+            @input="setPurchasePrice"
+          >
           <p class="help">An amount that can't be expressed as a single number.</p>
         </div>
       </div>
@@ -80,12 +98,37 @@ export default {
     "updateEntity",
     "sellersAgent",
     "saleEvent",
-    "stockNumber"
+    "stockNumber",
+    "purchasePrice"
   ],
   methods: {
     setStockNumber: function(e) {
       const f = this.updateEntity("stock_number");
       f(e.target.value);
+    },
+    setPurchasePrice: function(e) {
+      let obj = null;
+      if (e.target.value === "") {
+        obj = null;
+      } else if (e.target.name === "purchasePriceDesc") {
+        obj = {
+          string: e.target.value
+        };
+      } else if (
+        e.target.name === "purchasePrice" ||
+        e.target.name === "purchasePriceCurrency"
+      ) {
+        const pp = document.body.querySelector("input[name='purchasePrice']");
+        const ppc = document.body.querySelector(
+          "select[name='purchasePriceCurrency']"
+        );
+        obj = {
+          value: pp.value,
+          currency_symbol: ppc.value
+        };
+      }
+      const f = this.updateEntity("purchase");
+      f(obj);
     }
   },
   data: function() {
