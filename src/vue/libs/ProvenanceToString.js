@@ -17,7 +17,7 @@ function buildSales(data) {
     const p = data.purchase;
     if (p.string) {
       vals.push(`for ${p.string}`);
-    } else {
+    } else if (p.value && p.value !== "") {
       const value = parseFloat(p.value).toLocaleString();
       vals.push(`for ${p.currency_symbol}${value}`);
     }

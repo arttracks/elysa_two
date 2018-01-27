@@ -235,5 +235,17 @@ describe("ProvenanceToString", () => {
       const result = ProvenanceToString(data);
       expect(result.text).toContain("(stock no. 1, for $100,000)");
     });
+    it("does not display when there's a blank value", () => {
+      data.stock_number = "stock no. 1";
+      data.purchase = { value: "", currency_symbol: "$" };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain("(stock no. 1)");
+    });
+    it("does not display when there's only a currency_symbol", () => {
+      data.stock_number = "stock no. 1";
+      data.purchase = { currency_symbol: "$" };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain("(stock no. 1)");
+    });
   });
 });
