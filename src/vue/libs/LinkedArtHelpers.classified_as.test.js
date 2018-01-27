@@ -1,5 +1,5 @@
-import { classified_as } from ".//LinkedArtHelpers.js";
-describe("classified_as", () => {
+import { classifiedAs } from ".//LinkedArtHelpers.js";
+describe("classifiedAs", () => {
   const sampleData = {
     identified_by: [
       {
@@ -93,13 +93,13 @@ describe("classified_as", () => {
   };
 
   test("it works with arrays of resources", () => {
-    const results = classified_as(sampleData.identified_by, "aat:300404670");
+    const results = classifiedAs(sampleData.identified_by, "aat:300404670");
     expect(results).toHaveLength(1);
     expect(results[0].value).toBe("Young Woman Picking Fruit");
   });
 
   test("It also works with single objects", () => {
-    const results = classified_as(
+    const results = classifiedAs(
       sampleData.no_array_identified_by,
       "aat:300404670"
     );
@@ -108,7 +108,7 @@ describe("classified_as", () => {
   });
 
   test("processes valid data with multiple classifications", () => {
-    const results = classified_as(
+    const results = classifiedAs(
       sampleData.multi_identified_by,
       "aat:300404670"
     );
@@ -117,17 +117,14 @@ describe("classified_as", () => {
   });
 
   test("returns all if there are multiple correct entries", () => {
-    const results = classified_as(
-      sampleData.two_identified_by,
-      "aat:300404670"
-    );
+    const results = classifiedAs(sampleData.two_identified_by, "aat:300404670");
     expect(results).toHaveLength(2);
     expect(results[0].value).toBe("Young Woman Picking Fruit");
     expect(results[1].value).toBe("Young Women Plucking Fruit");
   });
 
   test("only returns the correct one if there are multiples", () => {
-    const results = classified_as(
+    const results = classifiedAs(
       sampleData.only_one_identified_by,
       "aat:300404670"
     );
@@ -136,7 +133,7 @@ describe("classified_as", () => {
   });
 
   test("returns an empty array with a missing classification", () => {
-    const results = classified_as(
+    const results = classifiedAs(
       sampleData.no_classification_identified_by,
       "aat:300404670"
     );
@@ -144,7 +141,7 @@ describe("classified_as", () => {
   });
 
   test("It does not work with string classifications", () => {
-    const results = classified_as(
+    const results = classifiedAs(
       sampleData.string_identified_by,
       "aat:300404670"
     );
@@ -152,7 +149,7 @@ describe("classified_as", () => {
   });
 
   test("It does not work with object classifications", () => {
-    const results = classified_as(
+    const results = classifiedAs(
       sampleData.object_identified_by,
       "aat:300404670"
     );
@@ -160,19 +157,19 @@ describe("classified_as", () => {
   });
 
   test("It returns an empty array with an invalid classification", () => {
-    const results = classified_as(sampleData.identified_by, "aat:not_an_id");
+    const results = classifiedAs(sampleData.identified_by, "aat:not_an_id");
     expect(results).toHaveLength(0);
   });
   test("It returns an empty array with classifications without ids", () => {
-    const results = classified_as(sampleData.identified_by, "aat:not_an_id");
+    const results = classifiedAs(sampleData.identified_by, "aat:not_an_id");
     expect(results).toHaveLength(0);
   });
   test("It returns an empty array for missing data", () => {
-    const results = classified_as(null, "aat:300404670");
+    const results = classifiedAs(null, "aat:300404670");
     expect(results).toHaveLength(0);
   });
   test("It returns an empty array for missing classifications", () => {
-    const results = classified_as(sampleData.without_classified_id, null);
+    const results = classifiedAs(sampleData.without_classified_id, null);
     expect(results).toHaveLength(0);
   });
 });

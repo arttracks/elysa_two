@@ -98,6 +98,14 @@ describe("modifying a provenance period", () => {
       });
       expect(state.periods[0].owner.name.string).toBe("new name");
     });
+    it("recursively creates new property chains", () => {
+      mutations[types.SET_PERIOD_PROPERTY](state, {
+        period: 0,
+        property: "owner.new.property.chain",
+        value: "new value"
+      });
+      expect(state.periods[0].owner.new.property.chain).toBe("new value");
+    });
   });
 });
 

@@ -4,9 +4,9 @@ import App from "./App.vue";
 import store from "./store";
 
 // Initialize the Vue instance.
-new Vue({
+export default new Vue({
+  el: "#app",
   components: { App },
   store,
-  el: "#app",
   template: `<app id="app" v-cloak />`
 });

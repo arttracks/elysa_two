@@ -98,7 +98,7 @@ export default {
     ...mapGetters(["periodsAsText", "footnotes", "citations", "authorities"]),
     ...mapState({
       periods: state => state.provenance.periods,
-      activePeriod: state => state.editor_ui.activePeriod
+      activePeriod: state => state.editorInterface.activePeriod
     })
   },
   methods: {

@@ -1,4 +1,4 @@
-import { mutations } from "../../store/modules/editor_ui.js";
+import { mutations } from "../../store/modules/editorInterface.js";
 import * as types from "../../store/mutation-types.js";
 
 describe("Editor UI state mutations", () => {

@@ -33,7 +33,7 @@ export default {
       return this.helpShown ? "Help On" : "Help Off";
     },
     ...mapState({
-      helpShown: state => state.editor_ui.helpShown
+      helpShown: state => state.editorInterface.helpShown
     })
   },
   methods: {

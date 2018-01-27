@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import * as actions from "./actions";
 import mmo from "./modules/mmo";
-import editor_ui from "./modules/editor_ui";
+import editorInterface from "./modules/editorInterface";
 import provenance from "./modules/provenance";
 import * as types from "./mutation-types.js";
 
@@ -14,7 +14,7 @@ const store = new Vuex.Store({
   actions,
   modules: {
     mmo,
-    editor_ui,
+    editorInterface,
     provenance
   },
   strict: debug

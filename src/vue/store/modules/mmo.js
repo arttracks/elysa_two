@@ -1,4 +1,4 @@
-import { classified_as } from "../../libs/LinkedArtHelpers.js";
+import { classifiedAs } from "../../libs/LinkedArtHelpers.js";
 
 const state = {
   label: "Young Woman Picking Fruit",
@@ -52,7 +52,7 @@ const getters = {
     return rep[0].id;
   },
   primaryTitle: function() {
-    const preferredTitle = classified_as(state.identified_by, "aat:300404670");
+    const preferredTitle = classifiedAs(state.identified_by, "aat:300404670");
     if (preferredTitle.length) {
       return preferredTitle[0].value;
     }
@@ -71,7 +71,7 @@ const getters = {
     return null;
   },
   accessionNumbers: function() {
-    const accessionNum = classified_as(state.identified_by, "aat:300312355");
+    const accessionNum = classifiedAs(state.identified_by, "aat:300312355");
     if (accessionNum.length) {
       return accessionNum.map(num => num.value).join(", ");
     }

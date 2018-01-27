@@ -173,9 +173,11 @@ const state = {
 export const getters = {
   datum: state => (id, property) => {
     if (state.periods.length <= id) {
-      throw `Requested a property for a period out of bounds! You requested ${id}, but I only know about ${
-        state.periods.length
-      } periods`;
+      throw new Error(
+        `Requested a property for a period out of bounds! You requested ${id}, but I only know about ${
+          state.periods.length
+        } periods`
+      );
     }
     return state.periods[id][property];
   },
@@ -244,7 +246,7 @@ export const getters = {
       let prov = ProvenanceToString(period);
 
       // handle uppercasing lines preceded by a period.
-      if (prevEnding == "." || prevEnding == null) {
+      if (prevEnding === "." || prevEnding === null) {
         let firstLetter = prov.text.slice(0, 1);
         let rest = prov.text.slice(1);
         prov.text = firstLetter.toUpperCase() + rest;
@@ -258,10 +260,10 @@ export const getters = {
         endnotes.push(`[${footnotes}]`);
       }
       if (prov.citations) {
-        for (const citation of prov.citations) {
+        prov.citations.forEach(() => {
           citations++;
           endnotes.push(`[${String.fromCharCode(96 + citations)}]`);
-        }
+        });
       }
       if (endnotes.length) {
         let lastLetter = prov.text.slice(-1);
@@ -273,7 +275,7 @@ export const getters = {
     }
 
     // Make sure it ends in a period.
-    if (prevEnding == ";") {
+    if (prevEnding === ";") {
       let text = results[results.length - 1];
       let rest = text.slice(0, -1);
       text = rest + ".";
@@ -293,7 +295,7 @@ export const mutations = {
   },
   [types.DELETE_PERIOD](state, index) {
     if (index >= state.periods.length || index < 0) {
-      throw "Cannot delete a nonexistent period!";
+      throw new Error("Cannot delete a nonexistent period!");
     }
     state.periods.splice(index, 1);
   },
@@ -301,7 +303,11 @@ export const mutations = {
     let obj = state.periods[payload.period];
     let arr = payload.property.split(".");
     while (arr.length > 1) {
-      obj = obj[arr.shift()];
+      let prop = arr.shift();
+      if (obj.prop === undefined) {
+        Vue.set(obj, prop, {});
+      }
+      obj = obj[prop];
     }
     Vue.set(obj, arr[0], payload.value);
   },

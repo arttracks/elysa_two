@@ -41,7 +41,7 @@ export default {
   components: { draggable },
   computed: {
     ...mapState({
-      activePeriod: state => state.editor_ui.activePeriod
+      activePeriod: state => state.editorInterface.activePeriod
     }),
     ...mapGetters(["periodsList"]),
     draggablePeriodsList: {

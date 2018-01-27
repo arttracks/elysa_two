@@ -1,6 +1,10 @@
 var path = require("path");
 var webpack = require("webpack");
 
+function resolve(dir) {
+  return path.join(__dirname, "..", dir);
+}
+
 module.exports = {
   entry: "./src/vue/main.js",
   output: {
@@ -10,6 +14,16 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(js|vue)$/,
+        loader: "eslint-loader",
+        enforce: "pre",
+        exclude: "/node_modules/",
+        options: {
+          formatter: require("eslint-friendly-formatter"),
+          emitWarning: true
+        }
+      },
       {
         test: /\.css$/,
         use: ["vue-style-loader", "css-loader"]

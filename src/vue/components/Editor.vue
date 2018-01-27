@@ -81,8 +81,8 @@ export default {
   computed: {
     ...mapGetters(["datum", "periodsAsText"]),
     ...mapState({
-      period: state => state.editor_ui.activePeriod,
-      helpShown: state => state.editor_ui.helpShown,
+      period: state => state.editorInterface.activePeriod,
+      helpShown: state => state.editorInterface.helpShown,
       allProvenance: state => state.provenance
     })
   },

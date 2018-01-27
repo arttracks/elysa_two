@@ -62,13 +62,13 @@ function extractAuthorityFrom(data) {
         found.push(auth);
       }
     }
-    if (data.name) {
+    if (data.name && data.name.string && data.name.string.length) {
       found.push({ text: data.name.string, uri: data.name.uri });
     }
-    if (data.place) {
+    if (data.place && data.place.string && data.place.string.length) {
       found.push({ text: data.place.string, uri: data.place.uri });
     }
-    if (data.string) {
+    if (data.string && data.string && data.string.length) {
       found.push({ text: data.string, uri: data.uri });
     }
   }
@@ -91,7 +91,12 @@ export default function(data) {
   let str = [];
 
   // acquisition
-  if (data.purchasing_agent) {
+  if (
+    data.purchasing_agent &&
+    data.purchasing_agent.name &&
+    data.purchasing_agent.name.string &&
+    data.purchasing_agent.name.string.length
+  ) {
     str.push(
       `${buildPerson(data.purchasing_agent)} for ${buildPerson(data.owner)}`
     );
@@ -100,14 +105,19 @@ export default function(data) {
   }
   //
   // location
-  if (data.transfer_location) {
+  if (
+    data.transfer_location &&
+    data.transfer_location.place &&
+    data.transfer_location.place.string &&
+    data.transfer_location.place.string.length
+  ) {
     str.push(`in ${buildPlace(data.transfer_location.place)}`);
   }
 
   str = str.join(", ");
 
   // Parts not added with a comma:
-  //---
+  // ---
   // Global certainty
   if (data.period_certainty === false) {
     str = "possibly " + str;
