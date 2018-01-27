@@ -1,4 +1,4 @@
-import ProvenanceToString from "../../libs/ProvenanceToString";
+import ProvenanceToString from "./ProvenanceToString";
 describe("ProvenanceToString", () => {
   let data = {};
   beforeEach(() => {

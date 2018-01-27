@@ -1,4 +1,4 @@
-import { classified_as } from "../../libs/LinkedArtHelpers.js";
+import { classified_as } from ".//LinkedArtHelpers.js";
 describe("classified_as", () => {
   const sampleData = {
     identified_by: [
