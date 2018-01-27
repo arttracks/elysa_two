@@ -4,6 +4,10 @@ function buildPlace(data) {
   return `${data.string}${data.certainty ? "" : "?"}`;
 }
 
+function buildEvent(data) {
+  return `"${data.string}"${data.certainty ? "" : "?"}`;
+}
+
 function buildSales(data) {
   let vals = [];
   if (data.stock_number) {
@@ -79,9 +83,9 @@ function collectAuthorities(data) {
   let authorities = [];
   authorities.push(extractAuthorityFrom(data.owner));
   authorities.push(extractAuthorityFrom(data.purchasing_agent));
+  authorities.push(extractAuthorityFrom(data.event));
   authorities.push(extractAuthorityFrom(data.sellers_agent));
   authorities.push(extractAuthorityFrom(data.transfer_location));
-  authorities.push(extractAuthorityFrom(data.event));
 
   const allAuth = authorities.reduce((acc, cur) => acc.concat(cur), []);
   return allAuth.length > 0 ? allAuth : null;
@@ -90,7 +94,10 @@ function collectAuthorities(data) {
 export default function(data) {
   let str = [];
 
-  // acquisition
+  // acquisition: ex: "purchased by"
+  // TODO: write me
+
+  // owner and buyer agent: "Bob Buyer? [1910-1980], Pittsburgh, PA, for Bob Buyer's son, Owen Owner [1920-1990?], Boise, ID"
   if (
     data.purchasing_agent &&
     data.purchasing_agent.name &&
@@ -103,8 +110,27 @@ export default function(data) {
   } else {
     str.push(buildPerson(data.owner));
   }
-  //
-  // location
+  // Named event: "from "Sale of Sales", Gallery G, New York, NY?"
+  if (data.event || data.sellers_agent) {
+    let substr = [];
+    if (data.event && data.event.string && data.event.string.length) {
+      substr.push(buildEvent(data.event));
+    }
+    if (
+      data.sellers_agent &&
+      data.sellers_agent.name &&
+      data.sellers_agent.name.string &&
+      data.sellers_agent.name.string.length
+    ) {
+      substr.push(buildPerson(data.sellers_agent));
+    }
+
+    if (substr.length) {
+      str.push(`from ${substr.join(", ")}`);
+    }
+  }
+
+  // location: "in Miami, FL"
   if (
     data.transfer_location &&
     data.transfer_location.place &&
@@ -114,19 +140,23 @@ export default function(data) {
     str.push(`in ${buildPlace(data.transfer_location.place)}`);
   }
 
+  // Date String: "sometime between Jan 5, 1982 and February 1982 until between 1999? and the 21st Century"
+  // TODO: write me
+
+  // Combine main clauses
   str = str.join(", ");
 
   // Parts not added with a comma:
   // ---
-  // Global certainty
+  // Global certainty: "Possibly"
   if (data.period_certainty === false) {
     str = "possibly " + str;
   }
-  // Sale info
+  // Sale info: "(lot no. 1, for $100,000)"
   if (data.stock_number || data.purchase) {
     str += ` ${buildSales(data)}`;
   }
-  // Closing punctuation
+  // Closing punctuation: ";"
   str += data.direct_transfer ? ";" : ".";
 
   return {

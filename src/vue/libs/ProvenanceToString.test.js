@@ -104,6 +104,63 @@ describe("ProvenanceToString", () => {
     });
   });
 
+  describe("Named Events", () => {
+    beforeEach(() => {
+      data.event = {
+        string: "Sale of Sales",
+        certainty: true
+      };
+    });
+    it("handles named events", () => {
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain('from "Sale of Sales"');
+    });
+    it("handles undertain named events", () => {
+      data.event.certainty = false;
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain('from "Sale of Sales"?');
+    });
+    it("handles named events with sellers agents", () => {
+      data.sellers_agent = {
+        name: {
+          string: "Gallery G",
+          certainty: true
+        },
+        place: {
+          string: "New York, NY",
+          certainty: false
+        }
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(
+        'from "Sale of Sales", Gallery G, New York, NY?'
+      );
+    });
+
+    it("handles named events with only sellers agents", () => {
+      delete data.event;
+      data.sellers_agent = {
+        name: {
+          string: "Gallery G",
+          certainty: true
+        },
+        place: {
+          string: "New York, NY",
+          certainty: false
+        }
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain("from Gallery G, New York, NY?");
+    });
+
+    it("handles false positives", () => {
+      data.event = {};
+      data.sellers_agent = {};
+      const result = ProvenanceToString(data);
+      expect(result.text).not.toContain("from");
+    });
+  });
+
   describe("Purchasing Agents", () => {
     it("handles Purchasing Agents", () => {
       data.purchasing_agent = {
