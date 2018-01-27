@@ -28,7 +28,13 @@
     <EditorElementLine label="Stock Number">
       <div class="field is-shorter">
         <div class="control">
-          <input class="input is-small" type="text" placeholder="Stock number">
+          <input 
+            class="input is-small" 
+            type="text" 
+            placeholder="Stock number" 
+            :value="stockNumber"
+            @input="setStockNumber"
+          >
           <p class="help">The stock, auction, or inventory number associated with the sale.</p>
         </div>
       </div>
@@ -69,7 +75,19 @@ import EntityLookup from "./EntityLookup.vue";
 import EditorElementLine from "./EditorElementLine.vue";
 
 export default {
-  props: ["purchasingAgent", "updateEntity", "sellersAgent", "saleEvent"],
+  props: [
+    "purchasingAgent",
+    "updateEntity",
+    "sellersAgent",
+    "saleEvent",
+    "stockNumber"
+  ],
+  methods: {
+    setStockNumber: function(e) {
+      const f = this.updateEntity("stock_number");
+      f(e.target.value);
+    }
+  },
   data: function() {
     return {
       currencies: ["$", "ƒ", "£", "€", "¢", "¥", "₱"]

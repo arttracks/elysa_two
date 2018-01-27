@@ -37,6 +37,7 @@
               :sellersAgent="datum(period,'sellers_agent')"
               :saleEvent="datum(period,'event')"
               :purchasingAgent="datum(period,'purchasing_agent')"
+              :stockNumber="datum(period,'stock_number')"
               :updateEntity="updateEntity"
             />
           </EditorElement>
