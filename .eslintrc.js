@@ -23,6 +23,11 @@ module.exports = {
   rules: {
     // allow async-await
     "generator-star-spacing": "off",
+    "no-template-curly-in-string": "error",
+    "block-scoped-var": "error",
+    "no-eq-null": "error",
+    "dot-location": ["error", "property"],
+    "no-floating-decimal": "error",
     // allow debugger during development
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off"
   }
