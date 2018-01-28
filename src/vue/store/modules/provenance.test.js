@@ -247,6 +247,59 @@ describe("Provenance Getters", () => {
     });
   });
 
+  describe("fullText", () => {
+    let fakeGetters = function(state, getters) {
+      return {
+        periodsAsText: getters.periodsAsText(state),
+        footnotes: getters.footnotes(state),
+        citations: getters.citations(state),
+        authorities: getters.authorities(state)
+      };
+    };
+    it("generates a full provenance text", () => {
+      const result = getters.fullText(state, fakeGetters(state, getters));
+      expect(result).toContain(
+        "Mary Cassatt. Galeries Durand-Ruel, Paris, France."
+      );
+      expect(result).toContain("\n\nAuthorities:\n\n");
+
+      expect(result).toContain("\nMary Cassatt:         no records found.");
+      expect(result).toContain("\nGaleries Durand-Ruel: no records found.");
+      expect(result).toContain("\nParis, France:        no records found.");
+
+      expect(result).not.toContain("\nCitations:\n");
+      expect(result).not.toContain("\nNotes:\n");
+    });
+    it("includes authority URLs", () => {
+      state.periods[0].owner.name.uri = "http://example.com/mary";
+      const result = getters.fullText(state, fakeGetters(state, getters));
+      expect(result).toContain(
+        "\nMary Cassatt:         http://example.com/mary"
+      );
+    });
+    it("provides a blank string for no provenance", () => {
+      state.periods = [];
+      const result = getters.fullText(state, fakeGetters(state, getters));
+      expect(result).toEqual("");
+    });
+
+    it("can include citations", () => {
+      state.periods[0].citations = ["I'm citation 1", "I'm citation 2"];
+      const result = getters.fullText(state, fakeGetters(state, getters));
+      expect(result).toContain("\nCitations:\n");
+      expect(result).toContain("\n[a]. I'm citation 1");
+      expect(result).toContain("\n[b]. I'm citation 2");
+    });
+    it("can include footnotes", () => {
+      state.periods[0].footnote = "I'm note 1";
+      state.periods[1].footnote = "I'm note 2";
+      const result = getters.fullText(state, fakeGetters(state, getters));
+      expect(result).toContain("\nNotes:\n");
+      expect(result).toContain("\n[1]. I'm note 1");
+      expect(result).toContain("\n[2]. I'm note 2");
+    });
+  });
+
   describe("periodsAsText", () => {
     it("returns an empty array if there are no periods", () => {
       delete state.periods;

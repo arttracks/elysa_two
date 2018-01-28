@@ -11,17 +11,20 @@ Abstract out the Footnote handler to a generic handler
 * [ ] Build a search interface for reconciling strings to ULAN/Geonames
 * [ ] Finish the conversion into final CIDOC-CRM LOD
 * [ ] Rewrite the timeline visualization
+
 * [ ] Hook up the life dates
 * [ ] Hook up the relationships
-* [x] Hook up the stock numbers
-* [x] Hook up the purchase price system
 * [ ] Figure out importing data
 * [ ] Drop down for relationship types
 * [ ] Drop down for currencies
+
 * [ ] Expand people when they exist.
 * [ ] Wire up reset button
-* [x] Wire up copy button
 * [ ] Re-add the diff code from the old Elysa
+
+* [x] Wire up copy button
+* [x] Hook up the stock numbers
+* [x] Hook up the purchase price system
 
 ---
 

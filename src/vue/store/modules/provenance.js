@@ -170,6 +170,20 @@ const state = {
   ]
 };
 
+function generateAuthorities(authorityList) {
+  let maxLength = 0;
+  authorityList.forEach(a => {
+    if (a.text.length > maxLength) {
+      maxLength = a.text.length;
+    }
+  });
+  const names = authorityList.map(
+    a =>
+      `${a.text}:`.padEnd(maxLength + 2) + (a.uri ? a.uri : "no records found.")
+  );
+  return `\n\nAuthorities:\n\n${names.join("\n")}`;
+}
+
 export const getters = {
   datum: state => (id, property) => {
     if (state.periods.length <= id) {
@@ -282,6 +296,21 @@ export const getters = {
       results[results.length - 1] = text;
     }
     return results;
+  },
+  fullText(state, getters) {
+    let str = getters.periodsAsText.join(" ");
+    if (getters.footnotes.length) {
+      str += `\n\nNotes:\n\n${getters.footnotes.map(f => f.text).join("\n")}`;
+    }
+    if (getters.authorities.length) {
+      str += generateAuthorities(getters.authorities);
+    }
+    if (getters.citations.length) {
+      str += `\n\nCitations:\n\n${getters.citations
+        .map(c => c.text)
+        .join("\n")}`;
+    }
+    return str;
   }
 };
 export const actions = {};
