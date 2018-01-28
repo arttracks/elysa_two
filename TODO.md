@@ -5,14 +5,10 @@ TODO:
 * [ ] Finish the conversion into final CIDOC-CRM LOD
 * [ ] Rewrite the timeline visualization
 
-* [x] Expand people when they exist.
-
-  * [x] Hook up the life dates
-  * [x] Make all people EditorPeople
-  * [ ] Handle era in life dates
-  * [ ] Handle empty life dates
-  * [ ] Hook up the relationships
-    * [x] Add toggle for relationship section
+* [ ] Handle era in life dates
+* [ ] Handle empty life dates
+* [ ] Handle uncertain life dates
+* [ ] Hook up the relationships
 
 * [ ] Figure out importing data
 
@@ -22,12 +18,22 @@ TODO:
   * [ ] save for later?
 
 * [ ] Figure out how to convert a SKOS hierarchy into a selectable dropdown
+
+  * [ ] Drop down for aquisition types
   * [ ] Drop down for relationship types
   * [ ] Drop down for currencies
 
-- [x] Wire up copy button
-- [x] Hook up the stock numbers
-- [x] Hook up the purchase price system
+* [ ] Autoselect new period
+
+**Completed**
+
+* [x] Wire up copy button
+* [x] Hook up the stock numbers
+* [x] Hook up the purchase price system
+* [x] Expand people when they exist.
+* [x] Hook up the life dates
+* [x] Make all people EditorPeople
+* [x] Add toggle for relationship section
 
 ---
 

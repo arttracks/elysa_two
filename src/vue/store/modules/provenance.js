@@ -6,8 +6,8 @@ export const blankPeriod = {
   period_certainty: true,
   owner: {
     name: {
-      string: "unknown person",
-      certainty: false
+      string: "",
+      certainty: true
     }
   },
   direct_transfer: false

@@ -125,7 +125,7 @@ describe("EditorPerson.vue", () => {
 
   describe("methods", () => {
     it("wraps the input function", () => {
-      let updateFunct = wrapper.vm.wrappedUpdate("name");
+      wrapper.vm.wrappedUpdate("name");
       expect(entityFunction).lastCalledWith("tester.name");
     });
   });

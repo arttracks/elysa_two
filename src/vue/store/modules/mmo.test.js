@@ -1,5 +1,4 @@
-import { getters, mutations } from "./mmo.js";
-import * as types from "../mutation-types.js";
+import { getters } from "./mmo.js";
 
 describe("E22 Man-Made Objects", () => {
   let state = null;
@@ -47,7 +46,7 @@ describe("E22 Man-Made Objects", () => {
     };
   });
 
-  //----------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------
   describe("Primary Image", () => {
     it("finds a primary image", () => {
       const image = getters.primaryImage(state);
@@ -71,7 +70,7 @@ describe("E22 Man-Made Objects", () => {
     });
   });
 
-  //----------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------
   describe("Primary Title", () => {
     it("finds a primary title", () => {
       const title = getters.primaryTitle(state);
@@ -96,7 +95,7 @@ describe("E22 Man-Made Objects", () => {
     });
   });
 
-  //----------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------
   describe("Artist Name", () => {
     it("finds artist names", () => {
       const names = getters.artistNames(state);
@@ -118,7 +117,7 @@ describe("E22 Man-Made Objects", () => {
     });
   });
 
-  //----------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------
   describe("Accession Numbers", () => {
     it("finds a accession number", () => {
       const accessionNumbers = getters.accessionNumbers(state);
