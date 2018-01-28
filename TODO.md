@@ -1,36 +1,33 @@
 TODO:
 
-Handle the case where you delete the current period.
-
-* make it an action?
-
-Abstract out the Footnote handler to a generic handler
-
 * [ ] Either rewrite the date parser in js or figure out how to use the ruby code via AJAX.
-* [ ] Figure out how to convert a SKOS hierarchy into a selectable dropdown
 * [ ] Build a search interface for reconciling strings to ULAN/Geonames
 * [ ] Finish the conversion into final CIDOC-CRM LOD
 * [ ] Rewrite the timeline visualization
 
-* [ ] Hook up the life dates
-* [ ] Hook up the relationships
-* [ ] Figure out importing data
-* [ ] Drop down for relationship types
-* [ ] Drop down for currencies
-
 * [ ] Expand people when they exist.
-* [ ] Wire up reset button
-* [ ] Re-add the diff code from the old Elysa
 
-* [x] Wire up copy button
-* [x] Hook up the stock numbers
-* [x] Hook up the purchase price system
+  * [ ] Hook up the life dates
+  * [ ] Hook up the relationships
+
+* [ ] Figure out importing data
+
+  * [ ] add roundtrip validations
+  * [ ] Wire up reset button
+  * [ ] Re-add the diff code from the old Elysa
+  * [ ] save for later?
+
+* [ ] Figure out how to convert a SKOS hierarchy into a selectable dropdown
+  * [ ] Drop down for relationship types
+  * [ ] Drop down for currencies
+
+- [x] Wire up copy button
+- [x] Hook up the stock numbers
+- [x] Hook up the purchase price system
 
 ---
 
 Three Modes:
-
-Header: - Copy current state as text - Copy current state as JSON-LD - save for later? - Reset to original text
 
 Enter Provenance: - As Text - text - id? URLS? - artwork name? - Creation Date? - As JSON-LD - other RDFs? - As a RDF URL
 

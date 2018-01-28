@@ -333,7 +333,7 @@ export const mutations = {
     let arr = payload.property.split(".");
     while (arr.length > 1) {
       let prop = arr.shift();
-      if (obj.prop === undefined) {
+      if (obj[prop] === undefined) {
         Vue.set(obj, prop, {});
       }
       obj = obj[prop];
