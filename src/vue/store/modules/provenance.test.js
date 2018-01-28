@@ -1,5 +1,5 @@
-import { getters, mutations } from "../../store/modules/provenance.js";
-import * as types from "../../store/mutation-types.js";
+import { getters, mutations } from "./provenance.js";
+import * as types from "../mutation-types.js";
 
 describe("Modifying provenance", () => {
   describe("Adding a new period", () => {

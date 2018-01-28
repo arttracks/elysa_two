@@ -43,22 +43,24 @@ const state = {
 };
 
 // getters
-const getters = {
-  primaryImage: function() {
+export const getters = {
+  primaryImage: function(state) {
     const rep = state.representation;
     if (!Array.isArray(rep) || !rep.length) {
       return null;
     }
     return rep[0].id;
   },
-  primaryTitle: function() {
+  primaryTitle: function(state) {
     const preferredTitle = classifiedAs(state.identified_by, "aat:300404670");
     if (preferredTitle.length) {
       return preferredTitle[0].value;
     }
     return null;
   },
-  artistNames: function() {
+
+  //TODO:  Handle the case of multiple productions, or nested productions?
+  artistNames: function(state) {
     const production = state.produced_by;
     if (
       production &&
@@ -70,7 +72,7 @@ const getters = {
     }
     return null;
   },
-  accessionNumbers: function() {
+  accessionNumbers: function(state) {
     const accessionNum = classifiedAs(state.identified_by, "aat:300312355");
     if (accessionNum.length) {
       return accessionNum.map(num => num.value).join(", ");
@@ -79,23 +81,8 @@ const getters = {
   }
 };
 
-// actions
-const actions = {
-  // getAllProducts ({ commit }) {
-  //   shop.getProducts(products => {
-  //     commit(types.RECEIVE_PRODUCTS, { products })
-  //   })
-  // }
-};
-
-// mutations
-const mutations = {
-  // [types.RECEIVE_PRODUCTS] (state, { products }) {
-  //   state.all = products
-  // },
-  // [types.ADD_TO_CART] (state, { id }) {
-  //   state.all.find(product => product.id === id).inventory--
-};
+const actions = {};
+const mutations = {};
 
 export default {
   state,

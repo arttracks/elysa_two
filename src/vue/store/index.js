@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import * as actions from "./actions";
 import mmo from "./modules/mmo";
 import editorInterface from "./modules/editorInterface";
 import provenance from "./modules/provenance";
@@ -11,7 +10,6 @@ Vue.use(Vuex);
 const debug = process.env.NODE_ENV !== "production";
 
 const store = new Vuex.Store({
-  actions,
   modules: {
     mmo,
     editorInterface,
