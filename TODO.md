@@ -8,9 +8,11 @@ TODO:
 * [x] Expand people when they exist.
 
   * [x] Hook up the life dates
-  * [ ] Make all people EditorPeople
+  * [x] Make all people EditorPeople
   * [ ] Handle era in life dates
+  * [ ] Handle empty life dates
   * [ ] Hook up the relationships
+    * [x] Add toggle for relationship section
 
 * [ ] Figure out importing data
 

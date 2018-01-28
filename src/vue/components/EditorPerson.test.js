@@ -19,12 +19,23 @@ describe("EditorPerson.vue", () => {
           death: "1980-uu-uu"
         },
         personField: "tester",
-        updateEntity: entityFunction
+        updateEntity: entityFunction,
+        label: "Tester"
       }
     };
     wrapper = mount(EditorPerson, opts);
   });
   it("Is a vue component", () => {
+    expect(wrapper.isVueInstance()).toBeTruthy();
+  });
+
+  it("handles undefined person data", () => {
+    wrapper.setProps({
+      person: null,
+      personField: "tester",
+      updateEntity: entityFunction,
+      label: "Tester"
+    });
     expect(wrapper.isVueInstance()).toBeTruthy();
   });
 
@@ -48,6 +59,20 @@ describe("EditorPerson.vue", () => {
       expect(wrapper.contains(".associated-place")).toBe(false);
       expect(wrapper.contains(".related-person")).toBe(false);
     });
+    it("by default shows the standard help text", () => {
+      expect(wrapper.find(".person-name .help").text()).toBe(
+        "The verbatim name of the tester."
+      );
+    });
+    it("by renders custom help text", () => {
+      wrapper.setProps({ help: "help text" });
+      expect(wrapper.find(".person-name .help").text()).toBe("help text");
+    });
+    it("hides most the related section if showRelated is false", () => {
+      wrapper.setProps({ noRelated: true });
+      expect(wrapper.contains(".related-person")).toBe(false);
+    });
+
     it("displays birth and death years", () => {
       expect(wrapper.find(".birth-year").element.value).toBe("1910");
       expect(wrapper.find(".death-year").element.value).toBe("1980");
@@ -77,6 +102,13 @@ describe("EditorPerson.vue", () => {
     it("extracts years", () => {
       expect(wrapper.vm.birthYear).toBe(1910);
       expect(wrapper.vm.deathYear).toBe(1980);
+    });
+    it("lowercases the label", () => {
+      expect(wrapper.vm.lowercaseLabel).toBe("tester");
+    });
+    it("does nothing with blank labels", () => {
+      wrapper.setProps({ label: undefined });
+      expect(wrapper.vm.lowercaseLabel).toBe(undefined);
     });
     it("returns null if there is no year", () => {
       wrapper.setProps({

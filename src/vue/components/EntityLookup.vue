@@ -154,7 +154,9 @@ export default {
       return faQuestion;
     },
     lowercaseLabel() {
-      return this.label.toLowerCase();
+      if (this.label) {
+        return this.label.toLowerCase();
+      }
     },
     hasAddons() {
       return this.lookupList.length || this.certaintyEnabled;

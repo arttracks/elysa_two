@@ -27,6 +27,7 @@
 
           <EditorElement title="New Owner">
             <EditorPerson
+              label="Owner"
               :person="datum(period,'owner')"
               personField='owner'
               :updateEntity="updateEntity"

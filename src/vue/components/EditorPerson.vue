@@ -2,18 +2,18 @@
 
 <!-- ###################   HTML   ################### -->
 <template>
-  <div >
-
+  <div class="person-wrapper">
     <!-- Verbatim Name -->
     <EntityLookup 
       class="person-name"
-      label="Name"
-      placeholder="Person's name"
-      :value="person.name"
+      :label="label"
+      :placeholder="`${label}'s name`"
+      :value="person ? person.name: undefined"
       :setter="wrappedUpdate('name')"
-      help="The verbatim name of the person."
+      :help="helpText"
     />
-    <template v-if="person.name.string.length">
+
+    <template v-if="person && person.name && person.name.string && person.name.string.length">
       
       <!-- Life Dates -->
       <EditorElementLine label="Life Dates" class="life-dates inset">
@@ -25,7 +25,7 @@
               type="text" 
               placeholder="Birth year" 
             />
-            <p class="help">The year the person was born.</p>
+            <p class="help">The year the {{lowercaseLabel}} was born.</p>
           </div>
         </div>
         <div class="field is-narrow">
@@ -39,7 +39,7 @@
               type="text" 
               placeholder="Death year"
             />
-            <p class="help">The year the person died.</p>
+            <p class="help">The year the {{lowercaseLabel}} died.</p>
           </div>
         </div>
       </EditorElementLine>
@@ -48,23 +48,24 @@
       <EntityLookup 
         class="associated-place inset"
         label="Assocated Location"
-        placeholder="Person's location"
+        :placeholder="`${label}'s location`"
         :value="person.place"
         :setter="wrappedUpdate('place')"
-        help="A location used to disambiguate this person from other people with similar names."
+        :help="`A location used to disambiguate the ${lowercaseLabel} from others with similar names.`"
       />
       
       <!-- Related Persion -->
       <EntityLookup 
+        v-if="!noRelated"
         class="related-person inset"
         label="Related Person"
-        placeholder="Previous person's name"
+        placeholder="related person's name"
         :lookupList="relationships"
         :lookupValue="person.relationship ? person.relationship.type : undefined"
         :lookupSetter="wrappedUpdate('relationship.type')"
         :value="person.relationship ? person.relationship.name : undefined"
         :setter="wrappedUpdate('relationship.name')"
-        help="A family member of this person."
+        :help="`A family member of the ${lowercaseLabel}.`"
       />
     </template>
   </div>
@@ -77,11 +78,24 @@ import EditorElementLine from "./EditorElementLine.vue";
 import edtf from "edtf";
 
 export default {
-  props: ["person", "personField", "updateEntity"],
+  props: {
+    label: String,
+    person: Object,
+    help: String,
+    personField: String,
+    updateEntity: Function,
+    noRelated: Boolean
+  },
   computed: {
+    helpText: function() {
+      if (this.help) {
+        return this.help;
+      }
+      return `The verbatim name of the ${this.lowercaseLabel}.`;
+    },
     birthYear: {
       get() {
-        return this.person.birth
+        return this.person && this.person.birth
           ? edtf(this.person.birth.replace(/u/g, "X")).year
           : null;
       },
@@ -92,13 +106,18 @@ export default {
     },
     deathYear: {
       get() {
-        return this.person.death
+        return this.person && this.person.death
           ? edtf(this.person.death.replace(/u/g, "X")).year
           : null;
       },
       set(value) {
         const date = edtf(`${value.padStart("4", "0")}-XX-XX`);
         this.wrappedUpdate("death")(date.edtf);
+      }
+    },
+    lowercaseLabel: function() {
+      if (this.label) {
+        return this.label.toLowerCase();
       }
     }
   },
@@ -148,5 +167,8 @@ export default {
 }
 .is-year {
   flex-basis: 6rem;
+}
+.person-wrapper:not(:last-child) {
+  margin-bottom: 0.75rem;
 }
 </style>

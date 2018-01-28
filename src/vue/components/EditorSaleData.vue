@@ -9,21 +9,24 @@
       help="The verbatim name of the sale or auction."
     />
    
-   <EntityLookup 
+   <EditorPerson
+      noRelated
       label="Buyer's Agent"
-      placeholder="Buyer's agent"
-      :value="purchasingAgent ? purchasingAgent.name : undefined"
-      :setter="updateEntity('purchasing_agent.name')"
+      :person=purchasingAgent
+      personField='purchasing_agent'
+      :updateEntity="updateEntity"
       help="The person or organization aquiring the work on the behalf of the new owner."    
     />
-    
-    <EntityLookup 
-              label="Seller's Agent"
-              placeholder="The Seller's agent"
-              :value="sellersAgent ? sellersAgent.name : undefined"
-              :setter="updateEntity('sellers_agent.name')"
-              help="The intermediary or auction house working on behalf of the seller."
-            />
+
+    <EditorPerson
+       noRelated
+       label="Seller's Agent"
+       :person=sellersAgent
+       personField='sellers_agent'
+       :updateEntity="updateEntity"
+       help="The intermediary or auction house working on behalf of the seller."
+     />
+
 
     <EditorElementLine label="Stock Number">
       <div class="field is-shorter">
@@ -91,6 +94,7 @@
 <script>
 import EntityLookup from "./EntityLookup.vue";
 import EditorElementLine from "./EditorElementLine.vue";
+import EditorPerson from "./EditorPerson.vue";
 
 export default {
   props: [
@@ -138,7 +142,8 @@ export default {
   },
   components: {
     EntityLookup,
-    EditorElementLine
+    EditorElementLine,
+    EditorPerson
   }
 };
 </script>
