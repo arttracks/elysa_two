@@ -5,9 +5,11 @@ TODO:
 * [ ] Finish the conversion into final CIDOC-CRM LOD
 * [ ] Rewrite the timeline visualization
 
-* [ ] Expand people when they exist.
+* [x] Expand people when they exist.
 
-  * [ ] Hook up the life dates
+  * [x] Hook up the life dates
+  * [ ] Make all people EditorPeople
+  * [ ] Handle era in life dates
   * [ ] Hook up the relationships
 
 * [ ] Figure out importing data

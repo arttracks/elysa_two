@@ -1,86 +1,80 @@
 <!-- ###################   HTML   ################### -->
 <template>
-    <div class="field is-horizontal">
-      
-      <!-- Lookup Label -->
-      <div class="field-label is-small">
-        <label class="label">{{label}}</label>
+  <EditorElementLine :label="label">
+    
+    <!-- String entry field-->
+    <div 
+      class="field entity-input" 
+      :class="{ 'has-addons': hasAddons}"
+    >
+
+      <!-- Lookup dropdown -->
+      <div v-if="lookupList.length" class="control">
+        <span class="select is-small">
+          <select>
+            <option hidden selected value disabled>relation type</option>
+            <option v-for="lookup in lookupList">
+                {{ lookup }}
+            </option>
+          </select>
+        </span>
       </div>
 
-      <div class="field-body">
-
-        <!-- String entry field-->
-        <div 
-          class="field entity-input" 
-          :class="{ 'has-addons': hasAddons}"
+      <!-- String entry input -->
+      <div 
+        class="control is-expanded" >
+        <input 
+          class="input is-small entity-text" 
+          type="text" 
+          :placeholder="placeholder" 
+          v-model="entityText"
+          @input="updateEntity"
         >
+        <p v-if="help" class="help">{{help}}</p>
+      </div>
 
-          <!-- Lookup dropdown -->
-          <div v-if="lookupList.length" class="control">
-            <span class="select is-small">
-              <select>
-                <option hidden selected value disabled>relation type</option>
-                <option v-for="lookup in lookupList">
-                    {{ lookup }}
-                </option>
-              </select>
-            </span>
-          </div>
-
-          <!-- String entry input -->
-          <div 
-            class="control is-expanded" >
-            <input 
-              class="input is-small entity-text" 
-              type="text" 
-              :placeholder="placeholder" 
-              v-model="entityText"
-              @input="updateEntity"
-            >
-            <p v-if="help" class="help">{{help}}</p>
-          </div>
-
-          <!-- Certainty button -->
-          <div 
-            v-if="certaintyEnabled" 
-            class="control certainty-button" 
-            :class="[isCertain ? 'inactive' : '']"
-          >
-            <button class="button is-small" @click="toggleCertainty" :disabled="entityText.length ==0">
-                <span  class="icon is-small is-right">
-                   <font-awesome-icon :icon="certainIcon" />
-                </span>
-              </button>
-          </div>
-        </div>
-
-        <!-- URL entry field -->
-        <div class="field has-addons lod-input">
-          <div class="control has-icons-right is-expanded">
-            <input 
-              class="input is-small" 
-              type="text" 
-              placeholder="http(s)://" 
-              :value="entityUri"
-              />
-            <span class="icon is-right">
-              <font-awesome-icon :icon="internetIcon" />
-            </span>
-            <p class="help">URL for {{lowercaseLabel}}.</p>
-          </div>
-          <div class="control">
-            <a class="button is-small is-info" disabled>
-              <font-awesome-icon :icon="previewIcon" />
-            </a>
-          </div>
-        </div>
-      </div>    
+      <!-- Certainty button -->
+      <div 
+        v-if="certaintyEnabled" 
+        class="control certainty-button" 
+        :class="[isCertain ? 'inactive' : '']"
+      >
+        <button class="button is-small" @click="toggleCertainty" :disabled="entityText.length ==0">
+          <span  class="icon is-small is-right">
+             <font-awesome-icon :icon="certainIcon" />
+          </span>
+        </button>
     </div>
+  </div>
+
+  <!-- URL entry field -->
+  <div class="field has-addons lod-input">
+    <div class="control has-icons-right is-expanded">
+      <input 
+        class="input is-small" 
+        type="text" 
+        placeholder="http(s)://" 
+        :value="entityUri"
+        />
+      <span class="icon is-right">
+        <font-awesome-icon :icon="internetIcon" />
+      </span>
+      <p class="help">URL for {{lowercaseLabel}}.</p>
+    </div>
+    <div class="control">
+      <a class="button is-small is-info" disabled>
+        <font-awesome-icon :icon="previewIcon" />
+      </a>
+    </div>
+  </div>
+
+  </EditorElementLine>
 
 </template>
 
 <!-- ################### JAVACRIPT ################### -->
 <script>
+import EditorElementLine from "./EditorElementLine.vue";
 import FontAwesomeIcon from "@fortawesome/vue-fontawesome";
 import faLink from "@fortawesome/fontawesome-free-solid/faLink";
 import faUnlink from "@fortawesome/fontawesome-free-solid/faUnlink";
@@ -201,7 +195,8 @@ export default {
   },
 
   components: {
-    FontAwesomeIcon
+    FontAwesomeIcon,
+    EditorElementLine
   }
 };
 </script>

@@ -7,18 +7,10 @@ const state = {
 };
 
 // getters
-const getters = {
-  // allProducts: state => state.all
-};
+const getters = {};
 
 // actions
-const actions = {
-  // getAllProducts ({ commit }) {
-  //   shop.getProducts(products => {
-  //     commit(types.RECEIVE_PRODUCTS, { products })
-  //   })
-  // }
-};
+const actions = {};
 
 // mutations
 export const mutations = {

@@ -59,7 +59,7 @@ export const getters = {
     return null;
   },
 
-  //TODO:  Handle the case of multiple productions, or nested productions?
+  // TODO:  Handle the case of multiple productions, or nested productions?
   artistNames: function(state) {
     const production = state.produced_by;
     if (

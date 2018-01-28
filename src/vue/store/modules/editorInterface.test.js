@@ -7,7 +7,6 @@ describe("Editor UI state mutations", () => {
     mutations[types.TOGGLE_HELP](state);
     expect(state.helpShown).toBeTruthy();
   });
-
   it("sets active periods", () => {
     const state = { activePeriod: 0 };
     mutations[types.SET_ACTIVE_PERIOD](state, 1);

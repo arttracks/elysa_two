@@ -26,8 +26,9 @@
           </EditorElement>
 
           <EditorElement title="New Owner">
-            <EditorOwner 
-              :owner="datum(period,'owner')"
+            <EditorPerson
+              :person="datum(period,'owner')"
+              personField='owner'
               :updateEntity="updateEntity"
             />
           </EditorElement>
@@ -69,7 +70,7 @@ import ProvenancePeriods from "./ProvenancePeriods.vue";
 import EditorHeader from "./EditorHeader.vue";
 import EditorLineDisplay from "./EditorLineDisplay.vue";
 import EditorTransfer from "./EditorTransfer.vue";
-import EditorOwner from "./EditorOwner.vue";
+import EditorPerson from "./EditorPerson.vue";
 import EditorSaleData from "./EditorSaleData.vue";
 import EditorFootnote from "./EditorFootnote.vue";
 import EditorCitation from "./EditorCitation.vue";
@@ -135,7 +136,7 @@ export default {
     EditorHeader,
     EditorLineDisplay,
     EditorTransfer,
-    EditorOwner,
+    EditorPerson,
     EditorSaleData,
     EditorFootnote,
     EditorCitation,

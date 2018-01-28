@@ -1,6 +1,6 @@
 <!-- ###################   HTML   ################### -->
 <template>
-  <div class="field is-horizontal">
+  <div class="field is-horizontal" :class="{inset: inset}">
     <div v-if="label" class="field-label is-small ">
       <label class="label">{{label}}</label>
     </div>
@@ -13,12 +13,14 @@
 <!-- ################### JAVACRIPT ################### -->
 <script>
 export default {
-  props: ["label"]
+  props: { label: String, inset: { type: Boolean, default: false } }
 };
 </script>
 
 
 <!-- ###################    CSS    ################### -->
 <style scoped lang="scss">
-
+.inset {
+  margin-left: 3.5%;
+}
 </style>
