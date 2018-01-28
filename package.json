@@ -19,6 +19,7 @@
     "axios": "^0.17.1",
     "bulma": "^0.6.2",
     "bulma-switch": "^0.1.2",
+    "clipboard": "^1.7.1",
     "edtf": "^2.3.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.5.0",

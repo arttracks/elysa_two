@@ -18,6 +18,10 @@ Abstract out the Footnote handler to a generic handler
 * [ ] Figure out importing data
 * [ ] Drop down for relationship types
 * [ ] Drop down for currencies
+* [ ] Expand people when they exist.
+* [ ] Wire up reset button
+* [x] Wire up copy button
+* [ ] Re-add the diff code from the old Elysa
 
 ---
 

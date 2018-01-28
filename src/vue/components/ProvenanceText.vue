@@ -77,7 +77,10 @@
             <button class="button is-small">Reset</button>
           </div>
           <div class="navbar-item">
-            <button class="button is-small">Copy Provenance</button>
+            <button 
+              id="copy-button"
+              class="button is-small"
+            >Copy Provenance</button>
 
           </div>
         </div>
@@ -90,21 +93,60 @@
 <script>
 import { mapGetters, mapState, mapMutations } from "vuex";
 import * as types from "../store/mutation-types.js";
+import Clipboard from "clipboard";
 
 export default {
   props: [],
   components: {},
+  mounted: function() {
+    let clipboard = new Clipboard("#copy-button", {
+      text: this.fullText
+    });
+    clipboard.on("success", function(e) {
+      let oldText = e.trigger.innerHTML;
+      e.trigger.innerHTML = "Sent to Clipboard";
+      setTimeout(() => (e.trigger.innerHTML = oldText), 1500);
+    });
+  },
   computed: {
     ...mapGetters(["periodsAsText", "footnotes", "citations", "authorities"]),
     ...mapState({
-      periods: state => state.provenance.periods,
       activePeriod: state => state.editorInterface.activePeriod
     })
   },
   methods: {
     ...mapMutations({
       selectPeriod: types.SET_ACTIVE_PERIOD
-    })
+    }),
+    generateAuthorities: function(authorityList) {
+      let maxLength = 0;
+      authorityList.forEach(a => {
+        if (a.text.length > maxLength) {
+          maxLength = a.text.length;
+        }
+      });
+      const names = authorityList.map(
+        a =>
+          `${a.text}:`.padEnd(maxLength + 2) +
+          (a.uri ? a.uri : "no records found.")
+      );
+      return `\n\nAuthorities:\n\n${names.join("\n")}`;
+    },
+    fullText: function() {
+      let str = this.periodsAsText.join(" ");
+      if (this.footnotes.length) {
+        str += `\n\nNotes:\n\n${this.footnotes.map(f => f.text).join("\n")}`;
+      }
+      if (this.authorities.length) {
+        str += this.generateAuthorities(this.authorities);
+      }
+      if (this.citations.length) {
+        str += `\n\nCitations:\n\n${this.citations
+          .map(c => c.text)
+          .join("\n")}`;
+      }
+      return str;
+    }
   }
 };
 </script>

@@ -24,10 +24,7 @@
 
 <!-- ################### JAVACRIPT ################### -->
 <script>
-export default {
-  props: [],
-  components: {}
-};
+export default {};
 </script>
 
 
