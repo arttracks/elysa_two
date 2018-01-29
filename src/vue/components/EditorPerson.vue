@@ -75,6 +75,7 @@
 <script>
 import EntityLookup from "./EntityLookup.vue";
 import EditorElementLine from "./EditorElementLine.vue";
+import relationshipAggregation from "../../data/relationships.json";
 import edtf from "edtf";
 
 export default {

@@ -1,0 +1,287 @@
+{
+  "@context": "https://linked.art/api/v1/thesaurus.json",
+  "id": "http://vocabularies.museumprovenance.com/relationships",
+  "type": "Aggregation",
+  "name": {
+    "en": "Familial Relationship Thesaurus"
+  },
+  "aggregates": [{
+      "id": "aat:300188723",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "brothers"
+      },
+      "broader": ["aat:300187624"],
+      "narrower": []
+    },
+    {
+      "id": "aat:300188720",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "sisters (siblings)"
+      },
+      "broader": ["aat:300187624"],
+      "narrower": []
+    },
+    {
+      "id": "aat:300187624",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "siblings"
+      },
+      "broader": [],
+      "narrower": ["aat:300188720", "aat:300188723"]
+    },
+    {
+      "id": "aat:300025932",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "mothers"
+      },
+      "broader": ["aat:300025930"],
+      "narrower": []
+    },
+    {
+      "id": "aat:300025931",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "fathers"
+      },
+      "broader": ["aat:300025930"],
+      "narrower": []
+    },
+    {
+      "id": "aat:300025930",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "parents"
+      },
+      "broader": [],
+      "narrower": ["aat:300025931", "aat:300025932"]
+    },
+    {
+      "id": "aat:300154350",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "sons (people)"
+      },
+      "broader": ["aat:300154345"],
+      "narrower": []
+    },
+    {
+      "id": "aat:300154348",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "daughters"
+      },
+      "broader": ["aat:300154345"],
+      "narrower": []
+    },
+    {
+      "id": "aat:300154345",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "offspring"
+      },
+      "broader": [],
+      "narrower": ["aat:300154350", "aat:300154348"]
+    },
+    {
+      "id": "aat:300386748",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "grandchildren"
+      },
+      "broader": [],
+      "narrower": []
+    },
+    {
+      "id": "aat:300386751",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "grandparents"
+      },
+      "broader": [],
+      "narrower": []
+    },
+    {
+      "id": "aat:300386770",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "nephews"
+      },
+      "broader": [],
+      "narrower": []
+    },
+    {
+      "id": "aat:300386771",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "nieces"
+      },
+      "broader": [],
+      "narrower": []
+    },
+    {
+      "id": "aat:300386773",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "uncles"
+      },
+      "broader": [],
+      "narrower": []
+    },
+    {
+      "id": "aat:300386772",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "aunts"
+      },
+      "broader": [],
+      "narrower": []
+    },
+    {
+      "id": "aat:300154341",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "husbands"
+      },
+      "broader": ["aat:300154337"],
+      "narrower": []
+    },
+    {
+      "id": "aat:300154343",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "wifes"
+      },
+      "broader": ["aat:300154337"],
+      "narrower": []
+    },
+    {
+      "id": "aat:300154337",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "spouses"
+      },
+      "broader": [],
+      "narrower": ["aat:300154341", "aat:300154343"]
+    },
+    {
+      "id": "aat:300154336",
+      "type": "Concept",
+      "prefLabel": {
+        "en": "people by family relationship"
+      },
+      "broader": [],
+      "narrower": [
+        "aat:300154337",
+        "aat:300154345",
+        "aat:300025930",
+        "aat:300187624",
+        "aat:300386772",
+        "aat:300386773",
+        "aat:300386771",
+        "aat:300386770",
+        "aat:300386751",
+        "aat:300386748"
+      ]
+    }
+  ],
+  "proxies": [{
+      "type": "Proxy",
+      "proxyFor": "aat:300188723",
+      "keyword": "brother"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300188720",
+      "keyword": "sister"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300187624",
+      "keyword": "sibling"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300025932",
+      "keyword": "mother"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300025931",
+      "keyword": "father"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300025930",
+      "keyword": "parent"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300154350",
+      "keyword": "son"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300154348",
+      "keyword": "daughter"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300154345",
+      "keyword": "child"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300386748",
+      "keyword": "grandchild"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300386751",
+      "keyword": "grandparent"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300386770",
+      "keyword": "nephew"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300386771",
+      "keyword": "niece"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300386773",
+      "keyword": "uncle"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300386772",
+      "keyword": "aunt"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300154341",
+      "keyword": "husband"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300154343",
+      "keyword": "wife"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300154337",
+      "keyword": "spouse"
+    },
+    {
+      "type": "Proxy",
+      "proxyFor": "aat:300154336",
+      "keyword": "relative"
+    }
+  ]
+}
