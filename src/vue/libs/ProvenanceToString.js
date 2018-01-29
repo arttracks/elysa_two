@@ -1,13 +1,16 @@
 import edtf from "edtf";
 
+//----------------------------------------------------------------------------
 function buildPlace(data) {
   return `${data.string}${data.certainty ? "" : "?"}`;
 }
 
+//----------------------------------------------------------------------------
 function buildEvent(data) {
   return `"${data.string}"${data.certainty ? "" : "?"}`;
 }
 
+//----------------------------------------------------------------------------
 function buildSales(data) {
   let vals = [];
   if (data.stock_number) {
@@ -25,6 +28,7 @@ function buildSales(data) {
   return `(${vals.join(", ")})`;
 }
 
+//----------------------------------------------------------------------------
 function buildPerson(data) {
   let str = [];
   if (data.relationship) {
@@ -57,6 +61,7 @@ function buildPerson(data) {
   return str.join(" ");
 }
 
+//----------------------------------------------------------------------------
 function extractAuthorityFrom(data) {
   let found = [];
   if (data) {
@@ -79,6 +84,7 @@ function extractAuthorityFrom(data) {
   return found;
 }
 
+//----------------------------------------------------------------------------
 function collectAuthorities(data) {
   let authorities = [];
   authorities.push(extractAuthorityFrom(data.owner));

@@ -20,14 +20,17 @@ export default class Aggregation {
       }
     });
 
+    // Setting up the default options
     const defaults = {
       langs: ["en", "@none", "any"]
     };
-
-    this.aggregation = oreAggregation;
     this.options = Object.assign(defaults, options);
+
+    // Saving the data
+    this.aggregation = oreAggregation;
   }
 
+  //----------------------------------------------------------------------------
   langSearch(obj, key, langs) {
     let arr = [];
     if (Object.prototype.toString.call(obj) !== "[object Object]") {
@@ -57,6 +60,7 @@ export default class Aggregation {
     return arr;
   }
 
+  //----------------------------------------------------------------------------
   getList(langs) {
     let results = [];
     for (const obj of this.aggregation.aggregates) {

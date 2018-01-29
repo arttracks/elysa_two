@@ -31,6 +31,7 @@ describe("Aggregation", () => {
     };
   });
 
+  //----------------------------------------------------------------------------
   describe("initialization", () => {
     it("accepts an object", () => {
       const agg = new Aggregation(data);
@@ -79,6 +80,7 @@ describe("Aggregation", () => {
     });
   });
 
+  //----------------------------------------------------------------------------
   describe("listing the objects", () => {
     it("has an id", () => {
       const agg = new Aggregation(data);

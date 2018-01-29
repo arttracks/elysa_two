@@ -1,4 +1,5 @@
 import ProvenanceToString from "./ProvenanceToString";
+
 describe("ProvenanceToString", () => {
   let data = {};
   beforeEach(() => {
@@ -13,6 +14,7 @@ describe("ProvenanceToString", () => {
     };
   });
 
+  //----------------------------------------------------------------------------
   describe("Authorities", () => {
     var testEntity;
     beforeEach(() => {
@@ -104,6 +106,7 @@ describe("ProvenanceToString", () => {
     });
   });
 
+  //----------------------------------------------------------------------------
   describe("Named Events", () => {
     beforeEach(() => {
       data.event = {
@@ -161,6 +164,7 @@ describe("ProvenanceToString", () => {
     });
   });
 
+  //----------------------------------------------------------------------------
   describe("Purchasing Agents", () => {
     it("handles Purchasing Agents", () => {
       data.purchasing_agent = {
@@ -184,6 +188,7 @@ describe("ProvenanceToString", () => {
     });
   });
 
+  //----------------------------------------------------------------------------
   describe("in PLACE", () => {
     it("handles transfer locations", () => {
       data.transfer_location = {
