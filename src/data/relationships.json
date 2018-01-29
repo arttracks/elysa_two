@@ -2,286 +2,442 @@
   "@context": "https://linked.art/api/v1/thesaurus.json",
   "id": "http://vocabularies.museumprovenance.com/relationships",
   "type": "Aggregation",
-  "name": {
-    "en": "Familial Relationship Thesaurus"
-  },
-  "aggregates": [{
-      "id": "aat:300188723",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "brothers"
-      },
-      "broader": ["aat:300187624"],
-      "narrower": []
+  "identified_by": [
+    {
+      "type": "Name",
+      "language": "en",
+      "value": "Familial Relationship Thesaurus"
+    }
+  ],
+  "aggregates": [
+    {
+      "id": "http://vocab.getty.edu/aat/300188723",
+      "type": "Type",
+      "has_parent": ["http://vocab.getty.edu/aat/300187624"],
+      "has_child": [],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "brothers",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300188720",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "sisters (siblings)"
-      },
-      "broader": ["aat:300187624"],
-      "narrower": []
+      "id": "http://vocab.getty.edu/aat/300188720",
+      "type": "Type",
+      "has_parent": ["http://vocab.getty.edu/aat/300187624"],
+      "has_child": [],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "sisters",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300187624",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "siblings"
-      },
-      "broader": [],
-      "narrower": ["aat:300188720", "aat:300188723"]
+      "id": "http://vocab.getty.edu/aat/300187624",
+      "type": "Type",
+      "has_parent": [],
+      "has_child": [
+        "http://vocab.getty.edu/aat/300188720",
+        "http://vocab.getty.edu/aat/300188723"
+      ],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "siblings",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300025932",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "mothers"
-      },
-      "broader": ["aat:300025930"],
-      "narrower": []
+      "id": "http://vocab.getty.edu/aat/300025932",
+      "type": "Type",
+      "has_parent": ["http://vocab.getty.edu/aat/300025930"],
+      "has_child": [],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "mothers",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300025931",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "fathers"
-      },
-      "broader": ["aat:300025930"],
-      "narrower": []
+      "id": "http://vocab.getty.edu/aat/300025931",
+      "type": "Type",
+      "has_parent": ["http://vocab.getty.edu/aat/300025930"],
+      "has_child": [],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "fathers",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300025930",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "parents"
-      },
-      "broader": [],
-      "narrower": ["aat:300025931", "aat:300025932"]
+      "id": "http://vocab.getty.edu/aat/300025930",
+      "type": "Type",
+      "has_parent": [],
+      "has_child": [
+        "http://vocab.getty.edu/aat/300025931",
+        "http://vocab.getty.edu/aat/300025932"
+      ],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "parents",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300154350",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "sons (people)"
-      },
-      "broader": ["aat:300154345"],
-      "narrower": []
+      "id": "http://vocab.getty.edu/aat/300154350",
+      "type": "Type",
+      "has_parent": ["http://vocab.getty.edu/aat/300154345"],
+      "has_child": [],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "sons",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300154348",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "daughters"
-      },
-      "broader": ["aat:300154345"],
-      "narrower": []
+      "id": "http://vocab.getty.edu/aat/300154348",
+      "type": "Type",
+      "has_parent": ["http://vocab.getty.edu/aat/300154345"],
+      "has_child": [],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "daughters",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300154345",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "offspring"
-      },
-      "broader": [],
-      "narrower": ["aat:300154350", "aat:300154348"]
+      "id": "http://vocab.getty.edu/aat/300154345",
+      "type": "Type",
+      "has_parent": [],
+      "has_child": [
+        "http://vocab.getty.edu/aat/300154350",
+        "http://vocab.getty.edu/aat/300154348"
+      ],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "offspring",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300386748",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "grandchildren"
-      },
-      "broader": [],
-      "narrower": []
+      "id": "http://vocab.getty.edu/aat/300386748",
+      "type": "Type",
+      "has_parent": [],
+      "has_child": [],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "grandchildren",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300386751",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "grandparents"
-      },
-      "broader": [],
-      "narrower": []
+      "id": "http://vocab.getty.edu/aat/300386751",
+      "type": "Type",
+      "has_parent": [],
+      "has_child": [],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "grandparents",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300386770",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "nephews"
-      },
-      "broader": [],
-      "narrower": []
+      "id": "http://vocab.getty.edu/aat/300386770",
+      "type": "Type",
+      "has_parent": [],
+      "has_child": [],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "nephews",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300386771",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "nieces"
-      },
-      "broader": [],
-      "narrower": []
+      "id": "http://vocab.getty.edu/aat/300386771",
+      "type": "Type",
+      "has_parent": [],
+      "has_child": [],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "nieces",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300386773",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "uncles"
-      },
-      "broader": [],
-      "narrower": []
+      "id": "http://vocab.getty.edu/aat/300386773",
+      "type": "Type",
+      "has_parent": [],
+      "has_child": [],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "uncles",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300386772",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "aunts"
-      },
-      "broader": [],
-      "narrower": []
+      "id": "http://vocab.getty.edu/aat/300386772",
+      "type": "Type",
+      "has_parent": [],
+      "has_child": [],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "aunts",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300154341",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "husbands"
-      },
-      "broader": ["aat:300154337"],
-      "narrower": []
+      "id": "http://vocab.getty.edu/aat/300154341",
+      "type": "Type",
+      "has_parent": ["http://vocab.getty.edu/aat/300154337"],
+      "has_child": [],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "husbands",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300154343",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "wifes"
-      },
-      "broader": ["aat:300154337"],
-      "narrower": []
+      "id": "http://vocab.getty.edu/aat/300154343",
+      "type": "Type",
+      "has_parent": ["http://vocab.getty.edu/aat/300154337"],
+      "has_child": [],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "wives",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300154337",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "spouses"
-      },
-      "broader": [],
-      "narrower": ["aat:300154341", "aat:300154343"]
+      "id": "http://vocab.getty.edu/aat/300154337",
+      "type": "Type",
+      "has_parent": [],
+      "has_child": [
+        "http://vocab.getty.edu/aat/300154341",
+        "http://vocab.getty.edu/aat/300154343"
+      ],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "spouses",
+          "language": "en"
+        }
+      ]
     },
     {
-      "id": "aat:300154336",
-      "type": "Concept",
-      "prefLabel": {
-        "en": "people by family relationship"
-      },
-      "broader": [],
-      "narrower": [
-        "aat:300154337",
-        "aat:300154345",
-        "aat:300025930",
-        "aat:300187624",
-        "aat:300386772",
-        "aat:300386773",
-        "aat:300386771",
-        "aat:300386770",
-        "aat:300386751",
-        "aat:300386748"
+      "id": "http://vocab.getty.edu/aat/300154336",
+      "type": "Type",
+      "has_parent": [],
+      "has_child": [
+        "http://vocab.getty.edu/aat/300187624",
+        "http://vocab.getty.edu/aat/300154337"
+      ],
+      "identified_by": [
+        {
+          "type": "Name",
+          "value": "people by family relationship",
+          "language": "en"
+        }
       ]
     }
   ],
-  "proxies": [{
+  "proxies": [
+    {
       "type": "Proxy",
-      "proxyFor": "aat:300188723",
-      "keyword": "brother"
+      "proxyFor": "http://vocab.getty.edu/aat/300188723",
+      "keyword": "brother",
+      "has_ancestors": [
+        "http://vocab.getty.edu/aat/300154336",
+        "http://vocab.getty.edu/aat/300187624"
+      ]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300188720",
-      "keyword": "sister"
+      "proxyFor": "http://vocab.getty.edu/aat/300188720",
+      "keyword": "sister",
+      "has_ancestors": [
+        "http://vocab.getty.edu/aat/300154336",
+        "http://vocab.getty.edu/aat/300187624"
+      ]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300187624",
-      "keyword": "sibling"
+      "proxyFor": "http://vocab.getty.edu/aat/300187624",
+      "keyword": "sibling",
+      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"],
+      "has_descendants": [
+        "http://vocab.getty.edu/aat/300188720",
+        "http://vocab.getty.edu/aat/300188723"
+      ]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300025932",
-      "keyword": "mother"
+      "proxyFor": "http://vocab.getty.edu/aat/300025932",
+      "keyword": "mother",
+      "has_ancestors": [
+        "http://vocab.getty.edu/aat/300154336",
+        "http://vocab.getty.edu/aat/300025930"
+      ]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300025931",
-      "keyword": "father"
+      "proxyFor": "http://vocab.getty.edu/aat/300025931",
+      "keyword": "father",
+      "has_ancestors": [
+        "http://vocab.getty.edu/aat/300154336",
+        "http://vocab.getty.edu/aat/300025930"
+      ]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300025930",
-      "keyword": "parent"
+      "proxyFor": "http://vocab.getty.edu/aat/300025930",
+      "keyword": "parent",
+      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"],
+      "has_descendants": [
+        "http://vocab.getty.edu/aat/300025931",
+        "http://vocab.getty.edu/aat/300025932"
+      ]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300154350",
-      "keyword": "son"
+      "proxyFor": "http://vocab.getty.edu/aat/300154350",
+      "keyword": "son",
+      "has_ancestors": [
+        "http://vocab.getty.edu/aat/300154336",
+        "http://vocab.getty.edu/aat/300154345"
+      ]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300154348",
-      "keyword": "daughter"
+      "proxyFor": "http://vocab.getty.edu/aat/300154348",
+      "keyword": "daughter",
+      "has_ancestors": [
+        "http://vocab.getty.edu/aat/300154336",
+        "http://vocab.getty.edu/aat/300154345"
+      ]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300154345",
-      "keyword": "child"
+      "proxyFor": "http://vocab.getty.edu/aat/300154345",
+      "keyword": "child",
+      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"],
+      "has_descendants": [
+        "http://vocab.getty.edu/aat/300154348",
+        "http://vocab.getty.edu/aat/300154350"
+      ]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300386748",
-      "keyword": "grandchild"
+      "proxyFor": "http://vocab.getty.edu/aat/300386748",
+      "keyword": "grandchild",
+      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300386751",
-      "keyword": "grandparent"
+      "proxyFor": "http://vocab.getty.edu/aat/300386751",
+      "keyword": "grandparent",
+      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300386770",
-      "keyword": "nephew"
+      "proxyFor": "http://vocab.getty.edu/aat/300386770",
+      "keyword": "nephew",
+      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300386771",
-      "keyword": "niece"
+      "proxyFor": "http://vocab.getty.edu/aat/300386771",
+      "keyword": "niece",
+      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300386773",
-      "keyword": "uncle"
+      "proxyFor": "http://vocab.getty.edu/aat/300386773",
+      "keyword": "uncle",
+      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300386772",
-      "keyword": "aunt"
+      "proxyFor": "http://vocab.getty.edu/aat/300386772",
+      "keyword": "aunt",
+      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300154341",
-      "keyword": "husband"
+      "proxyFor": "http://vocab.getty.edu/aat/300154341",
+      "keyword": "husband",
+      "has_ancestors": [
+        "http://vocab.getty.edu/aat/300154336",
+        "http://vocab.getty.edu/aat/300154336"
+      ]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300154343",
-      "keyword": "wife"
+      "proxyFor": "http://vocab.getty.edu/aat/300154343",
+      "keyword": "wife",
+      "has_ancestors": [
+        "http://vocab.getty.edu/aat/300154336",
+        "http://vocab.getty.edu/aat/300154336"
+      ]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300154337",
-      "keyword": "spouse"
+      "proxyFor": "http://vocab.getty.edu/aat/300154337",
+      "keyword": "spouse",
+      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"],
+      "has_descendants": [
+        "http://vocab.getty.edu/aat/300154343",
+        "http://vocab.getty.edu/aat/300154341"
+      ]
     },
     {
       "type": "Proxy",
-      "proxyFor": "aat:300154336",
-      "keyword": "relative"
+      "proxyFor": "http://vocab.getty.edu/aat/300154336",
+      "keyword": "relative",
+      "has_descendants": [
+        "http://vocab.getty.edu/aat/300154345",
+        "http://vocab.getty.edu/aat/300025930",
+        "http://vocab.getty.edu/aat/300386772",
+        "http://vocab.getty.edu/aat/300386773",
+        "http://vocab.getty.edu/aat/300386771",
+        "http://vocab.getty.edu/aat/300386770",
+        "http://vocab.getty.edu/aat/300386751",
+        "http://vocab.getty.edu/aat/300386748",
+        "http://vocab.getty.edu/aat/300154341",
+        "http://vocab.getty.edu/aat/300154343"
+      ]
     }
   ]
 }
