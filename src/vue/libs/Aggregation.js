@@ -12,7 +12,6 @@ export default class Aggregation {
     // Sanity checking for the aggregates
     oreAggregation.aggregates.forEach(obj => {
       if (typeof obj === "string") {
-        return;
       } else if (Object.prototype.toString.call(obj) !== "[object Object]") {
         throw Error("Aggregations must either be strings or objects.");
       } else if (!obj.id || !(typeof obj.id === "string")) {
@@ -30,7 +29,7 @@ export default class Aggregation {
     this.aggregation = oreAggregation;
   }
 
-  //----------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------
   langSearch(obj, key, langs) {
     let arr = [];
     if (Object.prototype.toString.call(obj) !== "[object Object]") {
@@ -60,7 +59,7 @@ export default class Aggregation {
     return arr;
   }
 
-  //----------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------
   getList(langs) {
     let results = [];
     for (const obj of this.aggregation.aggregates) {

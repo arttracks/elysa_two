@@ -31,7 +31,7 @@ describe("Aggregation", () => {
     };
   });
 
-  //----------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------
   describe("initialization", () => {
     it("accepts an object", () => {
       const agg = new Aggregation(data);
@@ -39,48 +39,48 @@ describe("Aggregation", () => {
     });
 
     it("throws if not an object", () => {
-      const agg = expect(() => {
+      expect(() => {
         new Aggregation("not an object");
       }).toThrow();
     });
 
     it("throws if aggregates is missing", () => {
       delete data.aggregates;
-      const agg = expect(() => {
+      expect(() => {
         new Aggregation(data);
       }).toThrow();
     });
 
     it("throws if aggregates is not an array", () => {
       data.aggregates = "not an array";
-      const agg = expect(() => {
+      expect(() => {
         new Aggregation(data);
       }).toThrow();
     });
 
     it("will accept strings as aggregate ids", () => {
       data.aggregates[0] = "just an id";
-      const agg = expect(() => {
+      expect(() => {
         new Aggregation(data);
       }).not.toThrow();
     });
 
     it("throws if an aggregate is not a string or object", () => {
       data.aggregates[0] = ["not an object"];
-      const agg = expect(() => {
+      expect(() => {
         new Aggregation(data);
       }).toThrow();
     });
 
     it("throws if an aggregate's id is missing", () => {
       delete data.aggregates[0].id;
-      const agg = expect(() => {
+      expect(() => {
         new Aggregation(data);
       }).toThrow();
     });
   });
 
-  //----------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------
   describe("listing the objects", () => {
     it("has an id", () => {
       const agg = new Aggregation(data);
