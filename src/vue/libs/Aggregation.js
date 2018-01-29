@@ -63,8 +63,10 @@ export default class Aggregation {
   getList(langs) {
     let results = [];
     for (const obj of this.aggregation.aggregates) {
-      let tempObj = { id: obj.id };
-      tempObj.prefLabel = this.langSearch(obj, "prefLabel", langs)[0];
+      let tempObj = {
+        id: obj.id,
+        prefLabel: this.langSearch(obj, "prefLabel", langs)[0]
+      };
       results.push(tempObj);
     }
     return results;
