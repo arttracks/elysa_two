@@ -14,7 +14,6 @@
       "id": "http://vocab.getty.edu/aat/300188723",
       "type": "Type",
       "has_parent": ["http://vocab.getty.edu/aat/300187624"],
-      "has_child": [],
       "identified_by": [
         {
           "type": "Name",
@@ -27,7 +26,6 @@
       "id": "http://vocab.getty.edu/aat/300188720",
       "type": "Type",
       "has_parent": ["http://vocab.getty.edu/aat/300187624"],
-      "has_child": [],
       "identified_by": [
         {
           "type": "Name",
@@ -39,7 +37,6 @@
     {
       "id": "http://vocab.getty.edu/aat/300187624",
       "type": "Type",
-      "has_parent": [],
       "has_child": [
         "http://vocab.getty.edu/aat/300188720",
         "http://vocab.getty.edu/aat/300188723"
@@ -56,7 +53,6 @@
       "id": "http://vocab.getty.edu/aat/300025932",
       "type": "Type",
       "has_parent": ["http://vocab.getty.edu/aat/300025930"],
-      "has_child": [],
       "identified_by": [
         {
           "type": "Name",
@@ -69,7 +65,6 @@
       "id": "http://vocab.getty.edu/aat/300025931",
       "type": "Type",
       "has_parent": ["http://vocab.getty.edu/aat/300025930"],
-      "has_child": [],
       "identified_by": [
         {
           "type": "Name",
@@ -81,7 +76,6 @@
     {
       "id": "http://vocab.getty.edu/aat/300025930",
       "type": "Type",
-      "has_parent": [],
       "has_child": [
         "http://vocab.getty.edu/aat/300025931",
         "http://vocab.getty.edu/aat/300025932"
@@ -98,7 +92,6 @@
       "id": "http://vocab.getty.edu/aat/300154350",
       "type": "Type",
       "has_parent": ["http://vocab.getty.edu/aat/300154345"],
-      "has_child": [],
       "identified_by": [
         {
           "type": "Name",
@@ -111,7 +104,6 @@
       "id": "http://vocab.getty.edu/aat/300154348",
       "type": "Type",
       "has_parent": ["http://vocab.getty.edu/aat/300154345"],
-      "has_child": [],
       "identified_by": [
         {
           "type": "Name",
@@ -123,7 +115,6 @@
     {
       "id": "http://vocab.getty.edu/aat/300154345",
       "type": "Type",
-      "has_parent": [],
       "has_child": [
         "http://vocab.getty.edu/aat/300154350",
         "http://vocab.getty.edu/aat/300154348"
@@ -139,8 +130,6 @@
     {
       "id": "http://vocab.getty.edu/aat/300386748",
       "type": "Type",
-      "has_parent": [],
-      "has_child": [],
       "identified_by": [
         {
           "type": "Name",
@@ -152,8 +141,6 @@
     {
       "id": "http://vocab.getty.edu/aat/300386751",
       "type": "Type",
-      "has_parent": [],
-      "has_child": [],
       "identified_by": [
         {
           "type": "Name",
@@ -165,8 +152,6 @@
     {
       "id": "http://vocab.getty.edu/aat/300386770",
       "type": "Type",
-      "has_parent": [],
-      "has_child": [],
       "identified_by": [
         {
           "type": "Name",
@@ -178,8 +163,6 @@
     {
       "id": "http://vocab.getty.edu/aat/300386771",
       "type": "Type",
-      "has_parent": [],
-      "has_child": [],
       "identified_by": [
         {
           "type": "Name",
@@ -191,8 +174,6 @@
     {
       "id": "http://vocab.getty.edu/aat/300386773",
       "type": "Type",
-      "has_parent": [],
-      "has_child": [],
       "identified_by": [
         {
           "type": "Name",
@@ -204,8 +185,6 @@
     {
       "id": "http://vocab.getty.edu/aat/300386772",
       "type": "Type",
-      "has_parent": [],
-      "has_child": [],
       "identified_by": [
         {
           "type": "Name",
@@ -218,7 +197,6 @@
       "id": "http://vocab.getty.edu/aat/300154341",
       "type": "Type",
       "has_parent": ["http://vocab.getty.edu/aat/300154337"],
-      "has_child": [],
       "identified_by": [
         {
           "type": "Name",
@@ -231,7 +209,6 @@
       "id": "http://vocab.getty.edu/aat/300154343",
       "type": "Type",
       "has_parent": ["http://vocab.getty.edu/aat/300154337"],
-      "has_child": [],
       "identified_by": [
         {
           "type": "Name",
@@ -243,7 +220,6 @@
     {
       "id": "http://vocab.getty.edu/aat/300154337",
       "type": "Type",
-      "has_parent": [],
       "has_child": [
         "http://vocab.getty.edu/aat/300154341",
         "http://vocab.getty.edu/aat/300154343"
@@ -259,7 +235,6 @@
     {
       "id": "http://vocab.getty.edu/aat/300154336",
       "type": "Type",
-      "has_parent": [],
       "has_child": [
         "http://vocab.getty.edu/aat/300187624",
         "http://vocab.getty.edu/aat/300154337"
@@ -278,7 +253,7 @@
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300188723",
       "keyword": "brother",
-      "has_ancestors": [
+      "has_ancestor": [
         "http://vocab.getty.edu/aat/300154336",
         "http://vocab.getty.edu/aat/300187624"
       ]
@@ -287,7 +262,7 @@
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300188720",
       "keyword": "sister",
-      "has_ancestors": [
+      "has_ancestor": [
         "http://vocab.getty.edu/aat/300154336",
         "http://vocab.getty.edu/aat/300187624"
       ]
@@ -296,8 +271,8 @@
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300187624",
       "keyword": "sibling",
-      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"],
-      "has_descendants": [
+      "has_ancestor": ["http://vocab.getty.edu/aat/300154336"],
+      "has_descendant": [
         "http://vocab.getty.edu/aat/300188720",
         "http://vocab.getty.edu/aat/300188723"
       ]
@@ -306,7 +281,7 @@
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300025932",
       "keyword": "mother",
-      "has_ancestors": [
+      "has_ancestor": [
         "http://vocab.getty.edu/aat/300154336",
         "http://vocab.getty.edu/aat/300025930"
       ]
@@ -315,7 +290,7 @@
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300025931",
       "keyword": "father",
-      "has_ancestors": [
+      "has_ancestor": [
         "http://vocab.getty.edu/aat/300154336",
         "http://vocab.getty.edu/aat/300025930"
       ]
@@ -324,8 +299,8 @@
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300025930",
       "keyword": "parent",
-      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"],
-      "has_descendants": [
+      "has_ancestor": ["http://vocab.getty.edu/aat/300154336"],
+      "has_descendant": [
         "http://vocab.getty.edu/aat/300025931",
         "http://vocab.getty.edu/aat/300025932"
       ]
@@ -334,7 +309,7 @@
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300154350",
       "keyword": "son",
-      "has_ancestors": [
+      "has_ancestor": [
         "http://vocab.getty.edu/aat/300154336",
         "http://vocab.getty.edu/aat/300154345"
       ]
@@ -343,7 +318,7 @@
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300154348",
       "keyword": "daughter",
-      "has_ancestors": [
+      "has_ancestor": [
         "http://vocab.getty.edu/aat/300154336",
         "http://vocab.getty.edu/aat/300154345"
       ]
@@ -352,8 +327,8 @@
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300154345",
       "keyword": "child",
-      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"],
-      "has_descendants": [
+      "has_ancestor": ["http://vocab.getty.edu/aat/300154336"],
+      "has_descendant": [
         "http://vocab.getty.edu/aat/300154348",
         "http://vocab.getty.edu/aat/300154350"
       ]
@@ -362,43 +337,43 @@
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300386748",
       "keyword": "grandchild",
-      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"]
+      "has_ancestor": ["http://vocab.getty.edu/aat/300154336"]
     },
     {
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300386751",
       "keyword": "grandparent",
-      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"]
+      "has_ancestor": ["http://vocab.getty.edu/aat/300154336"]
     },
     {
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300386770",
       "keyword": "nephew",
-      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"]
+      "has_ancestor": ["http://vocab.getty.edu/aat/300154336"]
     },
     {
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300386771",
       "keyword": "niece",
-      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"]
+      "has_ancestor": ["http://vocab.getty.edu/aat/300154336"]
     },
     {
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300386773",
       "keyword": "uncle",
-      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"]
+      "has_ancestor": ["http://vocab.getty.edu/aat/300154336"]
     },
     {
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300386772",
       "keyword": "aunt",
-      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"]
+      "has_ancestor": ["http://vocab.getty.edu/aat/300154336"]
     },
     {
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300154341",
       "keyword": "husband",
-      "has_ancestors": [
+      "has_ancestor": [
         "http://vocab.getty.edu/aat/300154336",
         "http://vocab.getty.edu/aat/300154336"
       ]
@@ -407,7 +382,7 @@
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300154343",
       "keyword": "wife",
-      "has_ancestors": [
+      "has_ancestor": [
         "http://vocab.getty.edu/aat/300154336",
         "http://vocab.getty.edu/aat/300154336"
       ]
@@ -416,8 +391,8 @@
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300154337",
       "keyword": "spouse",
-      "has_ancestors": ["http://vocab.getty.edu/aat/300154336"],
-      "has_descendants": [
+      "has_ancestor": ["http://vocab.getty.edu/aat/300154336"],
+      "has_descendant": [
         "http://vocab.getty.edu/aat/300154343",
         "http://vocab.getty.edu/aat/300154341"
       ]
@@ -426,7 +401,7 @@
       "type": "Proxy",
       "proxyFor": "http://vocab.getty.edu/aat/300154336",
       "keyword": "relative",
-      "has_descendants": [
+      "has_descendant": [
         "http://vocab.getty.edu/aat/300154345",
         "http://vocab.getty.edu/aat/300025930",
         "http://vocab.getty.edu/aat/300386772",
