@@ -98,7 +98,9 @@ describe("Aggregation", () => {
       const agg = new Aggregation(data);
       expect(agg.getList()).toEqual(
         expect.arrayContaining([
-          expect.objectContaining({ id: "aat:300188723" })
+          expect.objectContaining({
+            id: "http://vocab.getty.edu/aat/300188723"
+          })
         ])
       );
     });
@@ -145,25 +147,25 @@ describe("Aggregation", () => {
     });
     it("allows for the magic 'any' fallback.", () => {
       const agg = new Aggregation(data);
-      expect(agg.getList(["ck", "any"])).toEqual(
+      expect(agg.getList(["ck", "@any"])).toEqual(
         expect.arrayContaining([
           expect.objectContaining({ prefLabel: "brothers" })
         ])
       );
     });
     it("still returns undefined with 'any' if there are no labels", () => {
-      delete data.aggregates[0].prefLabel;
+      delete data.aggregates[0].identified_by;
       const agg = new Aggregation(data);
-      expect(agg.getList(["ck", "any"])).toEqual(
+      expect(agg.getList(["ck", "@any"])).toEqual(
         expect.arrayContaining([
           expect.objectContaining({ prefLabel: undefined })
         ])
       );
     });
     it("still returns undefined with 'any' if labels are empty", () => {
-      data.aggregates[0].prefLabel = {};
+      data.aggregates[0].identified_by = {};
       const agg = new Aggregation(data);
-      expect(agg.getList(["ck", "any"])).toEqual(
+      expect(agg.getList(["ck", "@any"])).toEqual(
         expect.arrayContaining([
           expect.objectContaining({ prefLabel: undefined })
         ])

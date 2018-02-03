@@ -1,4 +1,4 @@
-import { langSearch } from "./LanguageHelpers.js";
+import { langSearch, langDefaults } from "./LanguageHelpers.js";
 
 export default class Aggregation {
   constructor(oreAggregation, options = {}) {
@@ -32,12 +32,15 @@ export default class Aggregation {
   }
 
   // ----------------------------------------------------------------------------
-  getList(langs) {
+  getList(opts) {
+    opts = opts || this.options;
     let results = [];
     for (const obj of this.aggregation.aggregates) {
+      let val = null;
+      val = langSearch(obj.identified_by, opts)[0];
       let tempObj = {
         id: obj.id,
-        prefLabel: this.langSearch(obj, "prefLabel", langs)[0]
+        prefLabel: val
       };
       results.push(tempObj);
     }
