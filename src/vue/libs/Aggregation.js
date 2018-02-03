@@ -1,3 +1,5 @@
+import { langSearch } from "./LanguageHelpers.js";
+
 export default class Aggregation {
   constructor(oreAggregation, options = {}) {
     // Sanity checking for the base object
@@ -27,36 +29,6 @@ export default class Aggregation {
 
     // Saving the data
     this.aggregation = oreAggregation;
-  }
-
-  // ----------------------------------------------------------------------------
-  langSearch(obj, key, langs) {
-    let arr = [];
-    if (Object.prototype.toString.call(obj) !== "[object Object]") {
-      return arr;
-    } else if (!obj[key]) {
-      return arr;
-    }
-
-    langs = langs || this.options.langs;
-    if (typeof langs === "string") {
-      langs = [langs];
-    }
-
-    for (const lang of langs) {
-      if (obj[key][lang]) {
-        arr.push(obj[key][lang]);
-        continue;
-      }
-    }
-
-    if (!arr.length && langs.includes("any")) {
-      if (Object.keys(obj[key]).length) {
-        let firstLang = Object.keys(obj[key])[0];
-        arr.push(obj[key][firstLang]);
-      }
-    }
-    return arr;
   }
 
   // ----------------------------------------------------------------------------

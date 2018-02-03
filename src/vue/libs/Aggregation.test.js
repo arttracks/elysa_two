@@ -7,25 +7,37 @@ describe("Aggregation", () => {
       id: "http://example.com/thesaurus",
       type: "Aggregation",
       name: {
-        en: "Example Thesaurus"
+        en: "Example Thesaurus",
+        es: "Ejemplo de tesauro"
       },
       aggregates: [
         {
-          id: "aat:300188723",
-          type: "Concept",
-          prefLabel: {
-            en: "brothers",
-            es: "hermanos"
-          },
-          broader: ["aat:300187624"],
-          narrower: []
+          id: "http://vocab.getty.edu/aat/300188723",
+          type: "Type",
+          has_parent: ["http://vocab.getty.edu/aat/300187624"],
+          identified_by: [
+            {
+              type: "Name",
+              value: "brothers",
+              language: "en"
+            },
+            {
+              type: "Name",
+              value: "hermanos",
+              language: "es"
+            }
+          ]
         }
       ],
       proxies: [
         {
           type: "Proxy",
-          proxyFor: "aat:300188723",
-          keyword: "brother"
+          proxyFor: "http://vocab.getty.edu/aat/300188723",
+          keyword: "brother",
+          has_ancestor: [
+            "http://vocab.getty.edu/aat/300154336",
+            "http://vocab.getty.edu/aat/300187624"
+          ]
         }
       ]
     };
@@ -90,6 +102,10 @@ describe("Aggregation", () => {
         ])
       );
     });
+  });
+
+  // ----------------------------------------------------------------------------
+  describe("internationalization", () => {
     it("allows for a language to be set", () => {
       const agg = new Aggregation(data);
       expect(agg.getList("en")).toEqual(
