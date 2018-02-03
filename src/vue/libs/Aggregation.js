@@ -23,26 +23,46 @@ export default class Aggregation {
 
     // Setting up the default options
     const defaults = {
-      langs: ["en", "@none", "any"]
+      langs: langDefaults.langs
     };
     this.options = Object.assign(defaults, options);
 
     // Saving the data
     this.aggregation = oreAggregation;
+    this.aggregates = this.aggregation.aggregates;
+    this.proxies = this.aggregation.proxies;
   }
 
   // ----------------------------------------------------------------------------
   getList(opts) {
     opts = opts || this.options;
     let results = [];
-    for (const obj of this.aggregation.aggregates) {
-      let val = null;
-      val = langSearch(obj.identified_by, opts)[0];
-      let tempObj = {
-        id: obj.id,
-        prefLabel: val
-      };
-      results.push(tempObj);
+    for (const obj of this.aggregates) {
+      let clonedObj = JSON.parse(JSON.stringify(obj));
+
+      // merge in the proxies
+      let proxy = null;
+      if (this.proxies) {
+        proxy = this.proxies.find(proxy => proxy.proxyFor === clonedObj.id);
+      }
+      if (proxy) {
+        delete proxy.type;
+        delete proxy.proxyFor;
+        clonedObj = Object.assign(clonedObj, proxy);
+      }
+
+      // calculate prefLabel
+      let prefLabel = null;
+      if (typeof clonedObj.prefLabel === "string") {
+        prefLabel = clonedObj.prefLabel;
+      } else if (clonedObj.prefLabel) {
+        prefLabel = langSearch(clonedObj.prefLabel, opts)[0];
+      }
+      if (!prefLabel) prefLabel = langSearch(clonedObj.identified_by, opts)[0];
+
+      clonedObj.prefLabel = prefLabel;
+
+      results.push(clonedObj);
     }
     return results;
   }
