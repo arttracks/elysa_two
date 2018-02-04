@@ -1,6 +1,10 @@
 TODO:
 
 * [ ] Either rewrite the date parser in js or figure out how to use the ruby code via AJAX.
+
+  * [ ] hook up dates
+  * [ ] add dates to to the text parser
+
 * [ ] Build a search interface for reconciling strings to ULAN/Geonames
 * [ ] Finish the conversion into final CIDOC-CRM LOD
 * [ ] Rewrite the timeline visualization
@@ -8,7 +12,7 @@ TODO:
 * [ ] Handle era in life dates
 * [ ] Handle empty life dates
 * [ ] Handle uncertain life dates
-* [ ] Hook up the relationships
+* [ ] Hook up all the URL fields
 
 * [ ] Figure out importing data
 
@@ -17,11 +21,10 @@ TODO:
   * [ ] Re-add the diff code from the old Elysa
   * [ ] save for later?
 
-* [ ] Figure out how to convert a SKOS hierarchy into a selectable dropdown
-
-  * [ ] Drop down for aquisition types
-  * [ ] Drop down for relationship types
-  * [ ] Drop down for currencies
+* [ ] Drop down for aquisition types
+  * [ ] Hook up the acquisition method
+  * [ ] add acquisition method to the text parser
+* [ ] Drop down for currencies
 
 * [ ] Autoselect new period
 
@@ -34,6 +37,9 @@ TODO:
 * [x] Hook up the life dates
 * [x] Make all people EditorPeople
 * [x] Add toggle for relationship section
+* [x] Hook up the relationships
+* [x] Drop down for relationship types
+* [x] Figure out how to convert a SKOS hierarchy into a selectable dropdown
 
 ---
 
@@ -44,24 +50,3 @@ Enter Provenance: - As Text - text - id? URLS? - artwork name? - Creation Date? 
 Edit Provenance - Diff View - Basic Edit - Advanced Fields
 
 Analyse Provenance - VIsualization?
-
-✅ Possibly
-purchased by
-✅ Bob Buyer
-✅ ?
-✅ [1910-1980],
-✅ Pittsburgh, PA
-✅ for Bob Buyer's
-✅ son,
-✅ Owen Owner
-✅ [1920-1990?],
-✅ Boise, ID
-✅ from "Sale of Sales",
-✅ Gallery G,
-✅ New York, NY?,
-✅ in Miami, FL,
-sometime between Jan 5, 1982 and February 1982 until between 1999? and the 21st Century
-✅ (lot no. 1, for $100,000)
-✅ [a]
-✅ [1]
-✅.

@@ -36,9 +36,9 @@
   
           <EditorElement title="Sale or Auction information">
             <EditorSaleData 
-              :sellersAgent="datum(period,'sellers_agent')"
               :saleEvent="datum(period,'event')"
               :purchasingAgent="datum(period,'purchasing_agent')"
+              :sellersAgent="datum(period,'sellers_agent')"
               :stockNumber="datum(period,'stock_number')"
               :purchasePrice="datum(period,'purchase')"
               :updateEntity="updateEntity"
@@ -208,6 +208,6 @@ section {
 }
 .is-helpful .help {
   opacity: 0.8;
-  max-height: 2rem;
+  max-height: 4rem;
 }
 </style>
