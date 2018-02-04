@@ -5,7 +5,7 @@ export default class Aggregation {
     // Sanity checking for the base object
     if (Object.prototype.toString.call(oreAggregation) !== "[object Object]") {
       throw Error("Aggregations must be initalized with an Object");
-    } else if (oreAggregation.aggregates == undefined) {
+    } else if (oreAggregation.aggregates === undefined) {
       throw Error("Aggregations must have an `aggregates` property");
     } else if (!Array.isArray(oreAggregation.aggregates)) {
       throw Error("the `aggregates` property must be an Array");

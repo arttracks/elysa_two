@@ -75,7 +75,8 @@
 <script>
 import EntityLookup from "./EntityLookup.vue";
 import EditorElementLine from "./EditorElementLine.vue";
-import relationshipAggregation from "../../data/relationships.json";
+import relationshipJSON from "../../data/relationships.json";
+import Aggregation from "../libs/Aggregation.js";
 import edtf from "edtf";
 
 export default {
@@ -129,28 +130,13 @@ export default {
     }
   },
   data: function() {
+    const relationships = new Aggregation(relationshipJSON, {
+      langs: "en"
+    });
     return {
-      relationships: [
-        "brother",
-        "sister",
-        "sibling",
-        "mother",
-        "father",
-        "parent",
-        "son",
-        "daughter",
-        "child",
-        "grandchild",
-        "grandparent",
-        "nephew",
-        "niece",
-        "uncle",
-        "aunt",
-        "husband",
-        "wife",
-        "spouse",
-        "relative"
-      ]
+      relationships: relationships.getList().map(r => {
+        return { label: r.prefLabel, value: r.keyword };
+      })
     };
   },
   components: {

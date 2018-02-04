@@ -8,17 +8,6 @@
       :class="{ 'has-addons': hasAddons}"
     >
 
-      <!-- Lookup dropdown -->
-      <div v-if="lookupList.length" class="control">
-        <span class="select is-small">
-          <select>
-            <option hidden selected value disabled>relation type</option>
-            <option v-for="lookup in lookupList">
-                {{ lookup }}
-            </option>
-          </select>
-        </span>
-      </div>
 
       <!-- String entry input -->
       <div 
@@ -31,6 +20,26 @@
           @input="updateEntity"
         >
         <p v-if="help" class="help">{{help}}</p>
+      </div>
+
+
+      <!-- Lookup dropdown -->
+      <div v-if="lookupList.length" class="control">
+        <span class="select is-small">
+          <select
+            @change="setLookup"
+            >
+            <option :selected="!lookupValue" value >relationship type</option>
+            <option 
+              v-for="lookup in lookupList" 
+              :value="lookup.value"
+              :selected="lookupValue == lookup.value"
+
+            >
+                {{ lookup.value }}
+            </option>
+          </select>
+        </span>
       </div>
 
       <!-- Certainty button -->
@@ -174,6 +183,9 @@ export default {
         this.entityText = this.entityText + "?";
       }
       this.updateEntity();
+    },
+    setLookup: function(e) {
+      this.lookupSetter(e.target.value);
     },
     updateEntity: function() {
       let text = this.entityText;

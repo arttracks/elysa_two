@@ -12,7 +12,7 @@ let langDefaults = {
 // ----------------------------------------------------------------------------
 function _buildLanguageList(langs = null, opts = {}) {
   // Handle only getting on options list
-  if (Object.prototype.toString.call(langs) == "[object Object]") {
+  if (Object.prototype.toString.call(langs) === "[object Object]") {
     opts = langs;
     langs = undefined;
   }
@@ -44,7 +44,7 @@ function langSearch(data, langs, opts = {}) {
   langs = _buildLanguageList(langs, opts);
 
   // Search either for a Linguistic Object or a Langauge Map
-  if (Object.prototype.toString.call(data) == "[object Object]") {
+  if (Object.prototype.toString.call(data) === "[object Object]") {
     return langMapSearch(data, langs);
   } else if (Array.isArray(data)) {
     return linguisticObjectSearch(data, "value", langs);
