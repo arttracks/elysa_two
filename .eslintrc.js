@@ -32,9 +32,3 @@ module.exports = {
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off"
   }
 };
-
-// /build/
-// /config/
-// /dist/
-// /*.js
-// /test/unit/coverage/
