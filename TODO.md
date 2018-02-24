@@ -2,8 +2,7 @@ TODO:
 
 * [ ] Either rewrite the date parser in js or figure out how to use the ruby code via AJAX.
 
-  * [ ] hook up dates
-  * [ ] add dates to to the text parser
+* [ ] hook up dates
 
 * [ ] Build a search interface for reconciling strings to ULAN/Geonames
 * [ ] Finish the conversion into final CIDOC-CRM LOD
@@ -40,6 +39,7 @@ TODO:
 * [x] Hook up the relationships
 * [x] Drop down for relationship types
 * [x] Figure out how to convert a SKOS hierarchy into a selectable dropdown
+* [X] add dates to to the text parser
 
 ---
 

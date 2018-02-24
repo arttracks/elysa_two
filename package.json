@@ -21,7 +21,7 @@
     "bulma-switch": "^0.1.2",
     "clipboard": "^1.7.1",
     "edtf": "^2.3.0",
-
+    "nearley": "^2.11.1",
     "vue": "^2.5.9",
     "vuedraggable": "^2.16.0",
     "vuex": "^3.0.1"

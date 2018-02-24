@@ -189,6 +189,204 @@ describe("ProvenanceToString", () => {
   });
 
   // ----------------------------------------------------------------------------
+  describe("dates", () => {
+    it("does nothing without date elements", () => {
+      data.timespan = {};
+      const result = ProvenanceToString(data);
+      expect(result.text).toBe("Mary Cassatt.");
+    });
+
+    it("handles basic dates", () => {
+      data.timespan = {
+        botb: "1980-02-14",
+        eotb: "1980-02-14",
+        bote: null,
+        eote: null
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(", February 14, 1980");
+    });
+    it("handles basic dates BCE", () => {
+      data.timespan = {
+        botb: "-1980-02-14",
+        eotb: "-1980-02-14",
+        bote: null,
+        eote: null
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(", February 14, 1980 BCE");
+    });
+    it("handles basic dates", () => {
+      data.timespan = {
+        botb: "1980-02-14",
+        eotb: "1980-02-14",
+        bote: null,
+        eote: null
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(", February 14, 1980");
+    });
+    it("handles uncertain basic dates", () => {
+      data.timespan = {
+        botb: "-1980-02-14?",
+        eotb: "-1980-02-14?",
+        bote: null,
+        eote: null
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(", February 14, 1980?");
+    });
+
+    it("handles 'throughout 1980'", () => {
+      data.timespan = {
+        botb: null,
+        eotb: "1980",
+        bote: "1980",
+        eote: null
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain("throughout 1980");
+    });
+    it("handles throughout, until case", () => {
+      data.timespan = {
+        botb: null,
+        eotb: "1980",
+        bote: "1980",
+        eote: "1990"
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(
+        ", throughout 1980 until no later than 1990"
+      );
+    });
+    it("handles 'on' case", () => {
+      data.timespan = {
+        botb: "1980-02-14",
+        eotb: "1980-02-14",
+        bote: "1980-02-14",
+        eote: "1980-02-14"
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(", on February 14, 1980");
+    });
+
+    it("handles basic until dates", () => {
+      data.timespan = {
+        botb: null,
+        eotb: null,
+        bote: "1980-02-14",
+        eote: "1980-02-14"
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(", until February 14, 1980");
+    });
+    it("handles botb dates", () => {
+      data.timespan = {
+        botb: "1980-02-14",
+        eotb: null,
+        bote: null,
+        eote: null
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(", after February 14, 1980");
+    });
+    it("handles eotb dates", () => {
+      data.timespan = {
+        botb: null,
+        eotb: "1980-02-14",
+        bote: null,
+        eote: null
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(", by February 14, 1980");
+    });
+    it("handles bote dates", () => {
+      data.timespan = {
+        botb: null,
+        eotb: null,
+        bote: "1980-02-14",
+        eote: null
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(", until at least February 14, 1980");
+    });
+    it("handles eote dates", () => {
+      data.timespan = {
+        botb: null,
+        eotb: null,
+        bote: null,
+        eote: "1980-02-14"
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(", until no later than February 14, 1980");
+    });
+    it("handles botb & eotb dates", () => {
+      data.timespan = {
+        botb: "1980-02-14",
+        eotb: "1990",
+        bote: null,
+        eote: null
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(
+        ", sometime between February 14, 1980 and 1990"
+      );
+    });
+    it("handles bote & eote dates", () => {
+      data.timespan = {
+        botb: null,
+        eotb: null,
+        bote: "1980-02-14",
+        eote: "1990"
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(
+        ", until sometime between February 14, 1980 and 1990"
+      );
+    });
+    it("handles decades", () => {
+      data.timespan = {
+        botb: "198",
+        eotb: "198",
+        bote: null,
+        eote: null
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(", the 1980s");
+    });
+    it("handles centuries", () => {
+      data.timespan = {
+        botb: "19",
+        eotb: "19",
+        bote: null,
+        eote: null
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(", the 20th Century");
+    });
+    it("handles centuries BCE", () => {
+      data.timespan = {
+        botb: "-01",
+        eotb: "-01",
+        bote: null,
+        eote: null
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(", the 1st Century BCE");
+    });
+    it("handles the zeroth Century", () => {
+      data.timespan = {
+        botb: "00",
+        eotb: "00",
+        bote: null,
+        eote: null
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toContain(", the 1st Century");
+    });
+  });
+
+  // ----------------------------------------------------------------------------
   describe("in PLACE", () => {
     it("handles transfer locations", () => {
       data.transfer_location = {

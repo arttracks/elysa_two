@@ -22,8 +22,8 @@ const state = {
           string: "Mary Cassatt",
           certainty: true
         },
-        birth: "1844-uu-uu",
-        death: "1926-uu-uu"
+        birth: "1844",
+        death: "1926"
       },
       timespan: null,
       direct_transfer: true
@@ -41,7 +41,7 @@ const state = {
         }
       },
       timespan: {
-        eotb: "1892-08-uu"
+        eotb: "1892-08"
       },
       footnote: "Recorded in stock book in August 1892 ",
       direct_transfer: false
@@ -59,8 +59,8 @@ const state = {
         }
       },
       timespan: {
-        botb: "1895-uu-uu",
-        eotb: "1895-uu-uu"
+        botb: "1895",
+        eotb: "1895"
       },
       direct_transfer: true
     },
@@ -74,8 +74,8 @@ const state = {
         }
       },
       timespan: {
-        botb: "1922-10-uu",
-        eotb: "1922-10-uu"
+        botb: "1922-10",
+        eotb: "1922-10"
       },
       footnote: "Updated by CGK July 2012.",
       direct_transfer: false
@@ -90,8 +90,8 @@ const state = {
           uri: "http://example.org/bob",
           certainty: false
         },
-        birth: "1910-uu-uu",
-        death: "1980-uu-uu",
+        birth: "1910",
+        death: "1980",
         place: {
           token: "$AUTHORITY_TOKEN_3",
           string: "Pittsburgh, PA",
@@ -115,8 +115,8 @@ const state = {
           uri: "http://example.org/owen",
           certainty: true
         },
-        birth: "1920-uu-uu",
-        death: "1990-uu-uu",
+        birth: "1920",
+        death: "1990",
         place: {
           token: "$AUTHORITY_TOKEN_4",
           string: "Boise, ID",
@@ -154,9 +154,9 @@ const state = {
       },
       timespan: {
         botb: "1982-01-05",
-        eotb: "1982-02-uu",
-        bote: "1999-uu-uu",
-        eote: "20uu-uu-uu"
+        eotb: "1982-02",
+        bote: "1999",
+        eote: "20"
       },
       stock_number: "lot no. 1",
       purchase: {
