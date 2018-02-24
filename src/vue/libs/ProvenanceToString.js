@@ -123,6 +123,16 @@ function formatDate(dateString) {
 }
 
 function buildDates({ botb, bote, eotb, eote }) {
+  // check for valid dates
+  try {
+    botb && edtf(botb);
+    bote && edtf(bote);
+    eotb && edtf(eotb);
+    eote && edtf(eote);
+  } catch (error) {
+    return null;
+  }
+
   // Handle special "throughout" case
   if (eotb && bote && !(botb || eote) && eotb === bote) {
     return `throughout ${formatDate(eotb)}`;
@@ -271,9 +281,9 @@ export default function(data) {
   }
 
   // Date String: "sometime between Jan 5, 1982 and February 1982 until between 1999? and the 21st Century"
-  // TODO: write me
   if (data.timespan && Object.keys(data.timespan).length > 0) {
-    str.push(buildDates(data.timespan));
+    const dateString = buildDates(data.timespan);
+    if (dateString) str.push(dateString);
   }
 
   // Combine main clauses

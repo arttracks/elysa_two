@@ -196,6 +196,28 @@ describe("ProvenanceToString", () => {
       expect(result.text).toBe("Mary Cassatt.");
     });
 
+    it("does nothing with blank date elements", () => {
+      data.timespan = {
+        botb: null,
+        eotb: null,
+        bote: null,
+        eote: null
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toBe("Mary Cassatt.");
+    });
+
+    it("does nothing with invalid date elements", () => {
+      data.timespan = {
+        botb: "not a date",
+        eotb: null,
+        bote: null,
+        eote: null
+      };
+      const result = ProvenanceToString(data);
+      expect(result.text).toBe("Mary Cassatt.");
+    });
+
     it("handles basic dates", () => {
       data.timespan = {
         botb: "1980-02-14",
