@@ -6,11 +6,11 @@ export default class CulturalDates {
    * representing the standard Allen Interval/CIDOC-CRM time model,
    * convert it into a pretty-printed string following the Cultural Date rules.
    *
-   * @param  {String} options.botb - The Begin of the Begin as an EDTF date string
-   * @param  {String} options.eotb - The End of the Begin as an EDTF date string
-   * @param  {String} options.bote - The Begin of the End as an EDTF date string
-   * @param  {String} options.eote - The End of the End as an EDTF date string
-   * @return {String}              - The interval expressed in natural language English
+   * @param  {String} options.botb - The Begin of the Begin as an EDTF date
+   * @param  {String} options.eotb - The End of the Begin as an EDTF date
+   * @param  {String} options.bote - The Begin of the End as an EDTF date
+   * @param  {String} options.eote - The End of the End as an EDTF date
+   * @return {String}              - The interval expressed as natural language English
    */
   parse({ botb, eotb, bote, eote }) {
     // check for valid dates
