@@ -1,4 +1,4 @@
-import edtf from "edtf";
+import CulturalDates from "./CulturalDates.js";
 
 // ----------------------------------------------------------------------------
 function buildPlace(data) {
@@ -61,138 +61,10 @@ function buildPerson(data) {
   return str.join(" ");
 }
 
-function ordinalize(i) {
-  let j = i % 10;
-  let k = i % 100;
-  if (j === 1 && k !== 11) {
-    return i + "st";
-  }
-  if (j === 2 && k !== 12) {
-    return i + "nd";
-  }
-  if (j === 3 && k !== 13) {
-    return i + "rd";
-  }
-  return i + "th";
-}
-
-function formatDate(dateString) {
-  let bce = false;
-  let str = null;
-  let certain = true;
-
-  // workaround for BCE full date bug in edtf.js
-  if (dateString.startsWith("-") && dateString.match(/-/g).length === 3) {
-    bce = true;
-    dateString = dateString.slice(1);
-  }
-
-  let date = edtf(dateString);
-
-  if (date.uncertain.value > 0) {
-    certain = false;
-    date.uncertain = false;
-  }
-
-  if (date.type === "Date") {
-    switch (date.precision) {
-      case 1:
-      case 2:
-      case 3:
-        str = date.format("en-US", { month: "long" });
-    }
-  } else if (date.type === "Decade") {
-    str = `the ${date}0s`;
-  } else if (date.type === "Century") {
-    let century = date.century;
-    if (century >= 0) {
-      century += 1;
-    } else {
-      bce = true;
-      century = Math.abs(century);
-    }
-    str = `the ${ordinalize(century)} Century`;
-  }
-  if (certain === false) {
-    str += "?";
-  }
-  if (bce) {
-    str += " BCE";
-  }
-  return str;
-}
-
-function buildDates({ botb, bote, eotb, eote }) {
-  // check for valid dates
-  try {
-    botb && edtf(botb);
-    bote && edtf(bote);
-    eotb && edtf(eotb);
-    eote && edtf(eote);
-  } catch (error) {
-    return null;
-  }
-
-  // Handle special "throughout" case
-  if (eotb && bote && !(botb || eote) && eotb === bote) {
-    return `throughout ${formatDate(eotb)}`;
-  }
-
-  // Handle special "throughout, until" case
-  if (eotb && bote && eote && !botb && eotb === bote) {
-    return `throughout ${formatDate(eotb)} until no later than ${formatDate(
-      eote
-    )}`;
-  }
-
-  // Handle special "on" case
-  if (
-    botb &&
-    eotb &&
-    bote &&
-    eote &&
-    (botb === eotb && bote === eote && botb === eote) &&
-    (edtf(botb).precision === 3 && edtf(botb).precision === 3)
-  ) {
-    return `on ${formatDate(botb)}`;
-  }
-
-  let firstString = null;
-  if (botb && eotb) {
-    if (botb === eotb) {
-      firstString = formatDate(botb);
-    } else {
-      firstString = `sometime between ${formatDate(botb)} and ${formatDate(
-        eotb
-      )}`;
-    }
-  } else if (botb) {
-    firstString = `after ${formatDate(botb)}`;
-  } else if (eotb) {
-    firstString = `by ${formatDate(eotb)}`;
-  }
-
-  let secondString = null;
-  if (bote && eote) {
-    if (bote === eote) {
-      secondString = formatDate(bote);
-    } else {
-      secondString = `sometime between ${formatDate(bote)} and ${formatDate(
-        eote
-      )}`;
-    }
-  } else if (bote) {
-    secondString = `at least ${formatDate(bote)}`;
-  } else if (eote) {
-    secondString = `no later than ${formatDate(eote)}`;
-  }
-
-  if (firstString && secondString) {
-    return `${firstString} until ${secondString}`;
-  } else if (secondString) {
-    return `until ${secondString}`;
-  }
-  return firstString;
+// ----------------------------------------------------------------------------
+function buildDates(timespan) {
+  const cd = new CulturalDates();
+  return cd.parse(timespan);
 }
 
 // ----------------------------------------------------------------------------
