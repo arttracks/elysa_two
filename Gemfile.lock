@@ -99,7 +99,7 @@ GEM
       websocket-driver (>= 0.2.0)
     public_suffix (3.0.0)
     puma (3.10.0)
-    rack (2.0.3)
+    rack (2.0.7)
     rack-cache (1.7.1)
       rack (>= 0.4)
     rack-contrib (1.2.0)
@@ -217,7 +217,7 @@ DEPENDENCIES
   minitest
   poltergeist
   puma
-  rack
+  rack (>= 2.0.6)
   rack-cache
   rack-contrib
   rack-cors
@@ -227,4 +227,4 @@ DEPENDENCIES
   sinatra-contrib
 
 BUNDLED WITH
-   1.16.0
+   1.16.6
