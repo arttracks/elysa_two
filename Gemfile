@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ## Gems for Rack
 ##--------------------------------------------------
-gem "rack"
+gem "rack", ">= 2.0.6"
 gem 'rack-cors', :require => 'rack/cors'
 gem "rack-cache"
 gem "rack-contrib"
