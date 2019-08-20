@@ -90,7 +90,7 @@ GEM
     mustermann (1.0.3)
     net-http-persistent (3.0.0)
       connection_pool (~> 2.2)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     parslet (1.8.1)
     poltergeist (1.16.0)
